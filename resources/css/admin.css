@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+@source '../views/admin/**/*.blade.php';
+
+@theme {
+    --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+}
+
+.admin-input {
+    width: 100%;
+    border: 1px solid #e7e5e4;
+    border-radius: .7rem;
+    min-height: 42px;
+    padding: .55rem .8rem;
+    background: white;
+}

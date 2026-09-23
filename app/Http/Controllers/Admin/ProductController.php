@@ -1,0 +1,266 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Enums\ProductStatus;
+use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\ProductImage;
+use App\Models\ProductVariant;
+use App\Services\ImageService;
+use App\Services\ProductImportService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+
+class ProductController extends Controller
+{
+    public function index(Request $request)
+    {
+        $products = Product::query()
+            ->with(['category', 'subCategory', 'brand', 'primaryImage'])
+            ->when($request->category_id, function ($q, $id) {
+                $q->where(function ($builder) use ($id) {
+                    $builder->where('category_id', $id)->orWhere('sub_category_id', $id);
+                });
+            })
+            ->when($request->status, fn ($q, $status) => $q->where('status', $status))
+            ->when($request->stock === 'low', fn ($q) => $q->where('stock_quantity', '<=', config('shop.low_stock_threshold')))
+            ->when($request->stock === 'out', fn ($q) => $q->where('stock_quantity', 0))
+            ->when($request->boolean('featured'), fn ($q) => $q->where('is_featured', true))
+            ->when($request->boolean('best_seller'), fn ($q) => $q->where('is_best_seller', true))
+            ->when($request->boolean('new_arrival'), fn ($q) => $q->where('is_new_arrival', true))
+            ->when($request->q, fn ($q, $term) => $q->where(function ($builder) use ($term) {
+                $builder->where('name', 'like', '%'.$term.'%')->orWhere('sku', 'like', '%'.$term.'%');
+            }))
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
+
+        return view('admin.products.index', [
+            'products' => $products,
+            'categories' => Category::query()->orderBy('name')->get(),
+        ]);
+    }
+
+    public function create()
+    {
+        return view('admin.products.form', $this->formData());
+    }
+
+    public function store(Request $request, ImageService $images)
+    {
+        $product = Product::query()->create($this->validated($request));
+        $product->syncTagsFromString($request->string('tags'));
+        $this->syncImages($request, $product, $images);
+        $this->syncVariants($request, $product);
+
+        return redirect()->route('admin.products.index')->with('status', 'Product created.');
+    }
+
+    public function edit(Product $product)
+    {
+        $product->load(['images', 'variants.values.attribute', 'variants.values.attributeValue', 'tags']);
+
+        return view('admin.products.form', $this->formData() + ['product' => $product]);
+    }
+
+    public function update(Request $request, Product $product, ImageService $images)
+    {
+        $product->update($this->validated($request, $product));
+        $product->syncTagsFromString($request->string('tags'));
+        $this->syncImages($request, $product, $images);
+        $this->syncVariants($request, $product);
+
+        return redirect()->route('admin.products.index')->with('status', 'Product updated.');
+    }
+
+    public function destroy(Product $product, ImageService $images)
+    {
+        foreach ($product->images as $image) {
+            $images->deleteMany([$image->path_thumb, $image->path_medium, $image->path_large]);
+        }
+        $product->delete();
+
+        return back()->with('status', 'Product deleted.');
+    }
+
+    public function bulkDelete(Request $request)
+    {
+        $ids = $request->validate(['ids' => ['required', 'array']])['ids'];
+        Product::query()->whereIn('id', $ids)->delete();
+
+        return back()->with('status', 'Selected products deleted.');
+    }
+
+    public function export()
+    {
+        $rows = Product::query()->with(['category', 'subCategory', 'brand', 'tags'])->get();
+        $callback = function () use ($rows) {
+            $out = fopen('php://output', 'w');
+            fputcsv($out, ['product_name', 'category', 'sub_category', 'sku', 'description', 'mrp', 'selling_price', 'stock', 'brand', 'tags', 'status']);
+            foreach ($rows as $product) {
+                fputcsv($out, [
+                    $product->name,
+                    $product->category?->name,
+                    $product->subCategory?->name,
+                    $product->sku,
+                    $product->short_description,
+                    $product->mrp,
+                    $product->selling_price,
+                    $product->stock_quantity,
+                    $product->brand?->name,
+                    $product->tags->pluck('name')->implode(','),
+                    $product->status->value,
+                ]);
+            }
+            fclose($out);
+        };
+
+        return response()->streamDownload($callback, 'products.csv', ['Content-Type' => 'text/csv']);
+    }
+
+    public function import(Request $request, ProductImportService $importer)
+    {
+        $request->validate(['file' => ['required', 'file', 'mimes:csv,txt', 'max:4096']]);
+        $result = $importer->import($request->file('file')->getRealPath());
+
+        if ($result['errors']) {
+            return back()->withErrors(['import' => $result['errors']]);
+        }
+
+        return back()->with('status', $result['created'].' products imported.');
+    }
+
+    private function validated(Request $request, ?Product $product = null): array
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:180'],
+            'slug' => ['nullable', 'string', 'max:180', Rule::unique('products', 'slug')->ignore($product?->id)],
+            'category_id' => ['required', 'exists:categories,id'],
+            'sub_category_id' => ['nullable', 'exists:categories,id'],
+            'brand_id' => ['nullable', 'exists:brands,id'],
+            'sku' => ['nullable', 'string', 'max:80', Rule::unique('products', 'sku')->ignore($product?->id)],
+            'short_description' => ['nullable', 'string', 'max:500'],
+            'description' => ['nullable', 'string'],
+            'mrp' => ['required', 'numeric', 'min:1'],
+            'selling_price' => ['required', 'numeric', 'min:1'],
+            'stock_quantity' => ['required', 'integer', 'min:0'],
+            'min_order_qty' => ['nullable', 'integer', 'min:1'],
+            'max_order_qty' => ['nullable', 'integer', 'min:1'],
+            'status' => ['required', Rule::enum(ProductStatus::class)],
+            'is_featured' => ['nullable', 'boolean'],
+            'is_best_seller' => ['nullable', 'boolean'],
+            'is_new_arrival' => ['nullable', 'boolean'],
+            'video_url' => ['nullable', 'url'],
+            'seo_title' => ['nullable', 'string', 'max:180'],
+            'seo_description' => ['nullable', 'string', 'max:320'],
+            'seo_keywords' => ['nullable', 'string', 'max:255'],
+            'shipping_info' => ['nullable', 'string'],
+            'return_info' => ['nullable', 'string'],
+        ]);
+
+        $data['slug'] = $data['slug'] ?: Str::slug($data['name']);
+        $data['is_featured'] = $request->boolean('is_featured');
+        $data['is_best_seller'] = $request->boolean('is_best_seller');
+        $data['is_new_arrival'] = $request->boolean('is_new_arrival');
+        $data['min_order_qty'] = $data['min_order_qty'] ?: 1;
+
+        if ($request->filled('specifications')) {
+            $data['specifications'] = collect(explode("\n", $request->string('specifications')))
+                ->map(function ($line) {
+                    [$label, $value] = array_pad(explode(':', $line, 2), 2, null);
+
+                    return $label && $value ? ['label' => trim($label), 'value' => trim($value)] : null;
+                })
+                ->filter()
+                ->values()
+                ->all();
+        }
+
+        return $data;
+    }
+
+    private function syncImages(Request $request, Product $product, ImageService $images): void
+    {
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $index => $file) {
+                $paths = $images->storeProductImage($file, $product->id);
+                $product->images()->create($paths + [
+                    'alt' => $product->name,
+                    'is_primary' => $product->images()->count() === 0 && $index === 0,
+                    'display_order' => $product->images()->count() + $index,
+                ]);
+            }
+        }
+
+        if ($request->filled('primary_image_id')) {
+            $product->images()->update(['is_primary' => false]);
+            $product->images()->where('id', $request->integer('primary_image_id'))->update(['is_primary' => true]);
+        }
+
+        if ($request->filled('delete_images')) {
+            $product->images()->whereIn('id', (array) $request->input('delete_images'))->each(function (ProductImage $image) use ($images) {
+                $images->deleteMany([$image->path_thumb, $image->path_medium, $image->path_large]);
+                $image->delete();
+            });
+        }
+    }
+
+    private function syncVariants(Request $request, Product $product): void
+    {
+        $rows = array_values(array_filter($request->input('variants', []), fn ($row) => filled($row['label'] ?? null) || filled($row['sku'] ?? null)));
+        if (! $rows) {
+            return;
+        }
+
+        $keep = [];
+        foreach ($rows as $row) {
+            $variant = $product->variants()->updateOrCreate(
+                ['id' => $row['id'] ?? null],
+                [
+                    'sku' => $row['sku'] ?? null,
+                    'price' => $row['price'] ?: null,
+                    'mrp' => $row['mrp'] ?: null,
+                    'stock' => (int) ($row['stock'] ?? 0),
+                    'is_active' => true,
+                ]
+            );
+            $keep[] = $variant->id;
+            $variant->values()->delete();
+            foreach (explode(',', (string) ($row['label'] ?? '')) as $pair) {
+                if (! str_contains($pair, ':')) {
+                    continue;
+                }
+                [$attrName, $valueName] = array_map('trim', explode(':', $pair, 2));
+                if ($attrName === '' || $valueName === '') {
+                    continue;
+                }
+                $attribute = \App\Models\Attribute::query()->firstOrCreate(
+                    ['slug' => Str::slug($attrName)],
+                    ['name' => $attrName, 'type' => 'select', 'is_filterable' => true]
+                );
+                $value = $attribute->values()->firstOrCreate(
+                    ['slug' => Str::slug($valueName)],
+                    ['value' => $valueName]
+                );
+                $variant->values()->create([
+                    'attribute_id' => $attribute->id,
+                    'attribute_value_id' => $value->id,
+                ]);
+            }
+        }
+
+        $product->variants()->whereNotIn('id', $keep)->delete();
+    }
+
+    private function formData(): array
+    {
+        return [
+            'categories' => Category::query()->parents()->with('children')->orderBy('name')->get(),
+            'brands' => Brand::query()->orderBy('name')->get(),
+        ];
+    }
+}
