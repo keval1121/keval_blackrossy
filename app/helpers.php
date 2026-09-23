@@ -59,21 +59,78 @@ if (! function_exists('discount_percent')) {
 if (! function_exists('ad_code')) {
     function ad_code(string $position): ?string
     {
+        // Never render placement ads until explicitly enabled (keeps review-safe).
         if (! setting('adsense_enabled', false)) {
             return null;
         }
 
+        /** @var array<string, string|null> $ads */
         $ads = Cache::remember('shop.ads', 3600, function () {
             try {
-                return Ad::query()->where('is_active', true)->get()->keyBy('position');
+                return Ad::query()
+                    ->where('is_active', true)
+                    ->pluck('code', 'position')
+                    ->all();
             } catch (Throwable) {
-                return collect();
+                return [];
             }
         });
 
-        $ad = $ads->get($position);
+        if (! is_array($ads)) {
+            Cache::forget('shop.ads');
 
-        return $ad?->code ?: null;
+            return null;
+        }
+
+        $code = $ads[$position] ?? null;
+        if (! is_string($code) || trim($code) === '') {
+            return null;
+        }
+
+        // Reject incomplete snippets (loader-only) — those belong in <head>, not placements.
+        if (! str_contains($code, 'data-ad-slot')) {
+            return null;
+        }
+
+        return $code;
+    }
+}
+
+if (! function_exists('adsense_client_id')) {
+    /**
+     * Normalized AdSense client id, e.g. ca-pub-1983284873156439.
+     */
+    function adsense_client_id(): ?string
+    {
+        $raw = trim((string) setting('adsense_client_id', ''));
+        if ($raw === '') {
+            return null;
+        }
+
+        if (preg_match('/ca-pub-\d+/i', $raw, $m)) {
+            return strtolower($m[0]);
+        }
+
+        if (preg_match('/pub-(\d+)/i', $raw, $m)) {
+            return 'ca-pub-'.$m[1];
+        }
+
+        return null;
+    }
+}
+
+if (! function_exists('adsense_publisher_id')) {
+    /**
+     * Publisher id for ads.txt, e.g. pub-1983284873156439.
+     */
+    function adsense_publisher_id(): ?string
+    {
+        $client = adsense_client_id();
+        if ($client === null) {
+            return null;
+        }
+
+        return str_replace('ca-', '', $client);
     }
 }
 

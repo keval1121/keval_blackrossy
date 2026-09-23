@@ -9,6 +9,7 @@ use App\Models\HomepageSection;
 use App\Models\Product;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CmsController extends Controller
 {
@@ -83,12 +84,31 @@ class CmsController extends Controller
 
     public function adSave(Request $request, Ad $ad)
     {
+        $code = trim((string) $request->input('code', ''));
+        $isActive = $request->boolean('is_active');
+
+        // Incomplete loader-only code must never be activated (AdSense policy / UX safe).
+        if ($code !== '' && ! str_contains($code, 'data-ad-slot')) {
+            $isActive = false;
+        }
+
+        if ($code === '') {
+            $isActive = false;
+        }
+
         $ad->update([
             'name' => $request->string('name'),
-            'code' => $request->input('code'),
-            'is_active' => $request->boolean('is_active'),
+            'code' => $code !== '' ? $code : null,
+            'is_active' => $isActive,
         ]);
 
-        return back()->with('status', 'Ad placement updated.');
+        Cache::forget('shop.ads');
+
+        $status = 'Ad placement updated.';
+        if ($code !== '' && ! str_contains($code, 'data-ad-slot')) {
+            $status = 'Saved as inactive: paste a full ad unit that includes data-ad-slot. The head script is set in Settings → Client ID.';
+        }
+
+        return back()->with('status', $status);
     }
 }

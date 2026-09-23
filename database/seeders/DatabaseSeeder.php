@@ -45,6 +45,8 @@ class DatabaseSeeder extends Seeder
             'coupons_enabled' => '1',
             'reviews_enabled' => '1',
             'adsense_enabled' => '0',
+            'adsense_client_id' => 'ca-pub-1983284873156439',
+            'ads_txt' => '',
             'maintenance_mode' => '0',
             'restore_stock_on_cancel' => '1',
             'default_delivery_charge' => '49',

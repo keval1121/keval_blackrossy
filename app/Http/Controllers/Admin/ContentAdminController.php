@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\CouponType;
 use App\Http\Controllers\Controller;
+use App\Models\BlockedMobile;
 use App\Models\Blog;
 use App\Models\BlogCategory;
-use App\Models\BlockedMobile;
 use App\Models\Brand;
 use App\Models\ContactMessage;
 use App\Models\Coupon;
+use App\Models\Order;
 use App\Models\Page;
 use App\Models\Review;
 use App\Models\Setting;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class ContentAdminController extends Controller
@@ -96,6 +97,8 @@ class ContentAdminController extends Controller
             'free_shipping_amount' => ['nullable', 'numeric', 'min:0'],
             'seo_title' => ['nullable', 'string', 'max:180'],
             'seo_description' => ['nullable', 'string', 'max:320'],
+            'adsense_client_id' => ['nullable', 'string', 'max:40'],
+            'ads_txt' => ['nullable', 'string', 'max:2000'],
             'logo' => ['nullable', 'image', 'max:2048'],
             'favicon' => ['nullable', 'image', 'max:1024'],
         ]);
@@ -103,7 +106,7 @@ class ContentAdminController extends Controller
         foreach ([
             'website_name', 'contact_number', 'whatsapp_number', 'contact_email', 'address',
             'facebook', 'instagram', 'youtube', 'default_delivery_charge', 'free_shipping_amount',
-            'seo_title', 'seo_description',
+            'seo_title', 'seo_description', 'adsense_client_id', 'ads_txt',
         ] as $key) {
             Setting::put($key, $data[$key] ?? '', 'store');
         }
@@ -115,6 +118,8 @@ class ContentAdminController extends Controller
         Setting::put('adsense_enabled', $request->boolean('adsense_enabled'), 'store');
         Setting::put('maintenance_mode', $request->boolean('maintenance_mode'), 'store');
         Setting::put('restore_stock_on_cancel', $request->boolean('restore_stock_on_cancel'), 'store');
+
+        Cache::forget('shop.ads');
 
         if ($request->hasFile('logo')) {
             Setting::put('logo', $images->storeSingle($request->file('logo'), 'brand', 400), 'store');
@@ -209,7 +214,7 @@ class ContentAdminController extends Controller
     {
         $from = request('from', now()->subDays(30)->toDateString());
         $to = request('to', now()->toDateString());
-        $orders = \App\Models\Order::query()->whereBetween('created_at', [$from, $to.' 23:59:59'])->get();
+        $orders = Order::query()->whereBetween('created_at', [$from, $to.' 23:59:59'])->get();
 
         return view('admin.reports.index', compact('orders', 'from', 'to'));
     }

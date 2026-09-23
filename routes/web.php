@@ -48,7 +48,7 @@ Route::get('/robots.txt', [ContentController::class, 'robots'])->name('robots');
 Route::get('/ads.txt', [ContentController::class, 'adsTxt'])->name('ads.txt');
 
 Route::get('/{page:slug}', [ContentController::class, 'page'])
-    ->where('page', 'about|privacy-policy|terms|shipping-policy|return-policy|refund-policy|cancellation-policy')
+    ->where('page', 'about|privacy-policy|terms|shipping-policy|return-policy|refund-policy|cancellation-policy|cookie-policy')
     ->name('page.show');
 
 Route::prefix('admin')->name('admin.')->group(function () {

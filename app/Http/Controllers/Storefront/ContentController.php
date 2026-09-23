@@ -97,13 +97,24 @@ class ContentController extends Controller
 
     public function adsTxt()
     {
-        // Replace the placeholder line with your AdSense publisher ads.txt entry after approval.
-        $lines = [
-            '# Black Rossy ads.txt — paste your Google AdSense line from AdSense > Sites after approval',
-            '# Example format: google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0',
-            setting('ads_txt', '# Pending AdSense publisher ID'),
-        ];
+        $custom = trim((string) setting('ads_txt', ''));
+        if ($custom !== '' && ! str_starts_with($custom, '#')) {
+            return response($custom."\n", 200)->header('Content-Type', 'text/plain; charset=UTF-8');
+        }
 
-        return response(implode("\n", $lines), 200)->header('Content-Type', 'text/plain');
+        $publisher = adsense_publisher_id();
+        $lines = [];
+        if ($publisher) {
+            // Standard AdSense authorized seller line (certification authority f08c47fec0942fa0).
+            $lines[] = 'google.com, '.$publisher.', DIRECT, f08c47fec0942fa0';
+        }
+        if ($custom !== '') {
+            $lines[] = $custom;
+        }
+        if ($lines === []) {
+            $lines[] = '# Black Rossy ads.txt — add adsense_client_id in Admin → Settings';
+        }
+
+        return response(implode("\n", $lines)."\n", 200)->header('Content-Type', 'text/plain; charset=UTF-8');
     }
 }

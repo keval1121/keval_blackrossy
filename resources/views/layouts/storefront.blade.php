@@ -21,6 +21,9 @@
     @isset($schema)
         <script type="application/ld+json">{!! $schema !!}</script>
     @endisset
+    @if ($adsenseClient = adsense_client_id())
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ $adsenseClient }}" crossorigin="anonymous"></script>
+    @endif
 </head>
 <body class="bg-sand text-ink antialiased pb-24 md:pb-0">
     <div id="toast-wrap" class="toast-wrap"></div>
