@@ -1,7 +1,11 @@
 @extends('layouts.admin')
 @section('title', isset($product) ? 'Edit product' : 'Add product')
 @section('content')
-<form method="post" enctype="multipart/form-data" action="{{ isset($product) ? route('admin.products.update', $product) : route('admin.products.store') }}" class="space-y-6">
+{{--
+  IMPORTANT: do not nest image Remove/Primary forms inside the product save form.
+  Nested forms are invalid HTML; browsers merge them and Remove can fire product DELETE.
+--}}
+<form id="product-form" method="post" enctype="multipart/form-data" action="{{ isset($product) ? route('admin.products.update', $product) : route('admin.products.store') }}" class="space-y-6">
     @csrf
     @isset($product) @method('PUT') @endisset
 
@@ -45,45 +49,10 @@
             </section>
 
             <section class="admin-card">
-                <h2 class="admin-card-title">Images</h2>
-                <p class="admin-card-help">JPG / PNG / WebP, max 4MB each, up to 8 files. Use Remove to delete instantly. Set as primary without saving the whole form.</p>
-                <div class="mt-4 space-y-4">
-                    <div>
-                        <label class="admin-label">Add new images</label>
-                        <input type="file" name="images[]" multiple accept="image/jpeg,image/png,image/webp" class="admin-input">
-                        <p class="mt-1 text-xs text-stone-500">New uploads apply when you click Save product.</p>
-                    </div>
-                    @isset($product)
-                        @if($product->images->isNotEmpty())
-                            <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                                @foreach($product->images as $image)
-                                    <div class="overflow-hidden rounded-xl border border-stone-200 bg-stone-50">
-                                        <div class="relative">
-                                            <img src="{{ $image->url('thumb') }}" alt="" class="aspect-square w-full object-cover">
-                                            @if($image->is_primary)
-                                                <span class="absolute left-2 top-2 rounded-full bg-amber-500 px-2 py-0.5 text-[10px] font-semibold text-white">Primary</span>
-                                            @endif
-                                        </div>
-                                        <div class="flex flex-col gap-1.5 p-2">
-                                            @unless($image->is_primary)
-                                                <form method="post" action="{{ route('admin.products.images.primary', [$product, $image]) }}">
-                                                    @csrf
-                                                    <button class="admin-btn admin-btn-ghost w-full py-1.5 text-xs">Set as primary</button>
-                                                </form>
-                                            @endunless
-                                            <form method="post" action="{{ route('admin.products.images.destroy', [$product, $image]) }}" onsubmit="return confirm('Remove this image?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="admin-btn admin-btn-danger w-full py-1.5 text-xs">Remove</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @else
-                            <p class="rounded-xl bg-stone-50 px-3 py-2 text-xs text-stone-500">No images yet — choose files above and Save product.</p>
-                        @endif
-                    @endisset
+                <h2 class="admin-card-title">Add images</h2>
+                <p class="admin-card-help">JPG / PNG / WebP, max 4MB each, up to 8 files. Click Save product after choosing files.</p>
+                <div class="mt-4">
+                    <input type="file" name="images[]" multiple accept="image/jpeg,image/png,image/webp" class="admin-input">
                 </div>
             </section>
 
@@ -208,9 +177,46 @@
 </form>
 
 @isset($product)
-    <form method="post" action="{{ route('admin.products.destroy', $product) }}" class="mt-6" onsubmit="return confirm('Delete this product permanently?')">
-        @csrf @method('DELETE')
-        <button type="submit" class="text-sm text-rose-700 underline-offset-2 hover:underline">Delete product</button>
+    <section class="admin-card mt-6">
+        <h2 class="admin-card-title">Current images</h2>
+        <p class="admin-card-help">Remove and Set as primary work immediately — they do not delete the product.</p>
+        <div class="mt-4">
+            @if($product->images->isNotEmpty())
+                <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+                    @foreach($product->images as $image)
+                        <div class="overflow-hidden rounded-xl border border-stone-200 bg-stone-50">
+                            <div class="relative">
+                                <img src="{{ $image->url('thumb') }}" alt="" class="aspect-square w-full object-cover">
+                                @if($image->is_primary)
+                                    <span class="absolute left-2 top-2 rounded-full bg-amber-500 px-2 py-0.5 text-[10px] font-semibold text-white">Primary</span>
+                                @endif
+                            </div>
+                            <div class="flex flex-col gap-1.5 p-2">
+                                @unless($image->is_primary)
+                                    <form method="post" action="{{ route('admin.products.images.primary', [$product, $image]) }}">
+                                        @csrf
+                                        <button type="submit" class="admin-btn admin-btn-ghost w-full py-1.5 text-xs">Set as primary</button>
+                                    </form>
+                                @endunless
+                                <form method="post" action="{{ route('admin.products.images.destroy', [$product, $image]) }}" onsubmit="return confirm('Remove this image only? The product will stay.')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="admin-btn admin-btn-danger w-full py-1.5 text-xs">Remove image</button>
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="rounded-xl bg-stone-50 px-3 py-2 text-xs text-stone-500">No images yet — upload above and Save product.</p>
+            @endif
+        </div>
+    </section>
+
+    <form method="post" action="{{ route('admin.products.destroy', $product) }}" class="mt-6" onsubmit="return confirm('Delete this ENTIRE product permanently? This cannot be undone.')">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="text-sm text-rose-700 underline-offset-2 hover:underline">Delete entire product</button>
     </form>
 @endisset
 @endsection

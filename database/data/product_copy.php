@@ -1,1282 +1,1282 @@
 <?php
 
 /**
- * Unique product-wise short + long descriptions for AdSense-ready listings.
+ * Product-wise unique catalogue copy — varied structure, no shared template blocks.
  * @return array<string, array{short: string, description: string}>
  */
 return [
     'black-designer-kurti' => [
-        'short' => 'Black Designer Dress — curated for Women\'s Clothing shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Black Designer Dress is built for evenings, dinners and festive plans when you want a clean dark silhouette that photographs polished without heavy embellishment. Soft stretch in the body helps the dress hold shape through seated dinners and standing conversations alike.
+        'short' => 'A clean black dress cut for dinners and festive evenings without heavy sparkle.',
+        'description' => 'Some evenings need one reliable black dress that does not look overdone. This designer dress keeps a neat silhouette, soft stretch through the body, and a finish that sits well with rose-gold or silver jewellery.
 
-Who it is for: shoppers browsing Women\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+If you already own a similar dress, compare bust and length before you place a COD order — model shots are styling only, and phone screens can shift how deep the black looks.
 
-Fit & buying tip: Compare bust, waist and garment length with a similar piece you already own, then use the size chart before COD checkout.
+Hang it after wear so the hem stays even. Gentle wash or dry clean as the care label says. Unused tagged pieces follow our 7-day return window.
 
-Styling: Style with gold-tone jewellery from our Rings and Earrings edits, or keep it minimal with studs and a slim bracelet.
+Black Rossy shoppers often pick this when they want one dark piece that works with both gold and silver jewellery already at home. Dispatch is typically 24–48 hours on active stock, with Cash on Delivery on serviceable pin codes.
 
-Care: Follow the care label: cool wash or dry clean as indicated, reshape while damp, and store on a hanger to keep the hem even.
+The Black Designer Dress ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Pair the Black Designer Dress with one quieter accessory so the piece remains the focus in photos.',
     ],
     'ivory-embroidered-kurti' => [
-        'short' => 'Shop the Embroidered Chikankari Kurti online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Embroidered Chikankari Kurti brings light, breathable ethnic detailing for temple visits, daytime functions and family gatherings. Embroidery around the neckline and front panel adds texture you can see clearly when you zoom the product gallery.
+        'short' => 'Breathable ivory kurti with light embroidery for daytime functions and family gatherings.',
+        'description' => 'Chikankari-inspired embroidery around the neckline gives this ivory kurti a soft ethnic character without bulk. It breathes well for temple visits, lunch gatherings and warm afternoons.
 
-Who it is for: shoppers browsing Women\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Zoom the gallery for stitch density before you decide — embroidery often looks richer in close-ups than from a distance. Measure bust and kurti length against a favourite piece at home.
 
-Fit & buying tip: Compare bust, waist and garment length with a similar piece you already own, then use the size chart before COD checkout.
+Wash inside out on a gentle cycle, or dry clean if the label prefers it. Keep tags on until fit feels right after delivery.
 
-Styling: Style with gold-tone jewellery from our Rings and Earrings edits, or keep it minimal with studs and a slim bracelet.
+If you are building a small ethnic rotation, pair this kurti with plain leggings first, then add a slim bracelet only if the neckline still feels balanced. We pack with tags on so you can confirm fit after COD delivery.
 
-Care: Follow the care label: cool wash or dry clean as indicated, reshape while damp, and store on a hanger to keep the hem even.
+The Embroidered Chikankari Kurti ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+If your pin code is remote, check delivery estimates on checkout before relying on a same-week event for the Embroidered Chikankari Kurti.',
     ],
     'linen-mens-shirt' => [
-        'short' => 'Linen Mens Shirt from our Men\'s Clothing collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Linen Mens Shirt favours hot days, travel and daytime festive events with a relaxed linen-look drape that stays cooler than heavy cottons. Natural texture is part of the character — expect soft wrinkles after wear.
+        'short' => 'Linen-look mens shirt for hot days, travel and relaxed daytime events.',
+        'description' => 'Linen-look fabric is meant to breathe and crease a little — that relaxed texture is the point. Wear it open-collar with chinos for travel days or daytime festive gatherings.
 
-Who it is for: shoppers browsing Men\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Match shoulder and chest to a shirt that already fits. Steam lightly after hang-drying; high heat can stiffen the hand-feel.
 
-Fit & buying tip: Match chest and shoulder measurements to a shirt or bottom you already like; size up once if you prefer a relaxed Indian summer fit.
+Cool wash only. Confirm fit after delivery before removing tags if you might return.
 
-Styling: Pair with chinos, dark jeans or loafers from our Mens Footwear range for office-to-weekend versatility.
+Travel packing lists favour shirts that dry overnight on a hanger. This linen-look style is meant for that rhythm: wash, hang, wear again without a formal press every time.
 
-Care: Machine wash cold where labelled, hang dry to reduce wrinkles, and iron collars or seams first for a sharp finish.
+Questions about the Linen Mens Shirt? Message us via Contact with your order number if something looks off on arrival.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Active Linen Mens Shirt orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'kids-festive-set' => [
-        'short' => 'Kids Nautical Outfit Set — curated for Kids Clothing shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Kids Nautical Outfit Set is styled for parties, family photos and play-ready festive days. Bright, photo-true colours and soft fabrics help parents match the listing to what arrives in the parcel.
+        'short' => 'Nautical-style kids set for parties, photos and play-ready festive days.',
+        'description' => 'Parents usually want festive photos without scratchy fabrics. This kids nautical outfit set keeps colours bright in listing photos and soft enough for play between poses.
 
-Who it is for: shoppers browsing Kids Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Use age guidance plus chest/length notes; if between sizes, the larger option usually lasts longer. Soft seams matter more than stiff styling.
 
-Fit & buying tip: Use age guidance plus chest/length measurements; kids grow fast — if between sizes, choose the larger option for comfort.
+Gentle wash inside out. Keep tags until you confirm fit after delivery — unused sets return within 7 days where eligible.
 
-Styling: Soft seams and play-friendly fabrics suit parties, school events and everyday wear; colours are photographed to match what ships.
+Wash once before the first long wear if your child has sensitive skin — always follow the care label. Keep a spare tee in the bag for icing or juice accidents at parties.
 
-Care: Wash inside out on a gentle cycle, avoid harsh bleach, and keep tags on until you confirm fit after delivery.
+The Kids Nautical Outfit Set ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Active Kids Nautical Outfit Set orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'gold-plated-ring' => [
-        'short' => 'Shop the Rose Gold Halo Ring online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Rose Gold Halo Ring centres a clear stone with a sparkling halo finish for gifting, dinners and everyday polish. Rose-gold tone plating reads warm against both ivory and black outfits.
+        'short' => 'Rose-gold tone halo ring with a clear centre stone for gifting and polish.',
+        'description' => 'Halo settings catch light without needing a large costume stone. This rose-gold plated fashion ring suits dinners, gifts and everyday polish over ivory or black outfits.
 
-Who it is for: shoppers browsing Rings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Fashion rings are not resized — match size to a ring that already fits. Keep away from water, perfume and lotions; wipe with a soft cloth after wear.
 
-Fit & buying tip: Confirm ring size with a soft tape or a well-fitting ring you already wear; fashion rings are not resized after purchase.
+Store in a dry pouch. COD available on serviceable pin codes.
 
-Styling: Stack with midi bands or wear solo as a statement piece; rose-gold and gold tones pair well with our bracelets and necklaces.
+Plating thickness varies by batch lighting in photos — treat this as fashion jewellery, not heirloom gold. Remove before workouts and dishwashing.
 
-Care: Keep away from water, perfume and lotions; wipe with a soft dry cloth and store in a pouch to protect plating and stones.
+The Rose Gold Halo Ring ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Keep the Rose Gold Halo Ring away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'pearl-drop-earrings' => [
-        'short' => 'Crystal Stud Earrings from our Earrings collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Crystal Stud Earrings deliver bright, lightweight sparkle for day offices and evening plans. Secure posts are intended for regular wear when you want shine without long drops.
+        'short' => 'Lightweight crystal studs for offices and evenings when you want close-to-ear sparkle.',
+        'description' => 'Note: this listing is our crystal stud style — bright, secure posts meant for regular wear when long drops feel impractical.
 
-Who it is for: shoppers browsing Earrings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Lightweight settings reduce ear fatigue. Store dry; remove before swimming or sleeping.
 
-Fit & buying tip: Check post or hook style in the gallery; lightweight designs are intended for all-day comfort when worn as directed.
+Pairs cleanly with layered necklaces and black dress edits from Black Rossy.
 
-Styling: Pair studs with layered necklaces for day looks, or choose drops and jhumkas when you want festive sparkle for evenings.
+Crystal studs (this style) sit flush — ideal under helmets, scarves and high collars where drops catch. Keep spare backs if provided.
 
-Care: Remove before swimming or sleeping; wipe after wear and store dry so plating and stones stay bright longer.
+The Crystal Stud Earrings ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Active Crystal Stud Earrings orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'layered-necklace' => [
-        'short' => 'Layered Gold Necklace — curated for Necklaces shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Layered Gold Necklace combines dual chains with a blue stone and moon pendant for stacked interest in one piece. Adjustable length helps the layers sit neatly on different necklines.
+        'short' => 'Layered gold-tone necklace with stone and moon pendant detail in one piece.',
+        'description' => 'Buying separate chains to layer often tangles. This layered necklace ships as coordinated lengths with a blue stone and crescent pendant so the stack sits intentional.
 
-Who it is for: shoppers browsing Necklaces who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Adjustable length helps different necklines. Fasten clasps fully; avoid water and lotions.
 
-Fit & buying tip: Note chain length and clasp type in photos; adjustable layers should sit flat without twisting when fastened correctly.
+Hang or lay flat to prevent twists. Strong gift pick beside our festive packaging options.
 
-Styling: Layer with a second fine chain or keep as a single statement over kurtis, tees and evening tops from Black Rossy.
+If layers twist, unclasp and lay flat on a table before wearing again. Store hung so chains do not knot overnight.
 
-Care: Avoid water and heavy sprays; fasten clasps fully and store flat or hung so chains do not tangle.
+The Layered Gold Necklace ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+We would rather you message before buying the Layered Gold Necklace than guess a critical measurement.',
     ],
     'delicate-bracelet' => [
-        'short' => 'Shop the Sparkle Gold Bangle online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Sparkle Gold Bangle uses a pavé-style finish for festive stacking or solo wear. Fixed circumference means wrist measurement matters before you order COD.
+        'short' => 'Pavé-style gold-tone bangle for festive stacking or solo wrist shine.',
+        'description' => 'Fixed bangles need a wrist measurement — they do not resize. This sparkle-finish bangle works solo or stacked with slimmer chains.
 
-Who it is for: shoppers browsing Bracelets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wipe after wear; avoid knocking plating against harder metal stacks in a drawer.
 
-Fit & buying tip: Measure wrist circumference loosely; fixed bangles and cuffs cannot be resized — check the product photos for scale.
+Gift-ready presentation. COD where available.
 
-Styling: Stack slim chains with a sparkle piece, or wear a single cuff for a cleaner office-to-evening look.
+Bangles that need force to pass the hand are the wrong size — do not force plating cracks.
 
-Care: Wipe after wear, keep dry, and avoid stacking pieces that scratch plating against each other in storage.
+When you open the Sparkle Gold Bangle parcel, check stitching, clasp or sole alignment before you discard packing.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Keep the Sparkle Gold Bangle away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'everyday-sneakers' => [
-        'short' => 'Everyday Sneakers from our Women\'s Footwear collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Everyday Sneakers are cushioned lifestyle trainers for walking-heavy days, campus routes and casual travel. Lace-up security and breathable uppers are built for long wear.
+        'short' => 'Cushioned lifestyle sneakers for walking-heavy days, campus and casual travel.',
+        'description' => 'Lace-up sneakers with cushioning earn more weekly miles than dress shoes. Colours are photographed to match what ships — check sole profile in the gallery.
 
-Who it is for: shoppers browsing Women\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Between sizes? Many shoppers size up for thicker socks. Wipe uppers; air dry away from heaters.
 
-Fit & buying tip: Match UK/EU size to a pair you already wear; if between sizes, many shoppers size up for thicker socks or wider feet.
+Unworn pairs with box/tags: 7-day returns on eligible orders.
 
-Styling: Choose sneakers for errands, flats for desks, and heels or slides when the outfit needs a sharper finish.
+Rotate with a second pair if you walk long distances daily — foam midsoles recover better with rest days.
 
-Care: Wipe soles and uppers after wear, air dry away from direct heat, and store with shape support when possible.
+If the Everyday Sneakers is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+After the first wear or use of the Everyday Sneakers, decide quickly on keep-or-return while tags are still on.',
     ],
     'leather-kolhapuri' => [
-        'short' => 'Leather Driving Loafers — curated for Men\'s Footwear shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Leather Driving Loafers bring a textured leather-look finish with classic bit detail for smart-casual offices and travel. Easy slip-on convenience without sacrificing a polished toe.
+        'short' => 'Leather-look driving loafers with classic bit detail for smart-casual days.',
+        'description' => 'Bit loafers bridge office and travel without lace fuss. Leather-look uppers take a light condition; never soak.
 
-Who it is for: shoppers browsing Men\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Compare to loafers you already wear for length. Pair with chinos from the mens edit.
 
-Fit & buying tip: Use your usual UK size as a base; try the size chart notes and size up if you wear thicker socks for travel days.
+Air dry; brush dirt off. Unworn eligible returns with tags/box.
 
-Styling: Loafers and derbies suit smart days; canvas and running styles cover campus, gym-adjacent walks and weekends.
+Driving loafers favour flexible soles; they are not hiking shoes. Keep a softer pair for long queues.
 
-Care: Brush dirt off, condition leather-look surfaces lightly, and never soak; air dry if damp.
+Questions about the Leather Driving Loafers? Support replies faster when you include the order number from your confirmation SMS or email.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Active Leather Driving Loafers orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'structured-handbag' => [
-        'short' => 'Shop the Coral Structured Handbag online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Coral Structured Handbag holds its shape for office days, functions and polished outings. Structure helps the bag sit upright while still carrying daily essentials.
+        'short' => 'Coral structured handbag that holds shape for office days and functions.',
+        'description' => 'Structure helps a bag sit upright on a desk while still carrying daily essentials. Check dimensions and strap drop in the gallery so phones and wallets fit as you expect.
 
-Who it is for: shoppers browsing Handbags who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wipe the exterior with a soft cloth; empty pockets after use. Stuff lightly when storing.
 
-Fit & buying tip: Check bag dimensions and strap drop in the gallery so phones, wallets and daily essentials fit the way you expect.
+Unused tagged bags follow return rules where eligible.
 
-Styling: Structured totes work for office days; crossbodies and hobos suit travel; clutches finish evening outfits.
+Base studs, if present, protect the bag on restaurant floors — check the underside photos.
 
-Care: Wipe exterior with a soft cloth, empty pockets after use, and stuff lightly when storing so the shape holds.
+Questions about the Coral Structured Handbag? Use WhatsApp or the Contact form — both reach the Black Rossy team on business days.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Black Rossy treats the Coral Structured Handbag as a specific SKU — what you see in the matched photos is what fulfilment aims to send.',
     ],
     'travel-backpack' => [
-        'short' => 'Travel Backpack from our Backpacks collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Travel Backpack is built for short trips and cabin-friendly packing with organised compartments. Use it when a tote feels too loose and a suitcase is too much.
+        'short' => 'Short-trip backpack with organised compartments for cabin-friendly packing.',
+        'description' => 'When a tote feels loose and a suitcase is too much, this travel backpack organises a weekend’s worth. Review pocket layout in photos.
 
-Who it is for: shoppers browsing Backpacks who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Spot clean fabric; air the interior after rainy days. Padded straps should match your commute length expectations.
 
-Fit & buying tip: Review litre feel and laptop sleeve notes in photos; padded straps should sit comfortably for your commute length.
+Unused tagged packs: eligible returns per policy.
 
-Styling: Slim city packs suit offices; weekend canvases take short trips; kids packs keep school essentials organised.
+Pack heavier items closest to your back. Balance matters more than maximum stuffing on station stairs.
 
-Care: Spot clean fabric, empty crumbs from pockets, and air the interior after rainy days.
+Store the Travel Backpack as the care note suggests; small habits protect plating, knits and leather-look finishes.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Black Rossy treats the Travel Backpack as a specific SKU — what you see in the matched photos is what fulfilment aims to send.',
     ],
     'compact-wallet' => [
-        'short' => 'Compact Leather Wallet — curated for Wallets shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Compact Leather Wallet trims bulk for front-pocket or small-bag carry while still holding core cards and cash. A practical upgrade from overstuffed bifolds.
+        'short' => 'Compact leather-look wallet for front-pocket or small-bag carry.',
+        'description' => 'Overstuffed bifolds stretch stitching. This compact format keeps core cards and cash without bulk.
 
-Who it is for: shoppers browsing Wallets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Keep dry; wipe leather-look surfaces. Count card slots in the listing photos.
 
-Fit & buying tip: Count card slots and note bifold vs zip vs clip formats so your daily cards and cash fit without overstuffing.
+Unused tagged wallets: eligible returns per policy.
 
-Styling: Slim card holders suit minimal pockets; zip-arounds and long clutches work for travel and evenings.
+RFID claims are marketing on many fashion wallets — assume standard card protection unless explicitly specified.
 
-Care: Keep dry, avoid overfilling which warps stitching, and wipe leather-look surfaces with a soft cloth.
+Size doubts on the Compact Leather Wallet are cheaper to settle with a soft tape today than with a reverse-pickup later.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Catalogue pages for the Compact Leather Wallet are written to answer fit and care questions, not to fill space.',
     ],
     'satin-lip-colour' => [
-        'short' => 'Shop the Satin Lip Colour online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Satin Lip Colour gives a soft satin finish for daily wear and photos without a heavy matte dry-down. Swatch and model shots help you judge undertone on screen.
+        'short' => 'Soft satin lip colour for daily wear and photos without a dry matte feel.',
+        'description' => 'Satin finishes photograph softer than heavy mattes. Swatch and model shots help judge undertone — check them in daylight on your screen.
 
-Who it is for: shoppers browsing Beauty Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Patch-test if your lips are sensitive. Close the cap tightly; store away from heat.
 
-Fit & buying tip: Patch-test on a small area if you have sensitive skin; check shade/finish photos in daylight when colour cosmetics are involved.
+Opened beauty is typically final sale — choose shade carefully.
 
-Styling: Build a simple routine — cleanse, treat, colour — and store products away from heat and direct sun.
+Exfoliate lightly before satin formulas so texture does not catch on dry patches in photos.
 
-Care: Close caps tightly, use clean hands or applicators, and note that opened beauty items are typically final sale.
+If the Satin Lip Colour is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Black Rossy treats the Satin Lip Colour as a specific SKU — what you see in the matched photos is what fulfilment aims to send.',
     ],
     'botanical-face-cream' => [
-        'short' => 'Botanical Face Serum from our Beauty Products collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Botanical Face Serum is a lightweight leave-on treatment step for shoppers building a simple skincare routine. Apply on cleansed skin before heavier creams if you layer.
+        'short' => 'Lightweight botanical face serum step for simple skincare routines.',
+        'description' => 'Use on cleansed skin before heavier creams if you layer. Introduce slowly if your skin reacts easily to new actives.
 
-Who it is for: shoppers browsing Beauty Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Patch-test on the jawline first. Close caps tightly; keep out of direct sun.
 
-Fit & buying tip: Patch-test on a small area if you have sensitive skin; check shade/finish photos in daylight when colour cosmetics are involved.
+Opened skincare is generally non-returnable for hygiene.
 
-Styling: Build a simple routine — cleanse, treat, colour — and store products away from heat and direct sun.
+Serum texture can pill under silicone-heavy sunscreens — wait a minute between steps if that happens.
 
-Care: Close caps tightly, use clean hands or applicators, and note that opened beauty items are typically final sale.
+Questions about the Botanical Face Serum? Keep your order number handy before writing in; it speeds up parcel checks.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Pair the Botanical Face Serum with one quieter accessory so the piece remains the focus in photos.',
     ],
     'linen-cushion-cover' => [
-        'short' => 'Living Soft Furnishing Edit — curated for Home Products shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Living Soft Furnishing Edit refreshes sofa and lounge corners with soft textile character. Pair with throws and candles from the same home collection for a cohesive look.
+        'short' => 'Soft living cushion edit to refresh sofa corners with photo-true colour.',
+        'description' => 'Measure your cushion insert before ordering so the cover looks plump, not stretched. Pair with throws and candles from the home edit for a cohesive shelfie.
 
-Who it is for: shoppers browsing Home Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Follow textile wash labels. Zip or envelope closures as shown make seasonal swaps easy.
 
-Fit & buying tip: Measure cushion, throw or frame size against your sofa or shelf before ordering so proportions feel right in the room.
+Unused tagged textiles: eligible returns where policy allows.
 
-Styling: Mix textures — soft cottons, candlelight and frames — for a calm living edit that photographs true to colour.
+Inserts sold separately unless the listing says otherwise. A slightly larger insert than the cover often looks plumper.
 
-Care: Follow textile wash labels; keep candles on heat-safe surfaces; dust frames with a dry cloth.
+Store the Living Soft Furnishing Edit as the care note suggests; small habits protect plating, knits and leather-look finishes.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+If your pin code is remote, check delivery estimates on checkout before relying on a same-week event for the Living Soft Furnishing Edit.',
     ],
     'scented-candle-set' => [
-        'short' => 'Shop the Scented Candle Set online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Scented Candle Set brings layered fragrance options for evenings at home, gifting and festive hosting. Always burn on a heat-safe surface and never leave candles unattended.
+        'short' => 'Scented candle set for evenings at home, gifting and festive hosting.',
+        'description' => 'Always burn on a heat-safe surface and never leave candles unattended. Trim wicks; keep away from drafts for a cleaner burn.
 
-Who it is for: shoppers browsing Home Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Review included jar count on the listing. Fragrance preference is personal — read scent notes in the description area if listed.
 
-Fit & buying tip: Measure cushion, throw or frame size against your sofa or shelf before ordering so proportions feel right in the room.
+Unused sealed sets may be returnable; opened burn products usually are not.
 
-Styling: Mix textures — soft cottons, candlelight and frames — for a calm living edit that photographs true to colour.
+First burn should melt wax to the edges to reduce tunnelling — a common candle care habit worth following.
 
-Care: Follow textile wash labels; keep candles on heat-safe surfaces; dust frames with a dry cloth.
+Return windows for the Scented Candle Set apply to unused tagged items where the category allows — beauty once opened is usually final sale.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Active Scented Candle Set orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'festive-gift-box' => [
-        'short' => 'Festive Gift Box from our Gift Items collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Festive Gift Box is curated for celebrations when you want a ready-to-give present rather than assembling pieces separately. Review included items on the listing before you order.
+        'short' => 'Ready festive gift box when you want one present instead of assembling SKUs.',
+        'description' => 'Read the included items list carefully so expectations match the parcel. Ideal for celebrations when shopping time is short.
 
-Who it is for: shoppers browsing Gift Items who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Store sealed until gifting. Unused tagged merchandise follows standard returns where the category allows.
 
-Fit & buying tip: Read what is included in the set listing so gifting expectations match the box contents on arrival.
+Add a wrap pack if you want a more polished handoff.
 
-Styling: Ideal for festivals, birthdays and housewarmings; add a jewellery pouch or wrap pack when you want a polished present.
+If gifting across cities, choose COD only when someone trustworthy receives — gift boxes still need a sign-off.
 
-Care: Store sealed until gifting; unused tagged gift merchandise follows our standard return window where eligible.
+Return windows for the Festive Gift Box apply to unused tagged items where the category allows — beauty once opened is usually final sale.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Catalogue pages for the Festive Gift Box are written to answer fit and care questions, not to fill space.',
     ],
     'jewellery-care-kit' => [
-        'short' => 'Pearl Jewellery Showcase — curated for Gift Items shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Pearl Jewellery Showcase presents jewellery in a display-ready format suited to gifting and tidy storage. Keep pearls and plated pieces dry even inside the showcase.
+        'short' => 'Pearl jewellery showcase format for gifting and tidy display storage.',
+        'description' => 'Display-ready presentation helps gifts feel finished. Keep pearls and plated pieces dry even inside the showcase.
 
-Who it is for: shoppers browsing Gift Items who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Review what the listing includes — showcase versus full care tools can differ by title. Wipe interiors occasionally.
 
-Fit & buying tip: Read what is included in the set listing so gifting expectations match the box contents on arrival.
+Unused tagged kits: eligible returns per policy.
 
-Styling: Ideal for festivals, birthdays and housewarmings; add a jewellery pouch or wrap pack when you want a polished present.
+Showcases organise; they do not waterproof. Silica sachets help in humid drawers if you add your own.
 
-Care: Store sealed until gifting; unused tagged gift merchandise follows our standard return window where eligible.
+Size doubts on the Pearl Jewellery Showcase are cheaper to settle with a soft tape today than with a reverse-pickup later.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Catalogue pages for the Pearl Jewellery Showcase are written to answer fit and care questions, not to fill space.',
     ],
     'silk-scarf' => [
-        'short' => 'Shop the Boutique Neutral Capsule online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Boutique Neutral Capsule is a calm layering edit for shoppers building a coherent wardrobe base. Neutral tones photograph true and mix with gold jewellery and structured bags.
+        'short' => 'Boutique neutral capsule pieces for calm layering across seasons.',
+        'description' => 'Neutral layering photographs true and mixes with gold jewellery plus a structured bag. Use as a wardrobe base rather than a one-wear trend piece.
 
-Who it is for: shoppers browsing Fashion who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Gentle wash or dry clean as labelled. Fold knits; hang woven layers.
 
-Fit & buying tip: Check fabric drape and length cues in the gallery; neutrals layer easily across seasons.
+Check fabric drape in the gallery. Unused tagged pieces follow the 7-day window where eligible.
 
-Styling: Use as a capsule base with Black Rossy jewellery and a structured bag for a complete boutique look.
+Neutrals earn more outfits per purchase than loud seasonal prints. That is why this capsule leans quiet.
 
-Care: Gentle wash or dry clean as labelled; fold knits, hang scarves and woven pieces.
+Questions about the Boutique Neutral Capsule? For privacy or order help, the Contact page lists email, phone and WhatsApp together.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Catalogue pages for the Boutique Neutral Capsule are written to answer fit and care questions, not to fill space.',
     ],
     'classic-oxford-shirt' => [
-        'short' => 'Classic Oxford Shirt from our Men\'s Clothing collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Classic Oxford Shirt delivers a neat collar and clean button placket for office days, interviews and smart weekends. Wear it tucked into chinos or untucked over dark jeans when the plan shifts after work.
+        'short' => 'Neat oxford shirt for office days, interviews and smart weekends.',
+        'description' => 'Oxford weave holds a cleaner collar line than soft jersey. Tuck into chinos for interviews, or leave untucked over dark jeans when the day turns casual.
 
-Who it is for: shoppers browsing Men\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Collar stays help under blazers. Compare chest and shoulder numbers to a shirt you already like before COD checkout.
 
-Fit & buying tip: Match chest and shoulder measurements to a shirt or bottom you already like; size up once if you prefer a relaxed Indian summer fit.
+Wash cold, iron the collar first. Unused tagged shirts return within 7 days per our Return Policy.
 
-Styling: Pair with chinos, dark jeans or loafers from our Mens Footwear range for office-to-weekend versatility.
+Interview weeks and client Fridays both lean on oxford cloth. Keep a spare white undershirt if you run warm; the collar line stays cleaner when the base layer absorbs sweat.
 
-Care: Machine wash cold where labelled, hang dry to reduce wrinkles, and iron collars or seams first for a sharp finish.
+The Classic Oxford Shirt ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Catalogue pages for the Classic Oxford Shirt are written to answer fit and care questions, not to fill space.',
     ],
     'casual-polo-tee' => [
-        'short' => 'Casual Polo Tee — curated for Men\'s Clothing shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Casual Polo Tee is a mid-weight everyday piece for college, travel and casual Fridays. A ribbed collar keeps structure while the body stays soft enough for long wear.
+        'short' => 'Mid-weight polo for college, travel and casual Fridays.',
+        'description' => 'A ribbed collar keeps this polo looking finished when a plain tee feels too informal. Mid-weight fabric suits long wear on campus or short trips.
 
-Who it is for: shoppers browsing Men\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+True-colour photos help you match trousers — check the gallery in daylight mode on your phone. Size up for a looser chest.
 
-Fit & buying tip: Match chest and shoulder measurements to a shirt or bottom you already like; size up once if you prefer a relaxed Indian summer fit.
+Wash inside out; avoid high-heat tumble. Eligible unused returns within 7 days with tags.
 
-Styling: Pair with chinos, dark jeans or loafers from our Mens Footwear range for office-to-weekend versatility.
+Polos sit between tees and shirts in most Indian offices that allow smart-casual. Dark jeans or chinos both work; avoid pairing with heavily branded sneakers if you want a quieter look.
 
-Care: Machine wash cold where labelled, hang dry to reduce wrinkles, and iron collars or seams first for a sharp finish.
+Questions about the Casual Polo Tee? Photograph the issue and attach context when you contact support about a delivery.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Active Casual Polo Tee orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'slim-fit-chinos' => [
-        'short' => 'Shop the Slim Fit Chinos online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Slim Fit Chinos give a tailored leg line for office and weekend outfits without feeling stiff. Mid-rise styling works with oxfords, polos and knit sweaters from the same mens edit.
+        'short' => 'Slim chinos with a clean leg line for office and weekend outfits.',
+        'description' => 'These slim-fit chinos aim for a tailored look without stiff fabric. Mid-rise styling works with oxfords, polos and crew sweaters from the same mens edit.
 
-Who it is for: shoppers browsing Men\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Check waist and inseam against trousers you already wear. A slightly longer break is easier to adjust than a short hem.
 
-Fit & buying tip: Match chest and shoulder measurements to a shirt or bottom you already like; size up once if you prefer a relaxed Indian summer fit.
+Wash cold, hang dry to reduce shrinkage surprises. Keep tags until fit is confirmed.
 
-Styling: Pair with chinos, dark jeans or loafers from our Mens Footwear range for office-to-weekend versatility.
+Belt loops and pocket placement show in the gallery — useful if you carry a slim wallet daily. Hem once you are sure of length after the first wear and wash.
 
-Care: Machine wash cold where labelled, hang dry to reduce wrinkles, and iron collars or seams first for a sharp finish.
+Questions about the Slim Fit Chinos? Checkout questions before you buy can also go through Contact — better than guessing size.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Black Rossy treats the Slim Fit Chinos as a specific SKU — what you see in the matched photos is what fulfilment aims to send.',
     ],
     'knit-crew-sweater' => [
-        'short' => 'Knit Crew Sweater from our Men\'s Clothing collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Knit Crew Sweater adds a clean layer for air-conditioned offices, evening walks and travel. The crew neck sits neatly under jackets and over oxford shirts when you need a little warmth.
+        'short' => 'Crew-neck knit for AC offices, evening walks and travel layers.',
+        'description' => 'When the office AC runs cold or evenings cool after travel, a simple crew sweater solves more than a heavy jacket. The neckline sits clean over oxfords.
 
-Who it is for: shoppers browsing Men\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Fold knits rather than hanging from the shoulders if you store them long-term. Follow the care label for wash temperature.
 
-Fit & buying tip: Match chest and shoulder measurements to a shirt or bottom you already like; size up once if you prefer a relaxed Indian summer fit.
+Colour is easiest to judge in the gallery’s natural-light shots. Unused tagged knits follow the standard 7-day return window.
 
-Styling: Pair with chinos, dark jeans or loafers from our Mens Footwear range for office-to-weekend versatility.
+Layer over a tee for evening walks or over an oxford when the thermostat drops. Avoid fabric softener overload if you want the knit to keep spring.
 
-Care: Machine wash cold where labelled, hang dry to reduce wrinkles, and iron collars or seams first for a sharp finish.
+If the Knit Crew Sweater is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Keep the Knit Crew Sweater away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'linen-resort-shirt' => [
-        'short' => 'Linen Resort Shirt — curated for Men\'s Clothing shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Linen Resort Shirt is cut for vacation days, daytime celebrations and breezy evenings. An easy resort collar and airy drape keep the look intentional without feeling formal.
+        'short' => 'Resort-collar linen-look shirt for vacations and breezy daytime celebrations.',
+        'description' => 'Resort collars signal ease. This shirt is cut for vacation mornings, outdoor daytime events and breezy evenings when a formal collar feels wrong.
 
-Who it is for: shoppers browsing Men\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Expect soft wrinkles — steam, don’t fight the fabric character. Check length in the flat-lay or model shots if you tuck or leave open.
 
-Fit & buying tip: Match chest and shoulder measurements to a shirt or bottom you already like; size up once if you prefer a relaxed Indian summer fit.
+Cool wash, hang dry. Confirm size before removing tags after COD delivery.
 
-Styling: Pair with chinos, dark jeans or loafers from our Mens Footwear range for office-to-weekend versatility.
+Resort collars photograph well for daytime celebrations and vacation albums. Wear open over a plain tee if full buttoning feels too stiff for the weather.
 
-Care: Machine wash cold where labelled, hang dry to reduce wrinkles, and iron collars or seams first for a sharp finish.
+Questions about the Linen Resort Shirt? Refund and return queries start on Contact with your order number and registered mobile.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Catalogue pages for the Linen Resort Shirt are written to answer fit and care questions, not to fill space.',
     ],
     'floral-day-dress' => [
-        'short' => 'Shop the Floral Day Dress online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Floral Day Dress is a light, movement-friendly option for brunch, college days and warm-weather outings. The print reads cheerful in natural light, and the waist shaping is meant to flatter without feeling restrictive.
+        'short' => 'Easy floral day dress for brunch, college days and warm weekends.',
+        'description' => 'Printed florals and a soft waist make this day dress feel light for brunch plans and campus days. Natural light shows the print best, so check the outdoor-style gallery shots if colour accuracy matters to you.
 
-Who it is for: shoppers browsing Women\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Prefer more coverage at the hem? Confirm midi length in the side photos. Between sizes? A size up usually gives a relaxed drape.
 
-Fit & buying tip: Compare bust, waist and garment length with a similar piece you already own, then use the size chart before COD checkout.
+Cool wash, reshape while damp, and skip harsh wringing. Eligible unused dresses return within 7 days with tags attached.
 
-Styling: Style with gold-tone jewellery from our Rings and Earrings edits, or keep it minimal with studs and a slim bracelet.
+College and brunch wardrobes benefit from one printed dress that does not need heavy accessories. White sneakers or ballet flats from our footwear edit finish the look without competing with the print.
 
-Care: Follow the care label: cool wash or dry clean as indicated, reshape while damp, and store on a hanger to keep the hem even.
+Size doubts on the Floral Day Dress are cheaper to settle with a soft tape today than with a reverse-pickup later.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+After the first wear or use of the Floral Day Dress, decide quickly on keep-or-return while tags are still on.',
     ],
     'maroon-evening-top' => [
-        'short' => 'Maroon Evening Top from our Women\'s Clothing collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Maroon Evening Top adds rich colour for dinners, Navratri evenings and guest outfits. A soft finish layers comfortably under short jackets while still reading festive on its own with statement earrings.
+        'short' => 'Deep maroon top for guest dinners, Navratri evenings and festive meets.',
+        'description' => 'Maroon reads festive without needing heavy work. This evening top layers under a short jacket and pairs cleanly with gold-tone studs when you want colour, not clutter.
 
-Who it is for: shoppers browsing Women\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Watch sleeve length in the product photos versus tops you already wear. Keep sharp jewellery clasps away while dressing so the fabric does not snag.
 
-Fit & buying tip: Compare bust, waist and garment length with a similar piece you already own, then use the size chart before COD checkout.
+Shade-dry after a gentle wash. Confirm the tone in daylight gallery images — screens love warming reds.
 
-Styling: Style with gold-tone jewellery from our Rings and Earrings edits, or keep it minimal with studs and a slim bracelet.
+Festive calendars in India often need colour that photographs well under mixed indoor lighting. Maroon does that job when black feels too severe and pastels feel too light.
 
-Care: Follow the care label: cool wash or dry clean as indicated, reshape while damp, and store on a hanger to keep the hem even.
+Questions about the Maroon Evening Top? If a courier update stalls, Contact us with the tracking details from your SMS.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+After the first wear or use of the Maroon Evening Top, decide quickly on keep-or-return while tags are still on.',
     ],
     'cotton-straight-kurti' => [
-        'short' => 'Cotton Straight Kurti — curated for Women\'s Clothing shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Cotton Straight Kurti is an everyday staple for work-from-home, market runs and casual meetups. Clean lines and breathable cotton make it easy to wear alone or under a light jacket when evenings cool down.
+        'short' => 'Straight cotton kurti for work-from-home days, errands and easy layering.',
+        'description' => 'Straight cuts earn their place in a weekly rotation. This cotton kurti stays breathable for indoor workdays and short market runs, then layers under a light jacket when evenings cool.
 
-Who it is for: shoppers browsing Women\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Use a soft tape for bust and length. Straight silhouettes forgive a little; size up only if you like room through the hips.
 
-Fit & buying tip: Compare bust, waist and garment length with a similar piece you already own, then use the size chart before COD checkout.
+Machine wash cold, medium iron. Tags stay on for returns within 7 days on unused pieces.
 
-Styling: Style with gold-tone jewellery from our Rings and Earrings edits, or keep it minimal with studs and a slim bracelet.
+Repeat-wear matters more than occasion drama for straight kurtis. Iron on medium if the cotton softens after washing; a light starch is optional if you prefer crisper lines for video calls.
 
-Care: Follow the care label: cool wash or dry clean as indicated, reshape while damp, and store on a hanger to keep the hem even.
+Size doubts on the Cotton Straight Kurti are cheaper to settle with a soft tape today than with a reverse-pickup later.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Keep the Cotton Straight Kurti away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'ivory-embroidered-tunic' => [
-        'short' => 'Shop the Ivory Embroidered Tunic online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Ivory Embroidered Tunic offers a soft festive-casual look without heavy weight. Delicate neckline embroidery pairs with leggings, palazzo pants or slim trousers for pooja mornings and daytime functions.
+        'short' => 'Ivory tunic with delicate neckline embroidery for festive-casual days.',
+        'description' => 'Think pooja mornings and daytime functions where you want embroidery without a heavy kurta. This ivory tunic sits easily over leggings, palazzo pants or slim trousers.
 
-Who it is for: shoppers browsing Women\'s Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Store flat or on a padded hanger so the neckline work stays neat. Dry clean or gentle wash as labelled — avoid scrubbing embroidered areas.
 
-Fit & buying tip: Compare bust, waist and garment length with a similar piece you already own, then use the size chart before COD checkout.
+Gallery close-ups show the stitch scale. COD where your pin code is serviceable; unused tagged tunics are returnable in 7 days.
 
-Styling: Style with gold-tone jewellery from our Rings and Earrings edits, or keep it minimal with studs and a slim bracelet.
+Tunics bridge kurtis and western tops — useful when guests arrive mid-day and you do not want a full ethnic set. Pair with slim trousers if palazzo volume feels like too much.
 
-Care: Follow the care label: cool wash or dry clean as indicated, reshape while damp, and store on a hanger to keep the hem even.
+Store the Ivory Embroidered Tunic as the care note suggests; small habits protect plating, knits and leather-look finishes.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+If your pin code is remote, check delivery estimates on checkout before relying on a same-week event for the Ivory Embroidered Tunic.',
     ],
     'kids-soft-cotton-tee' => [
-        'short' => 'Kids Soft Cotton Tee from our Kids Clothing collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Kids Soft Cotton Tee is a daily essential for school, playdates and travel days. Soft cotton and easy movement matter more than heavy graphics — this tee is meant to be lived in.
+        'short' => 'Everyday soft cotton tee for school, playdates and travel days.',
+        'description' => 'Kids outgrow graphics faster than soft basics. This cotton tee is meant for weekday wear — school, playdates and suitcase packing — without heavy prints that crack after washes.
 
-Who it is for: shoppers browsing Kids Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Check the size chart against a tee that already fits well through the chest. Wash with similar colours.
 
-Fit & buying tip: Use age guidance plus chest/length measurements; kids grow fast — if between sizes, choose the larger option for comfort.
+Inside-out gentle cycle, skip harsh bleach. Tags on until fit is confirmed.
 
-Styling: Soft seams and play-friendly fabrics suit parties, school events and everyday wear; colours are photographed to match what ships.
+Basics rotate faster than partywear in kids\' drawers. Buy with a little room if the school year is long and growth spurts are due.
 
-Care: Wash inside out on a gentle cycle, avoid harsh bleach, and keep tags on until you confirm fit after delivery.
+If the Kids Soft Cotton Tee is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+If your pin code is remote, check delivery estimates on checkout before relying on a same-week event for the Kids Soft Cotton Tee.',
     ],
     'girls-party-frock' => [
-        'short' => 'Girls Party Frock — curated for Kids Clothing shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Girls Party Frock brings a celebration-ready silhouette for birthdays, family functions and festive evenings. Light volume in the skirt photographs well while remaining comfortable for young movers.
+        'short' => 'Celebration frock with light skirt volume for birthdays and family functions.',
+        'description' => 'Birthday parties and family functions call for a frock that photographs well yet lets kids move. Light skirt volume here is intentional — not a stiff costume feel.
 
-Who it is for: shoppers browsing Kids Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Compare length in the gallery with your child’s comfort preference. Soft fabrics wash easier than heavily embellished partywear.
 
-Fit & buying tip: Use age guidance plus chest/length measurements; kids grow fast — if between sizes, choose the larger option for comfort.
+Gentle cycle, reshape the skirt while damp. Unused tagged frocks: 7-day returns on eligible orders.
 
-Styling: Soft seams and play-friendly fabrics suit parties, school events and everyday wear; colours are photographed to match what ships.
+Petticoats are optional depending on how much volume you want in photos. Soft lining notes, if any, appear in the specifications on the product page.
 
-Care: Wash inside out on a gentle cycle, avoid harsh bleach, and keep tags on until you confirm fit after delivery.
+If the Girls Party Frock is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Active Girls Party Frock orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'boys-casual-set' => [
-        'short' => 'Shop the Boys Casual Set online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Boys Casual Set covers weekends, outings and casual family events with coordinated pieces that are simple to mix after the first wear. Soft fabrics suit active days without constant adjusting.
+        'short' => 'Coordinated boys set for weekends, outings and casual family events.',
+        'description' => 'Coordinated sets save time on busy mornings. After the first wear, pieces from this boys casual set still mix with other wardrobe basics.
 
-Who it is for: shoppers browsing Kids Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Soft fabrics suit active days — fewer fussy adjustments. Check age/size guidance before COD.
 
-Fit & buying tip: Use age guidance plus chest/length measurements; kids grow fast — if between sizes, choose the larger option for comfort.
+Wash as labelled, avoid high heat. Keep tags until you are happy with the fit.
 
-Styling: Soft seams and play-friendly fabrics suit parties, school events and everyday wear; colours are photographed to match what ships.
+After the party, split the set into weekday separates so you get more wears per purchase. Name labels inside help at school racks.
 
-Care: Wash inside out on a gentle cycle, avoid harsh bleach, and keep tags on until you confirm fit after delivery.
+Store the Boys Casual Set as the care note suggests; small habits protect plating, knits and leather-look finishes.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Active Boys Casual Set orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'kids-festive-kurta-set' => [
-        'short' => 'Kids Festive Kurta Set from our Kids Clothing collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Kids Festive Kurta Set is designed for poojas, weddings in the family and festival mornings. Ethnic detailing stays lightweight so children can sit, greet guests and play without fuss.
+        'short' => 'Lightweight festive kurta set for poojas, family weddings and festival mornings.',
+        'description' => 'Ethnic kidswear should not feel like armour. This festive kurta set stays lightweight so children can sit through rituals, greet guests and still play.
 
-Who it is for: shoppers browsing Kids Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Detailing is visible in close gallery shots. Prefer a slightly roomier size if growth spurts are mid-season.
 
-Fit & buying tip: Use age guidance plus chest/length measurements; kids grow fast — if between sizes, choose the larger option for comfort.
+Gentle wash or dry clean as labelled. Unused tagged sets return within 7 days where the policy allows.
 
-Styling: Soft seams and play-friendly fabrics suit parties, school events and everyday wear; colours are photographed to match what ships.
+Festival mornings run long — comfort wins over stiff embroidery. If the set includes bottoms, check elastic comfort in the waist photos.
 
-Care: Wash inside out on a gentle cycle, avoid harsh bleach, and keep tags on until you confirm fit after delivery.
+When you open the Kids Festive Kurta Set parcel, check stitching, clasp or sole alignment before you discard packing.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+We would rather you message before buying the Kids Festive Kurta Set than guess a critical measurement.',
     ],
     'toddler-soft-joggers' => [
-        'short' => 'Toddler Soft Joggers — curated for Kids Clothing shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Toddler Soft Joggers prioritise soft waistbands and easy movement for crawling, toddling and car rides. Parents often keep a spare pair in the travel bag for spill-prone days.
+        'short' => 'Soft-waist toddler joggers for crawling, toddling and travel days.',
+        'description' => 'Toddlers need waistbands that do not dig in. These soft joggers prioritise movement for crawling and early walking, plus easy changes on car rides.
 
-Who it is for: shoppers browsing Kids Clothing who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Many parents keep a spare pair in the bag for spill-prone days. Check the size chart against current bottoms.
 
-Fit & buying tip: Use age guidance plus chest/length measurements; kids grow fast — if between sizes, choose the larger option for comfort.
+Gentle wash, mild detergent. Confirm fit before removing tags if returns matter to you.
 
-Styling: Soft seams and play-friendly fabrics suit parties, school events and everyday wear; colours are photographed to match what ships.
+Crotch gussets and soft cuffs matter more than fashion colour for toddlers. Expect knees to show wear first; that is normal for active crawlers.
 
-Care: Wash inside out on a gentle cycle, avoid harsh bleach, and keep tags on until you confirm fit after delivery.
+Return windows for the Toddler Soft Joggers apply to unused tagged items where the category allows — beauty once opened is usually final sale.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+After the first wear or use of the Toddler Soft Joggers, decide quickly on keep-or-return while tags are still on.',
     ],
     'minimal-band-ring' => [
-        'short' => 'Shop the Minimal Band Ring online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Minimal Band Ring is a slim everyday band for stacking or solo wear when you want quiet shine. Clean lines make it easy to pair with watches and delicate bracelets.
+        'short' => 'Slim everyday band for stacking or quiet solo wear.',
+        'description' => 'Minimal bands earn more wear than statement pieces. Stack with a midi ring or wear alone beside a watch when you want quiet shine.
 
-Who it is for: shoppers browsing Rings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Confirm size carefully — bands look smaller in photos than on the finger. Wipe dry after wear; avoid sleeping in plated jewellery.
 
-Fit & buying tip: Confirm ring size with a soft tape or a well-fitting ring you already wear; fashion rings are not resized after purchase.
+Pouch storage slows scratches. Unused tagged jewellery follows our return rules where eligible.
 
-Styling: Stack with midi bands or wear solo as a statement piece; rose-gold and gold tones pair well with our bracelets and necklaces.
+Stack sparingly at first so skin can adjust to metal contact. If you have nickel sensitivity history, patch-wear for a short evening before all-day use.
 
-Care: Keep away from water, perfume and lotions; wipe with a soft dry cloth and store in a pouch to protect plating and stones.
+If the Minimal Band Ring is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+If your pin code is remote, check delivery estimates on checkout before relying on a same-week event for the Minimal Band Ring.',
     ],
     'solitaire-style-ring' => [
-        'short' => 'Solitaire Style Ring from our Rings collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Solitaire Style Ring highlights a single focal stone for proposals-of-style moments, dinners and festive dressing. The setting is designed to catch light without a heavy costume feel.
+        'short' => 'Single-stone solitaire-style ring for dinners and elevated festive looks.',
+        'description' => 'A single focal stone keeps the look intentional. This solitaire-style fashion ring works for dressed evenings when you want light catch without a heavy cluster.
 
-Who it is for: shoppers browsing Rings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Check prong/setting detail in zoomed photos. Size with a soft tape or an existing ring.
 
-Fit & buying tip: Confirm ring size with a soft tape or a well-fitting ring you already wear; fashion rings are not resized after purchase.
+No water, no heavy sprays. Soft cloth wipe, dry storage.
 
-Styling: Stack with midi bands or wear solo as a statement piece; rose-gold and gold tones pair well with our bracelets and necklaces.
+Centre stones in fashion jewellery are typically crystal or similar — beautiful for photos, not diamond-graded. Buy for style, not investment.
 
-Care: Keep away from water, perfume and lotions; wipe with a soft dry cloth and store in a pouch to protect plating and stones.
+When you open the Solitaire Style Ring parcel, check stitching, clasp or sole alignment before you discard packing.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+After the first wear or use of the Solitaire Style Ring, decide quickly on keep-or-return while tags are still on.',
     ],
     'twisted-rope-ring' => [
-        'short' => 'Twisted Rope Ring — curated for Rings shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Twisted Rope Ring uses textured metalwork for shoppers who prefer detail over large stones. It stacks well with plain bands and stands alone on casual days.
+        'short' => 'Textured twisted-rope band for shoppers who prefer detail over large stones.',
+        'description' => 'Metal texture reads different from pavé sparkle. The twisted rope profile stacks with plain bands and stands alone on casual days.
 
-Who it is for: shoppers browsing Rings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Because the surface is textured, wipe gently so residue does not sit in the grooves. Confirm size before COD.
 
-Fit & buying tip: Confirm ring size with a soft tape or a well-fitting ring you already wear; fashion rings are not resized after purchase.
+Keep dry; store separately from harder stones that can scratch plating.
 
-Styling: Stack with midi bands or wear solo as a statement piece; rose-gold and gold tones pair well with our bracelets and necklaces.
+Texture hides light scratches better than mirror-polish bands. Still, store alone so harder rings do not rub the rope ridges flat.
 
-Care: Keep away from water, perfume and lotions; wipe with a soft dry cloth and store in a pouch to protect plating and stones.
+Size doubts on the Twisted Rope Ring are cheaper to settle with a soft tape today than with a reverse-pickup later.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+If your pin code is remote, check delivery estimates on checkout before relying on a same-week event for the Twisted Rope Ring.',
     ],
     'stackable-midi-ring' => [
-        'short' => 'Shop the Stackable Midi Ring online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Stackable Midi Ring sits higher on the finger for modern layering looks. Wear alone for a subtle accent or combine with a classic band from the same collection.
+        'short' => 'Higher-sitting midi ring for modern stacking looks.',
+        'description' => 'Midi rings sit above the knuckle — measure that spot, not your usual ring size. Wear alone for a subtle accent or combine with a classic band.
 
-Who it is for: shoppers browsing Rings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Gallery shots show scale on the hand. Plated finishes last longer when kept dry.
 
-Fit & buying tip: Confirm ring size with a soft tape or a well-fitting ring you already wear; fashion rings are not resized after purchase.
+Soft pouch storage. Return unused tagged pieces within the stated window where eligible.
 
-Styling: Stack with midi bands or wear solo as a statement piece; rose-gold and gold tones pair well with our bracelets and necklaces.
+Midi sizing surprises first-time buyers — measure twice. If the ring spins freely, it is too loose for that finger joint.
 
-Care: Keep away from water, perfume and lotions; wipe with a soft dry cloth and store in a pouch to protect plating and stones.
+The Stackable Midi Ring ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Pair the Stackable Midi Ring with one quieter accessory so the piece remains the focus in photos.',
     ],
     'floral-motif-ring' => [
-        'short' => 'Floral Motif Ring from our Rings collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Floral Motif Ring adds a feminine carved or stone-set bloom detail for daytime festive wear and thoughtful gifting. Motif scale is clearest in close-up gallery shots.
+        'short' => 'Floral motif fashion ring for daytime festive wear and thoughtful gifts.',
+        'description' => 'Bloom motifs suit daytime festive outfits better than oversized cocktail stones. Motif scale is clearest in close-up gallery images — zoom before you order.
 
-Who it is for: shoppers browsing Rings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Size carefully; motif rings are not resized. Avoid perfume contact on the plated surface.
 
-Fit & buying tip: Confirm ring size with a soft tape or a well-fitting ring you already wear; fashion rings are not resized after purchase.
+Wipe after wear, store dry. Gift-ready with a pouch from our jewellery accessories if you are sending it out.
 
-Styling: Stack with midi bands or wear solo as a statement piece; rose-gold and gold tones pair well with our bracelets and necklaces.
+Motif rings gift well for birthdays when the recipient likes feminine detail. Include a simple pouch so plating stays protected in their drawer.
 
-Care: Keep away from water, perfume and lotions; wipe with a soft dry cloth and store in a pouch to protect plating and stones.
+When you open the Floral Motif Ring parcel, check stitching, clasp or sole alignment before you discard packing.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Keep the Floral Motif Ring away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'everyday-stud-pair' => [
-        'short' => 'Everyday Stud Pair — curated for Earrings shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Everyday Stud Pair is the default earring for work, travel and low-maintenance polish. Small profiles sit close to the ear and pair with almost any neckline.
+        'short' => 'Small everyday studs for work, travel and low-maintenance polish.',
+        'description' => 'Default earrings should disappear into the day. These studs sit close to the ear and work with almost any neckline from kurtis to work shirts.
 
-Who it is for: shoppers browsing Earrings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Check post style in the gallery. Wipe after wear; keep a spare butterfly back if your pair includes them.
 
-Fit & buying tip: Check post or hook style in the gallery; lightweight designs are intended for all-day comfort when worn as directed.
+Dry pouch storage. Eligible unused jewellery returns follow policy.
 
-Styling: Pair studs with layered necklaces for day looks, or choose drops and jhumkas when you want festive sparkle for evenings.
+Rotate pairs every other day if your ears mark easily. Hypoallergenic claims vary; stop use if redness persists and consult a clinician if needed.
 
-Care: Remove before swimming or sleeping; wipe after wear and store dry so plating and stones stay bright longer.
+If the Everyday Stud Pair is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Catalogue pages for the Everyday Stud Pair are written to answer fit and care questions, not to fill space.',
     ],
     'hoop-everyday-earrings' => [
-        'short' => 'Shop the Hoop Everyday Earrings online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Hoop Everyday Earrings offer a classic circular silhouette in a wearable daily size. They frame the face without the drama of oversized party hoops.
+        'short' => 'Classic everyday hoops in a wearable daily size — not oversized party hoops.',
+        'description' => 'Hoop diameter matters. These are cut for daily framing of the face, not stage-size drama. Secure closures before commuting.
 
-Who it is for: shoppers browsing Earrings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Remove for sleep and workouts. Wipe plating dry.
 
-Fit & buying tip: Check post or hook style in the gallery; lightweight designs are intended for all-day comfort when worn as directed.
+Judge size against a coin or existing hoop in the product photos.
 
-Styling: Pair studs with layered necklaces for day looks, or choose drops and jhumkas when you want festive sparkle for evenings.
+Snap or latch closures should click audibly before you leave home. Give hoops a gentle tug test after putting them on.
 
-Care: Remove before swimming or sleeping; wipe after wear and store dry so plating and stones stay bright longer.
+Size doubts on the Hoop Everyday Earrings are cheaper to settle with a soft tape today than with a reverse-pickup later.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+After the first wear or use of the Hoop Everyday Earrings, decide quickly on keep-or-return while tags are still on.',
     ],
     'drop-pearl-earrings' => [
-        'short' => 'Drop Pearl Earrings from our Earrings collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Drop Pearl Earrings bring soft movement and classic pearl sheen for dinners, interviews and festive evenings. Drop length is visible in product photos so you can judge proportion.
+        'short' => 'Soft pearl-drop earrings with gentle movement for dinners and festive evenings.',
+        'description' => 'Pearl sheen suits interviews and festive dinners when crystal sparkle feels sharp. Drop length shows clearly in the gallery — compare to your preferred earring hang.
 
-Who it is for: shoppers browsing Earrings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Hooks or posts as shown; check the close-ups. Keep pearls away from perfume sprays.
 
-Fit & buying tip: Check post or hook style in the gallery; lightweight designs are intended for all-day comfort when worn as directed.
+Wipe gently, store flat so drops do not tangle with chains.
 
-Styling: Pair studs with layered necklaces for day looks, or choose drops and jhumkas when you want festive sparkle for evenings.
+Fashion pearls need the same dry care as crystals. Hair tools and perfume are the usual plating killers — apply those first, jewellery last.
 
-Care: Remove before swimming or sleeping; wipe after wear and store dry so plating and stones stay bright longer.
+If the Drop Pearl Earrings is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Keep the Drop Pearl Earrings away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'jhumka-style-earrings' => [
-        'short' => 'Jhumka Style Earrings — curated for Earrings shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Jhumka Style Earrings lean ethnic for Navratri, weddings and cultural celebrations. Lightweight construction aims to reduce ear fatigue during long functions.
+        'short' => 'Ethnic jhumka-style earrings for Navratri, weddings and cultural celebrations.',
+        'description' => 'Long functions need lighter jhumkas. These are built for festive evenings where you want ethnic shape without immediate ear fatigue.
 
-Who it is for: shoppers browsing Earrings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Confirm closure type in photos. Avoid water and heavy hairspray on the plating.
 
-Fit & buying tip: Check post or hook style in the gallery; lightweight designs are intended for all-day comfort when worn as directed.
+Soft cloth after wear; pouch storage overnight.
 
-Styling: Pair studs with layered necklaces for day looks, or choose drops and jhumkas when you want festive sparkle for evenings.
+For garba nights, consider a backup pair in your bag. Lightweight construction helps, but hours of movement still fatigue some ears.
 
-Care: Remove before swimming or sleeping; wipe after wear and store dry so plating and stones stay bright longer.
+When you open the Jhumka Style Earrings parcel, check stitching, clasp or sole alignment before you discard packing.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Pair the Jhumka Style Earrings with one quieter accessory so the piece remains the focus in photos.',
     ],
     'crystal-cluster-studs' => [
-        'short' => 'Shop the Crystal Cluster Studs online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Crystal Cluster Studs group multiple stones for denser sparkle on the lobe. Ideal when a single stone stud feels too minimal for evening light.
+        'short' => 'Cluster crystal studs for denser sparkle when a single stone feels minimal.',
+        'description' => 'Clusters read richer under evening light. Use them when a solitary stud disappears in photos or on stage-adjacent seating.
 
-Who it is for: shoppers browsing Earrings who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Secure posts fully. Keep dry; wipe after wear.
 
-Fit & buying tip: Check post or hook style in the gallery; lightweight designs are intended for all-day comfort when worn as directed.
+Scale is visible in macro gallery shots — zoom once before COD.
 
-Styling: Pair studs with layered necklaces for day looks, or choose drops and jhumkas when you want festive sparkle for evenings.
+Clusters snag on knit scarves more than single studs — put scarves on first. Clean with a dry cloth only; skip ultrasonic home kits.
 
-Care: Remove before swimming or sleeping; wipe after wear and store dry so plating and stones stay bright longer.
+Store the Crystal Cluster Studs as the care note suggests; small habits protect plating, knits and leather-look finishes.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+We would rather you message before buying the Crystal Cluster Studs than guess a critical measurement.',
     ],
     'delicate-chain-necklace' => [
-        'short' => 'Delicate Chain Necklace from our Necklaces collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Delicate Chain Necklace is a fine everyday chain for subtle polish over kurtis, tees and work shirts. It layers cleanly if you already own a slightly longer pendant.
+        'short' => 'Fine everyday chain for subtle polish over kurtis, tees and shirts.',
+        'description' => 'Fine chains layer under or over slightly longer pendants you already own. This delicate piece is for daily polish, not heavy bridal weight.
 
-Who it is for: shoppers browsing Necklaces who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Clasp type and length are in the photos — check before ordering. Keep away from water.
 
-Fit & buying tip: Note chain length and clasp type in photos; adjustable layers should sit flat without twisting when fastened correctly.
+Wipe dry, store untangled. Unused tagged jewellery returns where eligible.
 
-Styling: Layer with a second fine chain or keep as a single statement over kurtis, tees and evening tops from Black Rossy.
+Fine chains break at clasps first. Open clasps with two hands rather than yanking one side.
 
-Care: Avoid water and heavy sprays; fasten clasps fully and store flat or hung so chains do not tangle.
+Questions about the Delicate Chain Necklace? Colour concerns after unboxing? Write in with daylight photos and your order number.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Black Rossy treats the Delicate Chain Necklace as a specific SKU — what you see in the matched photos is what fulfilment aims to send.',
     ],
     'pendant-necklace' => [
-        'short' => 'Pendant Necklace — curated for Necklaces shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Pendant Necklace focuses attention on a single pendant focal point for gifting and elevated daily wear. Chain length and pendant scale are shown clearly in the gallery.
+        'short' => 'Single-pendant necklace for gifting and elevated daily wear.',
+        'description' => 'One pendant keeps the focus clear. Chain length and pendant scale appear in the gallery so you can judge proportion against your neckline preference.
 
-Who it is for: shoppers browsing Necklaces who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Avoid pulling the pendant when dressing. No swimming with plated chains.
 
-Fit & buying tip: Note chain length and clasp type in photos; adjustable layers should sit flat without twisting when fastened correctly.
+Soft cloth care. COD on serviceable pin codes.
 
-Styling: Layer with a second fine chain or keep as a single statement over kurtis, tees and evening tops from Black Rossy.
+Pendant backs should sit flat against skin; if a bail digs in, the chain may be too short for that neckline.
 
-Care: Avoid water and heavy sprays; fasten clasps fully and store flat or hung so chains do not tangle.
+Size doubts on the Pendant Necklace are cheaper to settle with a soft tape today than with a reverse-pickup later.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+If your pin code is remote, check delivery estimates on checkout before relying on a same-week event for the Pendant Necklace.',
     ],
     'layered-chain-set' => [
-        'short' => 'Shop the Layered Chain Set online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Layered Chain Set ships as coordinated lengths so you can achieve a stacked look without buying separately. Designed to sit flat when clasps are fastened correctly.
+        'short' => 'Coordinated layered chain set for a stacked look without buying separately.',
+        'description' => 'Sets remove the guesswork of matching metals and lengths. Fasten each clasp so layers sit flat rather than twisting into one rope.
 
-Who it is for: shoppers browsing Necklaces who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Store hung or in a wide pouch. Keep dry.
 
-Fit & buying tip: Note chain length and clasp type in photos; adjustable layers should sit flat without twisting when fastened correctly.
+Review length differences in the product photos before checkout.
 
-Styling: Layer with a second fine chain or keep as a single statement over kurtis, tees and evening tops from Black Rossy.
+Wear the shortest chain highest. Mixing the order usually looks less intentional in photos.
 
-Care: Avoid water and heavy sprays; fasten clasps fully and store flat or hung so chains do not tangle.
+If the Layered Chain Set is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Keep the Layered Chain Set away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'pearl-strand-necklace' => [
-        'short' => 'Pearl Strand Necklace from our Necklaces collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Pearl Strand Necklace offers classic strand elegance for formal dinners and festive dressing. Pearl tone and strand length should be checked against your neckline preference in photos.
+        'short' => 'Classic pearl strand for formal dinners and festive dressing.',
+        'description' => 'Strand length changes how formal the look feels — choker-near versus longer drape. Check the listing photos against the necklines you wear most.
 
-Who it is for: shoppers browsing Necklaces who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Pearl tone varies by lighting; use daylight gallery images. Avoid sprays directly on the strand.
 
-Fit & buying tip: Note chain length and clasp type in photos; adjustable layers should sit flat without twisting when fastened correctly.
+Wipe gently, store flat. Gift-friendly with careful packing.
 
-Styling: Layer with a second fine chain or keep as a single statement over kurtis, tees and evening tops from Black Rossy.
+Fashion strands are for style events, not daily gym wear. Reserve them for dinners and festivities to extend the look.
 
-Care: Avoid water and heavy sprays; fasten clasps fully and store flat or hung so chains do not tangle.
+Store the Pearl Strand Necklace as the care note suggests; small habits protect plating, knits and leather-look finishes.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Active Pearl Strand Necklace orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'choker-collar-necklace' => [
-        'short' => 'Choker Collar Necklace — curated for Necklaces shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Choker Collar Necklace sits higher on the neck for modern evening outfits and clean boat or square necklines. Confirm comfort if you prefer looser traditional chains.
+        'short' => 'Higher-sitting choker collar for modern evenings and clean boat or square necklines.',
+        'description' => 'Chokers suit modern evening outfits better than long traditional ropes. Confirm comfort if you usually prefer looser chains.
 
-Who it is for: shoppers browsing Necklaces who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Check clasp security in photos. Keep dry; do not sleep in fitted collars.
 
-Fit & buying tip: Note chain length and clasp type in photos; adjustable layers should sit flat without twisting when fastened correctly.
+Wipe after wear. Return unused tagged pieces per policy.
 
-Styling: Layer with a second fine chain or keep as a single statement over kurtis, tees and evening tops from Black Rossy.
+Two-finger comfort rule: you should slip two fingers between choker and neck. Tighter than that is a red flag for long wear.
 
-Care: Avoid water and heavy sprays; fasten clasps fully and store flat or hung so chains do not tangle.
+Return windows for the Choker Collar Necklace apply to unused tagged items where the category allows — beauty once opened is usually final sale.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+We would rather you message before buying the Choker Collar Necklace than guess a critical measurement.',
     ],
     'slim-chain-bracelet' => [
-        'short' => 'Shop the Slim Chain Bracelet online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Slim Chain Bracelet is a fine everyday wrist piece that slips under sleeves and stacks with watches. Lightweight links are meant for daily rotation rather than heavy statement wear.
+        'short' => 'Fine chain bracelet that slips under sleeves and stacks with watches.',
+        'description' => 'Daily bracelets should not fight shirt cuffs. This slim chain is meant for rotation, not heavy statement weight.
 
-Who it is for: shoppers browsing Bracelets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Clasp securely before active days. Keep dry; wipe after wear.
 
-Fit & buying tip: Measure wrist circumference loosely; fixed bangles and cuffs cannot be resized — check the product photos for scale.
+Judge length in gallery shots against your wrist size preference.
 
-Styling: Stack slim chains with a sparkle piece, or wear a single cuff for a cleaner office-to-evening look.
+Watch and bracelet stacking works when metals roughly match. Mixed tones are fine if intentional.
 
-Care: Wipe after wear, keep dry, and avoid stacking pieces that scratch plating against each other in storage.
+Questions about the Slim Chain Bracelet? Missing accessory in the box? Contact same day with a pack photo and order number.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+We would rather you message before buying the Slim Chain Bracelet than guess a critical measurement.',
     ],
     'cuff-bangle' => [
-        'short' => 'Cuff Bangle from our Bracelets collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Cuff Bangle delivers a bold open or closed cuff presence for evenings and styled office looks. Because cuffs are structured, compare the opening and inner circumference carefully.
+        'short' => 'Structured cuff bangle for evenings and sharper office-to-evening looks.',
+        'description' => 'Cuffs make a larger visual statement than fine chains. Compare the opening and inner circumference carefully — structured pieces rarely flex much.
 
-Who it is for: shoppers browsing Bracelets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Avoid forcing a tight cuff. Wipe plating; store where it will not bend.
 
-Fit & buying tip: Measure wrist circumference loosely; fixed bangles and cuffs cannot be resized — check the product photos for scale.
+Scale shows best in worn or hand shots in the gallery.
 
-Styling: Stack slim chains with a sparkle piece, or wear a single cuff for a cleaner office-to-evening look.
+Open cuffs adjust slightly; closed cuffs do not. Know which style you ordered from the photos.
 
-Care: Wipe after wear, keep dry, and avoid stacking pieces that scratch plating against each other in storage.
+The Cuff Bangle ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Active Cuff Bangle orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'beaded-charm-bracelet' => [
-        'short' => 'Beaded Charm Bracelet — curated for Bracelets shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Beaded Charm Bracelet adds playful texture with beads and charm accents for casual and gift-friendly outfits. Charm detail is easiest to judge in zoomed gallery images.
+        'short' => 'Beaded charm bracelet with playful texture for casual and gift-friendly outfits.',
+        'description' => 'Beads and charms add movement that plain metal misses. Zoom gallery images for charm detail before gifting.
 
-Who it is for: shoppers browsing Bracelets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Keep dry; wipe gently around beads. Avoid overstretching elastic or links if present.
 
-Fit & buying tip: Measure wrist circumference loosely; fixed bangles and cuffs cannot be resized — check the product photos for scale.
+Fun add-on beside a simple chain bracelet.
 
-Styling: Stack slim chains with a sparkle piece, or wear a single cuff for a cleaner office-to-evening look.
+Charms catch on sweater cuffs — sleeve first, bracelet second. Gentle wear beats rough play.
 
-Care: Wipe after wear, keep dry, and avoid stacking pieces that scratch plating against each other in storage.
+If the Beaded Charm Bracelet is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+We would rather you message before buying the Beaded Charm Bracelet than guess a critical measurement.',
     ],
     'sparkle-tennis-style' => [
-        'short' => 'Shop the Sparkle Tennis Style online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Sparkle Tennis Style bracelet lines stones for continuous shimmer around the wrist. A go-to when you want evening light catch without a heavy traditional kada.
+        'short' => 'Line-of-stone tennis-style bracelet for evening shimmer without a heavy kada.',
+        'description' => 'Continuous stone lines catch dinner lighting well. A clasp check before events matters more than with open bangles.
 
-Who it is for: shoppers browsing Bracelets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Keep away from water and lotions. Soft cloth wipe after wear.
 
-Fit & buying tip: Measure wrist circumference loosely; fixed bangles and cuffs cannot be resized — check the product photos for scale.
+Store flat so the line does not kink. Confirm wrist fit in photos.
 
-Styling: Stack slim chains with a sparkle piece, or wear a single cuff for a cleaner office-to-evening look.
+Clasp safety on tennis-style pieces is everything at events. Photo the clasp style before packing for travel.
 
-Care: Wipe after wear, keep dry, and avoid stacking pieces that scratch plating against each other in storage.
+If the Sparkle Tennis Style is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Active Sparkle Tennis Style orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'stackable-bangle-set' => [
-        'short' => 'Stackable Bangle Set from our Bracelets collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Stackable Bangle Set includes coordinated bangles so you can build a fuller wrist look in one purchase. Mix metals carefully in storage so plating does not scratch.
+        'short' => 'Coordinated bangle set for a fuller wrist look in one purchase.',
+        'description' => 'Sets arrive matched so you are not hunting separate finishes. Mix carefully in storage — plated pieces scratch when tossed together.
 
-Who it is for: shoppers browsing Bracelets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Measure wrist loosely before ordering fixed sizes. Wipe after festive wear.
 
-Fit & buying tip: Measure wrist circumference loosely; fixed bangles and cuffs cannot be resized — check the product photos for scale.
+Unused tagged sets follow return rules where eligible.
 
-Styling: Stack slim chains with a sparkle piece, or wear a single cuff for a cleaner office-to-evening look.
+Wear two or three from the set daily instead of all at once if noise or weight bothers you at work.
 
-Care: Wipe after wear, keep dry, and avoid stacking pieces that scratch plating against each other in storage.
+When you open the Stackable Bangle Set parcel, check stitching, clasp or sole alignment before you discard packing.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+If your pin code is remote, check delivery estimates on checkout before relying on a same-week event for the Stackable Bangle Set.',
     ],
     'men-canvas-sneakers' => [
-        'short' => 'Men Canvas Sneakers — curated for Men\'s Footwear shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Men Canvas Sneakers cover campus, weekends and light walks with a breathable canvas upper. A practical daily shoe when you want something lighter than leather loafers.
+        'short' => 'Breathable canvas sneakers for campus, weekends and light walks.',
+        'description' => 'Canvas keeps things lighter than leather loafers for casual miles. Lace lockdown shows in the gallery — check before ordering.
 
-Who it is for: shoppers browsing Men\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Spot clean; avoid machine soaking unless the label allows. Size with your usual UK base.
 
-Fit & buying tip: Use your usual UK size as a base; try the size chart notes and size up if you wear thicker socks for travel days.
+Unworn eligible pairs follow the return window.
 
-Styling: Loafers and derbies suit smart days; canvas and running styles cover campus, gym-adjacent walks and weekends.
+Canvas darkens with wear — expect a lived-in look after city dust. That patina is normal, not a defect.
 
-Care: Brush dirt off, condition leather-look surfaces lightly, and never soak; air dry if damp.
+If the Men Canvas Sneakers is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Catalogue pages for the Men Canvas Sneakers are written to answer fit and care questions, not to fill space.',
     ],
     'leather-look-loafers' => [
-        'short' => 'Shop the Leather Look Loafers online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Leather Look Loafers offer a smooth smart-casual option for office days and dinners. Clean lines work with chinos and tailored trousers from the mens clothing edit.
+        'short' => 'Smooth leather-look loafers for office days and smart dinners.',
+        'description' => 'Clean toe lines suit chinos and tailored trousers. Condition lightly; keep away from heavy rain when possible.
 
-Who it is for: shoppers browsing Men\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Size to your usual formal shoe if you have one. Wipe after wear.
 
-Fit & buying tip: Use your usual UK size as a base; try the size chart notes and size up if you wear thicker socks for travel days.
+Tags/box on for eligible unused returns.
 
-Styling: Loafers and derbies suit smart days; canvas and running styles cover campus, gym-adjacent walks and weekends.
+Shoe trees help hold shape between wears if you own them; rolled newspaper works overnight in a pinch.
 
-Care: Brush dirt off, condition leather-look surfaces lightly, and never soak; air dry if damp.
+The Leather Look Loafers ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Active Leather Look Loafers orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'sports-running-shoes' => [
-        'short' => 'Sports Running Shoes from our Men\'s Footwear collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Sports Running Shoes provide cushioned support for errands, campus walks and light activity days. Focus on sole profile and lace lockdown in the gallery before ordering.
+        'short' => 'Cushioned trainers for errands, campus walks and light activity days.',
+        'description' => 'These are everyday cushioned trainers — not elite race spikes. Focus on sole profile and lace lockdown in photos.
 
-Who it is for: shoppers browsing Men\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Air dry if damp; loosen laces when storing. Match your running/walking size history.
 
-Fit & buying tip: Use your usual UK size as a base; try the size chart notes and size up if you wear thicker socks for travel days.
+Unworn with box/tags: 7-day eligible returns.
 
-Styling: Loafers and derbies suit smart days; canvas and running styles cover campus, gym-adjacent walks and weekends.
+Replace trainers when midsole cushioning feels flat, not only when uppers look worn. For light activity this pair is a practical start.
 
-Care: Brush dirt off, condition leather-look surfaces lightly, and never soak; air dry if damp.
+Return windows for the Sports Running Shoes apply to unused tagged items where the category allows — beauty once opened is usually final sale.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+After the first wear or use of the Sports Running Shoes, decide quickly on keep-or-return while tags are still on.',
     ],
     'casual-slip-ons' => [
-        'short' => 'Casual Slip Ons — curated for Men\'s Footwear shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Casual Slip Ons remove lace fuss for quick outings, travel days and casual Fridays. Elastic or easy-entry construction should feel secure — not loose — around the heel.
+        'short' => 'No-lace slip-ons for quick outings, travel days and casual Fridays.',
+        'description' => 'Elastic or easy-entry construction should feel secure at the heel, not floppy. Try your usual sneaker size as a starting point.
 
-Who it is for: shoppers browsing Men\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wipe after dusty days. Not a formal derby substitute.
 
-Fit & buying tip: Use your usual UK size as a base; try the size chart notes and size up if you wear thicker socks for travel days.
+Unworn eligible returns with tags.
 
-Styling: Loafers and derbies suit smart days; canvas and running styles cover campus, gym-adjacent walks and weekends.
+Heel slip on new slip-ons often improves after a short break-in. Thick socks during the first outings can help.
 
-Care: Brush dirt off, condition leather-look surfaces lightly, and never soak; air dry if damp.
+For the Casual Slip Ons, trust the gallery zoom more than thumbnail colour — finishes shift on different screens.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Keep the Casual Slip Ons away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'formal-derby-shoes' => [
-        'short' => 'Shop the Formal Derby Shoes online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Formal Derby Shoes complete interview, office and ceremony outfits with a classic lace-up derby shape. Pair with tailored trousers and keep the leather-look surface conditioned lightly.
+        'short' => 'Classic lace-up derbies for interviews, office and ceremony outfits.',
+        'description' => 'Derby shaping completes tailored trousers. Condition leather-look surfaces lightly; keep a shoe horn handy to protect the heel counter.
 
-Who it is for: shoppers browsing Men\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Size carefully — formal lasts differ from sneakers. Wipe after wear.
 
-Fit & buying tip: Use your usual UK size as a base; try the size chart notes and size up if you wear thicker socks for travel days.
+Unworn eligible pairs return within policy with tags/box.
 
-Styling: Loafers and derbies suit smart days; canvas and running styles cover campus, gym-adjacent walks and weekends.
+Polish lightly; heavy cream can clog fashion finishes. Brush dust before any cream.
 
-Care: Brush dirt off, condition leather-look surfaces lightly, and never soak; air dry if damp.
+If the Formal Derby Shoes is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Black Rossy treats the Formal Derby Shoes as a specific SKU — what you see in the matched photos is what fulfilment aims to send.',
     ],
     'women-everyday-sneakers' => [
-        'short' => 'Women Everyday Sneakers from our Women\'s Footwear collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Women Everyday Sneakers focus on all-day comfort with a clean lifestyle silhouette that pairs with jeans, joggers and day dresses. Colours are photographed to match shipment.
+        'short' => 'Women’s everyday sneakers for jeans, joggers and day-dress pairings.',
+        'description' => 'All-day comfort with a clean lifestyle silhouette. Match your usual UK/EU size, then review width notes in photos if you have wider feet.
 
-Who it is for: shoppers browsing Women\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Air dry if damp. True product colours in the listing shots.
 
-Fit & buying tip: Match UK/EU size to a pair you already wear; if between sizes, many shoppers size up for thicker socks or wider feet.
+Unworn with tags/box where required: standard return window.
 
-Styling: Choose sneakers for errands, flats for desks, and heels or slides when the outfit needs a sharper finish.
+Insoles can be swapped for branded orthotics if you already use them — check removable-insole clues in photos when present.
 
-Care: Wipe soles and uppers after wear, air dry away from direct heat, and store with shape support when possible.
+Questions about the Women Everyday Sneakers? Fit doubts after trying once — still tagged — can be discussed via Contact before return pickup.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Pair the Women Everyday Sneakers with one quieter accessory so the piece remains the focus in photos.',
     ],
     'block-heel-sandals' => [
-        'short' => 'Block Heel Sandals — curated for Women\'s Footwear shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Block Heel Sandals raise your look with a stable block heel suited to dinners and festive evenings. Heel height and strap layout are clear in side-profile photos.
+        'short' => 'Stable block-heel sandals for dinners and festive evenings.',
+        'description' => 'Block heels trade spike drama for steadier walking across venue floors. Side-profile photos show heel height and strap layout — study those before sizing.
 
-Who it is for: shoppers browsing Women\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wipe after wear; avoid soaking. If between sizes, consider the roomier option for longer events.
 
-Fit & buying tip: Match UK/EU size to a pair you already wear; if between sizes, many shoppers size up for thicker socks or wider feet.
+Unworn eligible pairs return within 7 days with tags/box as required.
 
-Styling: Choose sneakers for errands, flats for desks, and heels or slides when the outfit needs a sharper finish.
+Practice on tile at home first. Block heels forgive more than stilettos, but new straps still need a short break-in.
 
-Care: Wipe soles and uppers after wear, air dry away from direct heat, and store with shape support when possible.
+Questions about the Block Heel Sandals? Business-day replies are normal; include evening availability if you need a call back.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Catalogue pages for the Block Heel Sandals are written to answer fit and care questions, not to fill space.',
     ],
     'ballet-flats' => [
-        'short' => 'Shop the Ballet Flats online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Ballet Flats keep a soft rounded toe and flexible feel for desks, errands and travel days when heels are not practical. A wardrobe basic that finishes kurtis and trousers alike.
+        'short' => 'Soft rounded-toe ballet flats for desks, errands and travel days.',
+        'description' => 'When heels are not practical, ballet flats finish kurtis and trousers without noise. Flexible feel matters more than stiff fashion constructions for desk days.
 
-Who it is for: shoppers browsing Women\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Match your usual flat size. Wipe soles after wet pavements; air dry.
 
-Fit & buying tip: Match UK/EU size to a pair you already wear; if between sizes, many shoppers size up for thicker socks or wider feet.
+Keep tags until fit is confirmed after delivery.
 
-Styling: Choose sneakers for errands, flats for desks, and heels or slides when the outfit needs a sharper finish.
+Thin socks or barefoot preference changes friction — blister patches help for the first long day in a new pair.
 
-Care: Wipe soles and uppers after wear, air dry away from direct heat, and store with shape support when possible.
+Return windows for the Ballet Flats apply to unused tagged items where the category allows — beauty once opened is usually final sale.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+If your pin code is remote, check delivery estimates on checkout before relying on a same-week event for the Ballet Flats.',
     ],
     'ankle-strap-heels' => [
-        'short' => 'Ankle Strap Heels from our Women\'s Footwear collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Ankle Strap Heels add secure ankle support and evening height for parties and formal dinners. Check strap adjustability and heel profile before choosing your size.
+        'short' => 'Ankle-strap heels with secure support for parties and formal dinners.',
+        'description' => 'Ankle straps reduce slip compared with open mules. Check adjustability and heel profile in the gallery before you commit to a size.
 
-Who it is for: shoppers browsing Women\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wear indoors on clean floors first if you worry about outdoor grit. Wipe after events.
 
-Fit & buying tip: Match UK/EU size to a pair you already wear; if between sizes, many shoppers size up for thicker socks or wider feet.
+Unworn eligible returns within policy windows.
 
-Styling: Choose sneakers for errands, flats for desks, and heels or slides when the outfit needs a sharper finish.
+Buckle once, then remember your usual hole so party lighting does not slow you down.
 
-Care: Wipe soles and uppers after wear, air dry away from direct heat, and store with shape support when possible.
+For the Ankle Strap Heels, trust the gallery zoom more than thumbnail colour — finishes shift on different screens.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+After the first wear or use of the Ankle Strap Heels, decide quickly on keep-or-return while tags are still on.',
     ],
     'slide-sandals' => [
-        'short' => 'Slide Sandals — curated for Women\'s Footwear shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Slide Sandals are easy on-and-off footwear for home-to-market runs, poolside travel days and relaxed weekends. Open design means sock choice and foot width matter for comfort.
+        'short' => 'Easy on-and-off slides for market runs, travel days and relaxed weekends.',
+        'description' => 'Slides win on convenience. Open designs mean foot width and sock choice change comfort quickly — review the footbed photos.
 
-Who it is for: shoppers browsing Women\'s Footwear who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Air dry if damp; wipe the footbed. Not a formal shoe — styled for easy days.
 
-Fit & buying tip: Match UK/EU size to a pair you already wear; if between sizes, many shoppers size up for thicker socks or wider feet.
+Unworn with tags: eligible 7-day returns.
 
-Styling: Choose sneakers for errands, flats for desks, and heels or slides when the outfit needs a sharper finish.
+Footbeds collect dust — wipe before wearing indoors on pale floors after outdoor use.
 
-Care: Wipe soles and uppers after wear, air dry away from direct heat, and store with shape support when possible.
+When you open the Slide Sandals parcel, check stitching, clasp or sole alignment before you discard packing.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Keep the Slide Sandals away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'mini-crossbody-bag' => [
-        'short' => 'Shop the Mini Crossbody Bag online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Mini Crossbody Bag keeps hands free for travel, markets and evenings out. Compact size suits phone, cards and keys — check interior pockets in photos.
+        'short' => 'Hands-free mini crossbody for travel, markets and evenings out.',
+        'description' => 'Compact bags suit phone, cards and keys — not a full grocery run. Interior pockets show in photos; review before COD.
 
-Who it is for: shoppers browsing Handbags who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Adjust the strap for your height. Wipe after dusty outings.
 
-Fit & buying tip: Check bag dimensions and strap drop in the gallery so phones, wallets and daily essentials fit the way you expect.
+Keep tags until you confirm the size works for your daily carry.
 
-Styling: Structured totes work for office days; crossbodies and hobos suit travel; clutches finish evening outfits.
+Wear the bag on your front in crowded markets. Crossbody convenience should not mean rear vulnerability.
 
-Care: Wipe exterior with a soft cloth, empty pockets after use, and stuff lightly when storing so the shape holds.
+For the Mini Crossbody Bag, trust the gallery zoom more than thumbnail colour — finishes shift on different screens.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Active Mini Crossbody Bag orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'structured-tote' => [
-        'short' => 'Structured Tote from our Handbags collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Structured Tote is sized for workdays when you need room for a pouch, bottle and slim notebook. Clean lines photograph professional next to neutrals and black outfits.
+        'short' => 'Workday tote with room for a pouch, bottle and slim notebook.',
+        'description' => 'Totes replace backpacks when you want cleaner lines beside neutrals and black outfits. Dimensions matter — measure against what you carry now.
 
-Who it is for: shoppers browsing Handbags who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wipe exterior; avoid overstuffing that warps shape. Store stuffed lightly.
 
-Fit & buying tip: Check bag dimensions and strap drop in the gallery so phones, wallets and daily essentials fit the way you expect.
+Eligible unused returns within 7 days with tags.
 
-Styling: Structured totes work for office days; crossbodies and hobos suit travel; clutches finish evening outfits.
+Laptop sleeves are not implied unless listed — use a separate pouch if you carry a device.
 
-Care: Wipe exterior with a soft cloth, empty pockets after use, and stuff lightly when storing so the shape holds.
+If the Structured Tote is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+After the first wear or use of the Structured Tote, decide quickly on keep-or-return while tags are still on.',
     ],
     'flap-shoulder-bag' => [
-        'short' => 'Flap Shoulder Bag — curated for Handbags shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Flap Shoulder Bag combines a secure flap cover with comfortable shoulder wear for daily commuting and shopping trips. Flap hardware detail is visible in close-ups.
+        'short' => 'Flap-cover shoulder bag for commuting and shopping trips.',
+        'description' => 'Flap hardware adds a secure cover for daily routes. Close-ups show the clasp detail — useful if you care about finish.
 
-Who it is for: shoppers browsing Handbags who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wipe after rain mist; empty receipts from pockets. Check strap comfort in photos.
 
-Fit & buying tip: Check bag dimensions and strap drop in the gallery so phones, wallets and daily essentials fit the way you expect.
+Tags on until fit/size feels right.
 
-Styling: Structured totes work for office days; crossbodies and hobos suit travel; clutches finish evening outfits.
+Flap bags deter casual dips better than open totes. Keep phones in zipped inner pockets when available.
 
-Care: Wipe exterior with a soft cloth, empty pockets after use, and stuff lightly when storing so the shape holds.
+If the Flap Shoulder Bag is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Pair the Flap Shoulder Bag with one quieter accessory so the piece remains the focus in photos.',
     ],
     'evening-clutch' => [
-        'short' => 'Shop the Evening Clutch online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Evening Clutch is a slim occasion bag for dinners, weddings and parties when you only need essentials. Hold it or pair with a chain if the listing shows one.
+        'short' => 'Slim evening clutch for dinners, weddings and parties — essentials only.',
+        'description' => 'Clutches hold phone, cards and a compact — not a water bottle. Hold it or use a chain if the listing shows one.
 
-Who it is for: shoppers browsing Handbags who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wipe exterior; store flat. Ideal beside our evening tops and heels.
 
-Fit & buying tip: Check bag dimensions and strap drop in the gallery so phones, wallets and daily essentials fit the way you expect.
+Unused tagged clutches: standard return window where eligible.
 
-Styling: Structured totes work for office days; crossbodies and hobos suit travel; clutches finish evening outfits.
+Test whether your phone model fits before event day — modern phones vary more than clutches do.
 
-Care: Wipe exterior with a soft cloth, empty pockets after use, and stuff lightly when storing so the shape holds.
+The Evening Clutch ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Pair the Evening Clutch with one quieter accessory so the piece remains the focus in photos.',
     ],
     'hobo-soft-bag' => [
-        'short' => 'Hobo Soft Bag from our Handbags collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Hobo Soft Bag drapes softly for relaxed days and travel when rigid structure is not required. Slouch character is intentional — stuff lightly if you prefer a fuller shape.
+        'short' => 'Soft hobo bag with intentional slouch for relaxed days and travel.',
+        'description' => 'Hobos drape; that soft character is the design. Stuff lightly if you prefer a fuller look in photos versus empty slouch.
 
-Who it is for: shoppers browsing Handbags who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wipe exterior; empty crumbs from the base. Check strap drop in the gallery.
 
-Fit & buying tip: Check bag dimensions and strap drop in the gallery so phones, wallets and daily essentials fit the way you expect.
+Tags until you confirm daily comfort.
 
-Styling: Structured totes work for office days; crossbodies and hobos suit travel; clutches finish evening outfits.
+Slouch deepens when overloaded. Edit daily carry so the silhouette stays intentional.
 
-Care: Wipe exterior with a soft cloth, empty pockets after use, and stuff lightly when storing so the shape holds.
+Store the Hobo Soft Bag as the care note suggests; small habits protect plating, knits and leather-look finishes.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Black Rossy treats the Hobo Soft Bag as a specific SKU — what you see in the matched photos is what fulfilment aims to send.',
     ],
     'daily-commute-backpack' => [
-        'short' => 'Daily Commute Backpack — curated for Backpacks shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Daily Commute Backpack balances padded comfort and everyday organisation for office and college routes. Pocket layout matters — review gallery shots for bottle and zip placement.
+        'short' => 'Padded commute backpack for office and college routes.',
+        'description' => 'Pocket placement for bottles and zips matters more than logo noise. Gallery shots show organisation — study them before ordering.
 
-Who it is for: shoppers browsing Backpacks who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Empty crumbs weekly; spot clean. Choose based on how much you actually carry daily.
 
-Fit & buying tip: Review litre feel and laptop sleeve notes in photos; padded straps should sit comfortably for your commute length.
+Tags on until the first week of use confirms comfort.
 
-Styling: Slim city packs suit offices; weekend canvases take short trips; kids packs keep school essentials organised.
+Empty crumbs weekly and spot-clean lunch marks early so odours do not settle into lining fabric.
 
-Care: Spot clean fabric, empty crumbs from pockets, and air the interior after rainy days.
+For the Daily Commute Backpack, trust the gallery zoom more than thumbnail colour — finishes shift on different screens.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+After the first wear or use of the Daily Commute Backpack, decide quickly on keep-or-return while tags are still on.',
     ],
     'canvas-weekend-pack' => [
-        'short' => 'Shop the Canvas Weekend Pack online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Canvas Weekend Pack uses durable canvas character for overnight trips and casual outings. Rugged enough for short getaways without looking overly technical.
+        'short' => 'Canvas weekend pack for overnight trips without technical hiking looks.',
+        'description' => 'Canvas reads casual for short getaways. Rugged enough for overnight kit; not a mountaineering bag.
 
-Who it is for: shoppers browsing Backpacks who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Spot clean; air after damp weather. Volume feel shows best in packed vs empty photos if available.
 
-Fit & buying tip: Review litre feel and laptop sleeve notes in photos; padded straps should sit comfortably for your commute length.
+Eligible unused returns with tags.
 
-Styling: Slim city packs suit offices; weekend canvases take short trips; kids packs keep school essentials organised.
+Canvas handles humidity differently than nylon — air the pack after beach or monsoon day trips.
 
-Care: Spot clean fabric, empty crumbs from pockets, and air the interior after rainy days.
+Questions about the Canvas Weekend Pack? Do not share OTP or full card details on chat — we only need order number and issue photos.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Pair the Canvas Weekend Pack with one quieter accessory so the piece remains the focus in photos.',
     ],
     'slim-city-backpack' => [
-        'short' => 'Slim City Backpack from our Backpacks collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Slim City Backpack keeps a low profile for urban offices and metro commutes. Ideal when you want backpack function without bulky hiking aesthetics.
+        'short' => 'Low-profile city backpack for offices and metro commutes.',
+        'description' => 'Slim packs keep backpack function without bulky hiking aesthetics. Ideal when dress codes dislike loud outdoor gear.
 
-Who it is for: shoppers browsing Backpacks who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Check laptop notes if you carry one. Spot clean; empty pockets often.
 
-Fit & buying tip: Review litre feel and laptop sleeve notes in photos; padded straps should sit comfortably for your commute length.
+Confirm strap comfort after first wear before discarding tags if returning.
 
-Styling: Slim city packs suit offices; weekend canvases take short trips; kids packs keep school essentials organised.
+Metro grab rails and slim packs coexist better than oversized hiking frames. That is the design point.
 
-Care: Spot clean fabric, empty crumbs from pockets, and air the interior after rainy days.
+If the Slim City Backpack is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Keep the Slim City Backpack away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'laptop-office-backpack' => [
-        'short' => 'Laptop Office Backpack — curated for Backpacks shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Laptop Office Backpack focuses on device-friendly carry for workdays. Check sleeve notes and overall depth so your laptop and charger fit the way you expect.
+        'short' => 'Office backpack with device-friendly carry for workdays.',
+        'description' => 'Sleeve depth and overall volume decide whether your laptop and charger fit calmly. Read photo notes and dimensions carefully.
 
-Who it is for: shoppers browsing Backpacks who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Never force a too-large device. Spot clean; air interior.
 
-Fit & buying tip: Review litre feel and laptop sleeve notes in photos; padded straps should sit comfortably for your commute length.
+Unused tagged packs follow return policy where eligible.
 
-Styling: Slim city packs suit offices; weekend canvases take short trips; kids packs keep school essentials organised.
+Always support the base when setting a loaded pack on tiled floors — drop shock hits corners first.
 
-Care: Spot clean fabric, empty crumbs from pockets, and air the interior after rainy days.
+The Laptop Office Backpack ships from Black Rossy’s active stock when available; most pin codes support Cash on Delivery.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Keep the Laptop Office Backpack away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'kids-school-backpack' => [
-        'short' => 'Shop the Kids School Backpack online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Kids School Backpack organises books, lunch and small essentials with kid-friendly straps and compartments. Bright, clear photography helps children recognise their bag.
+        'short' => 'Kid-friendly school backpack for books, lunch and small essentials.',
+        'description' => 'Bright, clear photography helps children recognise their bag in a rack. Padded straps and compartments matter for school days.
 
-Who it is for: shoppers browsing Backpacks who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Spot clean lunch spills quickly. Check size against your child’s frame in photos.
 
-Fit & buying tip: Review litre feel and laptop sleeve notes in photos; padded straps should sit comfortably for your commute length.
+Tags until the first school week confirms fit.
 
-Styling: Slim city packs suit offices; weekend canvases take short trips; kids packs keep school essentials organised.
+Teach kids to hang packs by the loop, not by yanking one strap. Stitch life improves.
 
-Care: Spot clean fabric, empty crumbs from pockets, and air the interior after rainy days.
+Questions about the Kids School Backpack? Festival deadline worries? Ask Contact about dispatch cut-offs before you place COD.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Keep the Kids School Backpack away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'bifold-leather-wallet' => [
-        'short' => 'Bifold Leather Wallet from our Wallets collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Bifold Leather Wallet is the classic fold format for cash, cards and ID. Leather-look exterior ages with use — avoid overstuffing to protect stitching.
+        'short' => 'Classic bifold for cash, cards and ID in a familiar fold.',
+        'description' => 'Bifolds age with use — avoid overfilling. Leather-look exteriors wipe clean with a soft cloth.
 
-Who it is for: shoppers browsing Wallets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Review card capacity in photos. Keep dry.
 
-Fit & buying tip: Count card slots and note bifold vs zip vs clip formats so your daily cards and cash fit without overstuffing.
+Tags on until you are sure the fold fits your pocket.
 
-Styling: Slim card holders suit minimal pockets; zip-arounds and long clutches work for travel and evenings.
+Receipt purges once a week keep bifolds from warping. Loyalty cards you never use do not need a slot.
 
-Care: Keep dry, avoid overfilling which warps stitching, and wipe leather-look surfaces with a soft cloth.
+When you open the Bifold Leather Wallet parcel, check stitching, clasp or sole alignment before you discard packing.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Keep the Bifold Leather Wallet away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'card-holder-mini' => [
-        'short' => 'Card Holder Mini — curated for Wallets shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Card Holder Mini strips carry down to essential cards for minimalist pockets and evening clutches. Best when you leave bulk cash and receipts at home.
+        'short' => 'Minimal card holder for tight pockets and evening clutches.',
+        'description' => 'Leave bulk cash home when you only need essential cards. Mini holders suit evening bags and front pockets.
 
-Who it is for: shoppers browsing Wallets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Do not force extra cards past the design limit. Wipe dry.
 
-Fit & buying tip: Count card slots and note bifold vs zip vs clip formats so your daily cards and cash fit without overstuffing.
+Eligible unused returns with tags.
 
-Styling: Slim card holders suit minimal pockets; zip-arounds and long clutches work for travel and evenings.
+Emergency note folded once still fits many minis — test before you rely on it for travel.
 
-Care: Keep dry, avoid overfilling which warps stitching, and wipe leather-look surfaces with a soft cloth.
+Questions about the Card Holder Mini? Address changes after order placement must go through Contact quickly while the parcel is still packing.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+If your pin code is remote, check delivery estimates on checkout before relying on a same-week event for the Card Holder Mini.',
     ],
     'zip-around-wallet' => [
-        'short' => 'Shop the Zip Around Wallet online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Zip Around Wallet secures contents with a full zip perimeter for travel and crowded days. Extra security versus open bifolds when you move through transit hubs.
+        'short' => 'Full-zip wallet for travel days and crowded transit routes.',
+        'description' => 'Zip perimeters add security versus open bifolds in busy stations. Useful when you move through transit hubs with more than a few cards.
 
-Who it is for: shoppers browsing Wallets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Do not overstuff — zips fail first. Keep dry; wipe exterior.
 
-Fit & buying tip: Count card slots and note bifold vs zip vs clip formats so your daily cards and cash fit without overstuffing.
+Tags until travel test confirms you like the bulk.
 
-Styling: Slim card holders suit minimal pockets; zip-arounds and long clutches work for travel and evenings.
+Full zips add bulk; accept that tradeoff when security matters more than slim pockets.
 
-Care: Keep dry, avoid overfilling which warps stitching, and wipe leather-look surfaces with a soft cloth.
+Return windows for the Zip Around Wallet apply to unused tagged items where the category allows — beauty once opened is usually final sale.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+After the first wear or use of the Zip Around Wallet, decide quickly on keep-or-return while tags are still on.',
     ],
     'long-clutch-wallet' => [
-        'short' => 'Long Clutch Wallet from our Wallets collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Long Clutch Wallet offers an elongated format that doubles as a slim evening clutch for some outfits. Useful when you want notes flat rather than folded.
+        'short' => 'Long clutch wallet that keeps notes flat and can double as a slim evening clutch.',
+        'description' => 'Elongated formats suit shoppers who dislike folded notes. Some outfits treat this as a mini clutch.
 
-Who it is for: shoppers browsing Wallets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wipe exterior; empty coins that scratch lining. Check length in photos versus your bag.
 
-Fit & buying tip: Count card slots and note bifold vs zip vs clip formats so your daily cards and cash fit without overstuffing.
+Unused tagged pieces: return window where eligible.
 
-Styling: Slim card holders suit minimal pockets; zip-arounds and long clutches work for travel and evenings.
+Long wallets suit saree and western evening bags differently — check length against your bag opening.
 
-Care: Keep dry, avoid overfilling which warps stitching, and wipe leather-look surfaces with a soft cloth.
+Store the Long Clutch Wallet as the care note suggests; small habits protect plating, knits and leather-look finishes.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Pair the Long Clutch Wallet with one quieter accessory so the piece remains the focus in photos.',
     ],
     'money-clip-wallet' => [
-        'short' => 'Money Clip Wallet — curated for Wallets shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Money Clip Wallet combines card slots with a clip for folded notes when you want the absolute minimum bulk. Ideal for quick errands and tight pockets.
+        'short' => 'Card slots plus money clip for absolute minimum pocket bulk.',
+        'description' => 'Clips suit quick errands and tight pockets. Not ideal if you carry many receipts and loyalty cards.
 
-Who it is for: shoppers browsing Wallets who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Keep dry; avoid bending the clip aggressively. Count slots in the gallery.
 
-Fit & buying tip: Count card slots and note bifold vs zip vs clip formats so your daily cards and cash fit without overstuffing.
+Tags on until you confirm the format fits your habit.
 
-Styling: Slim card holders suit minimal pockets; zip-arounds and long clutches work for travel and evenings.
+Clips mark notes; that is normal. Use for daily cash float, not archival storage of crisp notes.
 
-Care: Keep dry, avoid overfilling which warps stitching, and wipe leather-look surfaces with a soft cloth.
+Return windows for the Money Clip Wallet apply to unused tagged items where the category allows — beauty once opened is usually final sale.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Black Rossy treats the Money Clip Wallet as a specific SKU — what you see in the matched photos is what fulfilment aims to send.',
     ],
     'matte-lip-crayon' => [
-        'short' => 'Shop the Matte Lip Crayon online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Matte Lip Crayon delivers precise matte colour in a crayon format for handbags and travel. Sharpen or twist as directed and blot lightly for longer wear.
+        'short' => 'Precise matte lip crayon format for handbags and travel kits.',
+        'description' => 'Crayons sharpen or twist as directed — handy when a liquid bullet feels messy on the go. Blot lightly for longer wear.
 
-Who it is for: shoppers browsing Beauty Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Judge undertone in daylight photos. Cap firmly after use.
 
-Fit & buying tip: Patch-test on a small area if you have sensitive skin; check shade/finish photos in daylight when colour cosmetics are involved.
+Opened colour cosmetics are typically final sale.
 
-Styling: Build a simple routine — cleanse, treat, colour — and store products away from heat and direct sun.
+Matte crayons emphasise lip lines — a thin balm underneath (blotted) can help without killing the finish.
 
-Care: Close caps tightly, use clean hands or applicators, and note that opened beauty items are typically final sale.
+Return windows for the Matte Lip Crayon apply to unused tagged items where the category allows — beauty once opened is usually final sale.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Pair the Matte Lip Crayon with one quieter accessory so the piece remains the focus in photos.',
     ],
     'hydrating-face-serum' => [
-        'short' => 'Hydrating Face Serum from our Beauty Products collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Hydrating Face Serum focuses on a comfortable, moisture-forward feel for dry or air-conditioned days. Introduce gradually if your skin is reactive.
+        'short' => 'Moisture-forward face serum for dry or air-conditioned days.',
+        'description' => 'Hydrating serums sit under moisturiser in most routines. Start every other night if your barrier is reactive.
 
-Who it is for: shoppers browsing Beauty Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Patch-test first. Store cool and capped.
 
-Fit & buying tip: Patch-test on a small area if you have sensitive skin; check shade/finish photos in daylight when colour cosmetics are involved.
+Hygiene policy: opened beauty usually cannot be returned.
 
-Styling: Build a simple routine — cleanse, treat, colour — and store products away from heat and direct sun.
+More drops are not better; a thin layer absorbs cleaner. Save product and reduce pilling risk.
 
-Care: Close caps tightly, use clean hands or applicators, and note that opened beauty items are typically final sale.
+Size doubts on the Hydrating Face Serum are cheaper to settle with a soft tape today than with a reverse-pickup later.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Active Hydrating Face Serum orders typically move to dispatch within 24–48 hours when stock is on hand.',
     ],
     'gentle-cream-cleanser' => [
-        'short' => 'Gentle Cream Cleanser — curated for Beauty Products shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Gentle Cream Cleanser removes the day without a tight, stripped after-feel. Cream textures suit dry-to-normal skin types seeking a softer cleanse.
+        'short' => 'Cream cleanser that removes the day without a tight, stripped after-feel.',
+        'description' => 'Cream textures suit dry-to-normal skin seeking a softer cleanse than foaming gels. Use lukewarm water; follow with your usual treat-and-moisturise steps.
 
-Who it is for: shoppers browsing Beauty Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Patch-test if highly sensitive. Cap tightly.
 
-Fit & buying tip: Patch-test on a small area if you have sensitive skin; check shade/finish photos in daylight when colour cosmetics are involved.
+Opened cleansers are typically final sale.
 
-Styling: Build a simple routine — cleanse, treat, colour — and store products away from heat and direct sun.
+Double-cleanse only if you wear heavy SPF or makeup — cream cleansers already lean gentle.
 
-Care: Close caps tightly, use clean hands or applicators, and note that opened beauty items are typically final sale.
+Store the Gentle Cream Cleanser as the care note suggests; small habits protect plating, knits and leather-look finishes.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Black Rossy treats the Gentle Cream Cleanser as a specific SKU — what you see in the matched photos is what fulfilment aims to send.',
     ],
     'blush-compact-duo' => [
-        'short' => 'Shop the Blush Compact Duo online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Blush Compact Duo offers dual blush tones for soft daytime flush or a deeper evening cheek. Build slowly with a brush; daylight checks prevent over-application.
+        'short' => 'Dual blush compact for soft daytime flush or a deeper evening cheek.',
+        'description' => 'Build slowly with a brush — daylight checks prevent over-application. Two tones in one compact reduce bag clutter.
 
-Who it is for: shoppers browsing Beauty Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Close the compact firmly; keep powder dry. Swatch photos help more than names alone.
 
-Fit & buying tip: Patch-test on a small area if you have sensitive skin; check shade/finish photos in daylight when colour cosmetics are involved.
+Opened makeup: usually non-returnable.
 
-Styling: Build a simple routine — cleanse, treat, colour — and store products away from heat and direct sun.
+Tap brush excess before cheeks. This duo is a powder-style compact unless the listing states otherwise.
 
-Care: Close caps tightly, use clean hands or applicators, and note that opened beauty items are typically final sale.
+Store the Blush Compact Duo as the care note suggests; small habits protect plating, knits and leather-look finishes.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+We would rather you message before buying the Blush Compact Duo than guess a critical measurement.',
     ],
     'cotton-cushion-cover' => [
-        'short' => 'Cotton Cushion Cover from our Home Products collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Cotton Cushion Cover softens seating with breathable cotton and photo-true colour. Zip or envelope closures (as shown) make seasonal swaps easy.
+        'short' => 'Breathable cotton cushion cover with photo-true colour for seating refreshes.',
+        'description' => 'Cotton softens seating without synthetic shine. Confirm insert size versus cover dimensions in the listing.
 
-Who it is for: shoppers browsing Home Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wash as labelled; reshape while damp. Closure type shows in photos.
 
-Fit & buying tip: Measure cushion, throw or frame size against your sofa or shelf before ordering so proportions feel right in the room.
+Unused tagged covers: 7-day eligible returns.
 
-Styling: Mix textures — soft cottons, candlelight and frames — for a calm living edit that photographs true to colour.
+Sun-fade happens on bright window sofas; rotate cushions monthly if one side faces glare.
 
-Care: Follow textile wash labels; keep candles on heat-safe surfaces; dust frames with a dry cloth.
+For the Cotton Cushion Cover, trust the gallery zoom more than thumbnail colour — finishes shift on different screens.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Keep the Cotton Cushion Cover away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'soy-jar-candle' => [
-        'short' => 'Soy Jar Candle — curated for Home Products shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Soy Jar Candle is a single-jar fragrance accent for desks, bedside tables and quiet evenings. Trim the wick and keep away from drafts for an even burn.
+        'short' => 'Single soy jar candle for desks, bedside tables and quiet evenings.',
+        'description' => 'One jar refreshes a small room without a full set commitment. Trim the wick; keep on a heat-safe coaster.
 
-Who it is for: shoppers browsing Home Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Never leave burning candles alone. Store cool when not in use.
 
-Fit & buying tip: Measure cushion, throw or frame size against your sofa or shelf before ordering so proportions feel right in the room.
+Sealed unused jars may return where eligible; lit candles generally cannot.
 
-Styling: Mix textures — soft cottons, candlelight and frames — for a calm living edit that photographs true to colour.
+Extinguish with a snuffer when possible; blowing can splash wax. Let the jar cool before moving.
 
-Care: Follow textile wash labels; keep candles on heat-safe surfaces; dust frames with a dry cloth.
+When you open the Soy Jar Candle parcel, check stitching, clasp or sole alignment before you discard packing.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Keep the Soy Jar Candle away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'table-photo-frame' => [
-        'short' => 'Shop the Table Photo Frame online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Table Photo Frame displays favourite prints on shelves, consoles and work desks. Measure your photo insert size against the listing so prints fit without awkward cropping.
+        'short' => 'Table photo frame for shelves, consoles and work desks.',
+        'description' => 'Measure your print against the insert size in the listing so photos are not awkwardly cropped. Dust with a dry cloth.
 
-Who it is for: shoppers browsing Home Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Glass or acrylic as shown — handle carefully in transit unpacking. Style with home textiles from the same collection.
 
-Fit & buying tip: Measure cushion, throw or frame size against your sofa or shelf before ordering so proportions feel right in the room.
+Unused tagged frames: eligible returns per policy.
 
-Styling: Mix textures — soft cottons, candlelight and frames — for a calm living edit that photographs true to colour.
+Print shops need exact insert centimetres — note the size from the listing when you order prints.
 
-Care: Follow textile wash labels; keep candles on heat-safe surfaces; dust frames with a dry cloth.
+Size doubts on the Table Photo Frame are cheaper to settle with a soft tape today than with a reverse-pickup later.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+After the first wear or use of the Table Photo Frame, decide quickly on keep-or-return while tags are still on.',
     ],
     'cotton-throw-blanket' => [
-        'short' => 'Cotton Throw Blanket from our Home Products collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Cotton Throw Blanket adds an easy layer for sofa naps, AC evenings and guest rooms. Lightweight enough to drape decoratively when not in use.
+        'short' => 'Lightweight cotton throw for sofa naps, AC evenings and guest rooms.',
+        'description' => 'Throws double as décor when draped. Lightweight cotton suits Indian AC rooms better than heavy winter wool for most of the year.
 
-Who it is for: shoppers browsing Home Products who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Wash as labelled; avoid high heat if you want less shrinkage. Measure sofa width roughly against the listing size.
 
-Fit & buying tip: Measure cushion, throw or frame size against your sofa or shelf before ordering so proportions feel right in the room.
+Unused tagged throws: return window where eligible.
 
-Styling: Mix textures — soft cottons, candlelight and frames — for a calm living edit that photographs true to colour.
+Cotton breathes; expect less heavy warmth than fleece. Layer two light throws if you want more insulation.
 
-Care: Follow textile wash labels; keep candles on heat-safe surfaces; dust frames with a dry cloth.
+Return windows for the Cotton Throw Blanket apply to unused tagged items where the category allows — beauty once opened is usually final sale.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+After the first wear or use of the Cotton Throw Blanket, decide quickly on keep-or-return while tags are still on.',
     ],
     'curated-festival-box' => [
-        'short' => 'Curated Festival Box — curated for Gift Items shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Curated Festival Box gathers complementary pieces for Diwali, Navratri and family celebrations. A practical choice when you need one thoughtful parcel instead of multiple SKUs.
+        'short' => 'Curated festival box of complementary pieces for Diwali, Navratri and family celebrations.',
+        'description' => 'One thoughtful parcel beats juggling multiple checkouts. Confirm contents on the product page before COD.
 
-Who it is for: shoppers browsing Gift Items who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Keep sealed until the festival morning if gifting. Category return rules apply to unused tagged goods.
 
-Fit & buying tip: Read what is included in the set listing so gifting expectations match the box contents on arrival.
+Pairs well with a jewellery pouch for the recipient’s storage.
 
-Styling: Ideal for festivals, birthdays and housewarmings; add a jewellery pouch or wrap pack when you want a polished present.
+Photograph the unboxing if you might need support later — contents lists settle disputes faster with a picture.
 
-Care: Store sealed until gifting; unused tagged gift merchandise follows our standard return window where eligible.
+Size doubts on the Curated Festival Box are cheaper to settle with a soft tape today than with a reverse-pickup later.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+If your pin code is remote, check delivery estimates on checkout before relying on a same-week event for the Curated Festival Box.',
     ],
     'jewellery-pouch-set' => [
-        'short' => 'Shop the Jewellery Pouch Set online at Black Rossy with size guidance, care notes and 7-day eligible returns.',
-        'description' => 'The Jewellery Pouch Set protects rings, earrings and chains while travelling or gifting. Soft pouches reduce tangling and scratching between pieces.
+        'short' => 'Soft jewellery pouches that reduce tangles and scratches while travelling.',
+        'description' => 'Separate rings, earrings and chains into pouches instead of one mixed tin. Soft fabric lowers plating wear.
 
-Who it is for: shoppers browsing Gift Items who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Count how many pouches ship in the set listing. Easy add-on beside jewellery gifts.
 
-Fit & buying tip: Read what is included in the set listing so gifting expectations match the box contents on arrival.
+Unused tagged sets: 7-day eligible returns.
 
-Styling: Ideal for festivals, birthdays and housewarmings; add a jewellery pouch or wrap pack when you want a polished present.
+One pouch per metal colour reduces abrasion when travelling. Label pouches if multiple family members share a kit.
 
-Care: Store sealed until gifting; unused tagged gift merchandise follows our standard return window where eligible.
+When you open the Jewellery Pouch Set parcel, check stitching, clasp or sole alignment before you discard packing.
 
-Orders usually leave our fulfilment flow within 24–48 hours. COD is available where your pin code is serviceable. Keep tags on until fit and quality are confirmed; eligible unused returns are accepted within 7 days per our Return Policy.',
+Keep the Jewellery Pouch Set away from water and perfume if it is plated jewellery; apparel prefers the labelled wash route.',
     ],
     'wellness-self-care-kit' => [
-        'short' => 'Wellness Self Care Kit from our Gift Items collection: detailed photos, clear fit tips and quick dispatch.',
-        'description' => 'The Wellness Self Care Kit bundles comfort-focused items for birthdays, thank-yous and quiet weekends. Check the contents list so the kit matches the recipient’s preferences.
+        'short' => 'Comfort-focused self-care kit for birthdays, thank-yous and quiet weekends.',
+        'description' => 'Check the contents list against the recipient’s preferences — wellness kits vary. Thoughtful when you do not want another novelty gadget.
 
-Who it is for: shoppers browsing Gift Items who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Store sealed until gifting. Opened beauty components inside may affect returns — read policy notes.
 
-Fit & buying tip: Read what is included in the set listing so gifting expectations match the box contents on arrival.
+Black Rossy dispatches in-stock kits on the usual timeline with COD where available.
 
-Styling: Ideal for festivals, birthdays and housewarmings; add a jewellery pouch or wrap pack when you want a polished present.
+Allergy-prone recipients need ingredient glances — skim any enclosed beauty components before gifting.
 
-Care: Store sealed until gifting; unused tagged gift merchandise follows our standard return window where eligible.
+If the Wellness Self Care Kit is a gift, keep the invoice and tags aside until the recipient confirms they will keep it.
 
-We aim to dispatch within 24–48 hours on active stock. Use COD where available, inspect on delivery, and rely on our 7-day unused-with-tags returns for eligible fashion and hard goods.',
+Pair the Wellness Self Care Kit with one quieter accessory so the piece remains the focus in photos.',
     ],
     'luxury-gift-wrap-pack' => [
-        'short' => 'Luxury Gift Wrap Pack — curated for Gift Items shoppers who want photo-true colour and easy COD checkout.',
-        'description' => 'The Luxury Gift Wrap Pack upgrades presents with coordinated wrap materials for polished gifting. Useful alongside jewellery and home gifts from Black Rossy.
+        'short' => 'Coordinated wrap essentials to present jewellery and home gifts cleanly.',
+        'description' => 'Wrap packs upgrade last-minute presents without a stationery-store run. Useful beside jewellery and home gifts from the same catalogue.
 
-Who it is for: shoppers browsing Gift Items who want a clear sense of fabric/finish, proportion and how the piece sits in real outfits — not just a one-line catalogue stub.
+Review sheet/ribbon counts in the listing. Store flat to avoid creases.
 
-Fit & buying tip: Read what is included in the set listing so gifting expectations match the box contents on arrival.
+Unused sealed packs: eligible returns where policy allows.
 
-Styling: Ideal for festivals, birthdays and housewarmings; add a jewellery pouch or wrap pack when you want a polished present.
+Wrap on a clean table; crumbs under paper show through pale sheets. Double-sided tape beats glitter glue for clean edges.
 
-Care: Store sealed until gifting; unused tagged gift merchandise follows our standard return window where eligible.
+For the Luxury Gift Wrap Pack, trust the gallery zoom more than thumbnail colour — finishes shift on different screens.
 
-Black Rossy dispatches most in-stock orders in 24–48 hours with Cash on Delivery on serviceable pin codes. Unused tagged items follow our 7-day return window where the category allows — opened beauty is typically final sale.',
+Black Rossy treats the Luxury Gift Wrap Pack as a specific SKU — what you see in the matched photos is what fulfilment aims to send.',
     ],
 ];
