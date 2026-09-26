@@ -11,11 +11,11 @@
     @vite(['resources/css/admin.css'])
 </head>
 <body class="min-h-screen bg-stone-100 font-sans text-stone-800 antialiased">
-<div class="grid min-h-screen lg:grid-cols-[260px_1fr]">
-    <aside class="border-r border-stone-900 bg-stone-950 p-5 text-stone-200">
+<div class="admin-shell">
+    <aside class="admin-sidebar">
         <a href="{{ route('admin.dashboard') }}" class="block text-2xl font-semibold tracking-tight text-white">{{ store_name() }}</a>
         <p class="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-amber-500">Admin</p>
-        <nav class="mt-8 space-y-0.5">
+        <nav class="admin-sidebar-nav">
             @foreach([
                 'admin.dashboard' => 'Dashboard',
                 'admin.orders.index' => 'Orders',

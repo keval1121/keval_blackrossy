@@ -7,6 +7,33 @@
     --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Layout shell — plain CSS so sidebar survives a stale Vite build */
+.admin-shell {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 64rem) {
+    .admin-shell {
+        grid-template-columns: 260px 1fr;
+    }
+}
+
+.admin-sidebar {
+    border-right: 1px solid #1c1917;
+    background: #0c0a09;
+    padding: 1.25rem;
+    color: #e7e5e4;
+}
+
+.admin-sidebar-nav {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
 .admin-input {
     width: 100%;
     border: 1px solid #e7e5e4;
