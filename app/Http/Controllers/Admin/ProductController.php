@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\ProductStatus;
 use App\Http\Controllers\Controller;
+use App\Models\Attribute;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
-use App\Models\ProductVariant;
 use App\Services\ImageService;
 use App\Services\ProductImportService;
 use Illuminate\Http\Request;
@@ -87,6 +87,34 @@ class ProductController extends Controller
         return back()->with('status', 'Product deleted.');
     }
 
+    public function destroyImage(Product $product, ProductImage $image, ImageService $images)
+    {
+        abort_unless($image->product_id === $product->id, 404);
+
+        $wasPrimary = $image->is_primary;
+        $images->deleteMany([$image->path_thumb, $image->path_medium, $image->path_large]);
+        $image->delete();
+
+        if ($wasPrimary) {
+            $next = $product->images()->orderBy('display_order')->orderBy('id')->first();
+            if ($next) {
+                $next->update(['is_primary' => true]);
+            }
+        }
+
+        return back()->with('status', 'Image removed.');
+    }
+
+    public function makePrimaryImage(Product $product, ProductImage $image)
+    {
+        abort_unless($image->product_id === $product->id, 404);
+
+        $product->images()->update(['is_primary' => false]);
+        $image->update(['is_primary' => true]);
+
+        return back()->with('status', 'Primary image updated.');
+    }
+
     public function bulkDelete(Request $request)
     {
         $ids = $request->validate(['ids' => ['required', 'array']])['ids'];
@@ -136,6 +164,13 @@ class ProductController extends Controller
 
     private function validated(Request $request, ?Product $product = null): array
     {
+        // HTML checkboxes send "on" when checked — normalize before boolean validation.
+        $request->merge([
+            'is_featured' => $request->boolean('is_featured'),
+            'is_best_seller' => $request->boolean('is_best_seller'),
+            'is_new_arrival' => $request->boolean('is_new_arrival'),
+        ]);
+
         $data = $request->validate([
             'name' => ['required', 'string', 'max:180'],
             'slug' => ['nullable', 'string', 'max:180', Rule::unique('products', 'slug')->ignore($product?->id)],
@@ -151,22 +186,27 @@ class ProductController extends Controller
             'min_order_qty' => ['nullable', 'integer', 'min:1'],
             'max_order_qty' => ['nullable', 'integer', 'min:1'],
             'status' => ['required', Rule::enum(ProductStatus::class)],
-            'is_featured' => ['nullable', 'boolean'],
-            'is_best_seller' => ['nullable', 'boolean'],
-            'is_new_arrival' => ['nullable', 'boolean'],
+            'is_featured' => ['boolean'],
+            'is_best_seller' => ['boolean'],
+            'is_new_arrival' => ['boolean'],
             'video_url' => ['nullable', 'url'],
             'seo_title' => ['nullable', 'string', 'max:180'],
             'seo_description' => ['nullable', 'string', 'max:320'],
             'seo_keywords' => ['nullable', 'string', 'max:255'],
             'shipping_info' => ['nullable', 'string'],
             'return_info' => ['nullable', 'string'],
+            'images' => ['nullable', 'array', 'max:8'],
+            'images.*' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
+            'primary_image_id' => ['nullable', 'integer'],
+            'delete_images' => ['nullable', 'array'],
+            'delete_images.*' => ['integer'],
         ]);
 
-        $data['slug'] = $data['slug'] ?: Str::slug($data['name']);
-        $data['is_featured'] = $request->boolean('is_featured');
-        $data['is_best_seller'] = $request->boolean('is_best_seller');
-        $data['is_new_arrival'] = $request->boolean('is_new_arrival');
-        $data['min_order_qty'] = $data['min_order_qty'] ?: 1;
+        $data['slug'] = ($data['slug'] ?? '') ?: Str::slug($data['name']);
+        $data['min_order_qty'] = (int) ($data['min_order_qty'] ?? 1);
+        if ($data['min_order_qty'] < 1) {
+            $data['min_order_qty'] = 1;
+        }
 
         if ($request->filled('specifications')) {
             $data['specifications'] = collect(explode("\n", $request->string('specifications')))
@@ -179,6 +219,9 @@ class ProductController extends Controller
                 ->values()
                 ->all();
         }
+
+        // Image fields are handled in syncImages(), not mass-assigned on Product.
+        unset($data['images'], $data['primary_image_id'], $data['delete_images']);
 
         return $data;
     }
@@ -238,7 +281,7 @@ class ProductController extends Controller
                 if ($attrName === '' || $valueName === '') {
                     continue;
                 }
-                $attribute = \App\Models\Attribute::query()->firstOrCreate(
+                $attribute = Attribute::query()->firstOrCreate(
                     ['slug' => Str::slug($attrName)],
                     ['name' => $attrName, 'type' => 'select', 'is_filterable' => true]
                 );

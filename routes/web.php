@@ -60,6 +60,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('products', AdminProductController::class)->except(['show']);
         Route::post('products/bulk-delete', [AdminProductController::class, 'bulkDelete'])->name('products.bulk');
+        Route::delete('products/{product}/images/{image}', [AdminProductController::class, 'destroyImage'])->name('products.images.destroy');
+        Route::post('products/{product}/images/{image}/primary', [AdminProductController::class, 'makePrimaryImage'])->name('products.images.primary');
         Route::get('products-export', [AdminProductController::class, 'export'])->name('products.export');
         Route::post('products-import', [AdminProductController::class, 'import'])->name('products.import');
         Route::resource('categories', CategoryController::class)->except(['show']);

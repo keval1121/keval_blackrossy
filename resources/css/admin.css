@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 
 @source '../views/admin/**/*.blade.php';
+@source '../views/layouts/admin.blade.php';
 
 @theme {
     --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
@@ -9,8 +10,151 @@
 .admin-input {
     width: 100%;
     border: 1px solid #e7e5e4;
-    border-radius: .7rem;
-    min-height: 42px;
-    padding: .55rem .8rem;
-    background: white;
+    border-radius: 0.75rem;
+    min-height: 2.625rem;
+    padding: 0.55rem 0.85rem;
+    background: #fff;
+    font-size: 0.875rem;
+    color: #1c1917;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.admin-input:focus {
+    outline: none;
+    border-color: #a8a29e;
+    box-shadow: 0 0 0 3px rgb(168 162 158 / 0.25);
+}
+
+.admin-input::placeholder {
+    color: #a8a29e;
+}
+
+.admin-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #57534e;
+}
+
+.admin-card {
+    border-radius: 1rem;
+    background: #fff;
+    padding: 1.25rem;
+    box-shadow: 0 1px 2px rgb(28 25 23 / 0.04);
+    border: 1px solid rgb(231 229 228 / 0.9);
+}
+
+.admin-card-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1c1917;
+}
+
+.admin-card-help {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #78716c;
+}
+
+.admin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    border-radius: 0.75rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.admin-btn-primary {
+    background: #1c1917;
+    color: #fff;
+}
+
+.admin-btn-primary:hover {
+    background: #292524;
+}
+
+.admin-btn-accent {
+    background: #d97706;
+    color: #fff;
+}
+
+.admin-btn-accent:hover {
+    background: #b45309;
+}
+
+.admin-btn-ghost {
+    border: 1px solid #e7e5e4;
+    background: #fff;
+    color: #44403c;
+}
+
+.admin-btn-ghost:hover {
+    background: #fafaf9;
+}
+
+.admin-btn-danger {
+    background: #fff1f2;
+    color: #be123c;
+    border: 1px solid #fecdd3;
+}
+
+.admin-btn-danger:hover {
+    background: #ffe4e6;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: #fff;
+    border: 1px solid #e7e5e4;
+    font-size: 0.875rem;
+}
+
+.admin-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #a8a29e;
+    background: #fafaf9;
+    border-bottom: 1px solid #e7e5e4;
+}
+
+.admin-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid #f5f5f4;
+    vertical-align: middle;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.admin-nav-link {
+    display: block;
+    border-radius: 0.75rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.875rem;
+    color: #a8a29e;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.admin-nav-link:hover {
+    background: rgb(255 255 255 / 0.08);
+    color: #fff;
+}
+
+.admin-nav-link.is-active {
+    background: rgb(255 255 255 / 0.12);
+    color: #fff;
 }

@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Dashboard') · {{ store_name() }} Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     @vite(['resources/css/admin.css'])
 </head>
-<body class="min-h-screen bg-stone-100 font-sans text-stone-800">
-<div class="grid min-h-screen md:grid-cols-[240px_1fr]">
-    <aside class="bg-stone-950 p-5 text-stone-200">
-        <a href="{{ route('admin.dashboard') }}" class="block text-2xl font-semibold text-white">{{ store_name() }}</a>
-        <p class="mt-1 text-xs uppercase tracking-widest text-amber-500">Admin</p>
-        <nav class="mt-8 space-y-1 text-sm">
+<body class="min-h-screen bg-stone-100 font-sans text-stone-800 antialiased">
+<div class="grid min-h-screen lg:grid-cols-[260px_1fr]">
+    <aside class="border-r border-stone-900 bg-stone-950 p-5 text-stone-200">
+        <a href="{{ route('admin.dashboard') }}" class="block text-2xl font-semibold tracking-tight text-white">{{ store_name() }}</a>
+        <p class="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-amber-500">Admin</p>
+        <nav class="mt-8 space-y-0.5">
             @foreach([
                 'admin.dashboard' => 'Dashboard',
                 'admin.orders.index' => 'Orders',
@@ -31,19 +34,33 @@
                 'admin.blocklist.index' => 'Blocklist',
                 'admin.settings.index' => 'Settings',
             ] as $route => $label)
-                <a href="{{ route($route) }}" class="block rounded-xl px-3 py-2 hover:bg-white/10 {{ request()->routeIs($route) ? 'bg-white/10 text-white' : '' }}">{{ $label }}</a>
+                <a href="{{ route($route) }}" class="admin-nav-link {{ request()->routeIs($route) || request()->routeIs(str_replace('.index', '.*', $route)) ? 'is-active' : '' }}">{{ $label }}</a>
             @endforeach
         </nav>
-        <form method="post" action="{{ route('admin.logout') }}" class="mt-8">@csrf<button class="text-sm text-stone-400">Log out</button></form>
+        <form method="post" action="{{ route('admin.logout') }}" class="mt-10">
+            @csrf
+            <button class="text-sm text-stone-500 hover:text-stone-300">Log out</button>
+        </form>
     </aside>
-    <div>
-        <header class="flex items-center justify-between border-b border-stone-200 bg-white px-6 py-4">
-            <h1 class="text-lg font-semibold">@yield('title', 'Dashboard')</h1>
-            <a href="{{ route('home') }}" class="text-sm text-amber-700" target="_blank">View store</a>
+    <div class="min-w-0">
+        <header class="sticky top-0 z-20 flex items-center justify-between border-b border-stone-200 bg-white/90 px-4 py-3 backdrop-blur sm:px-6">
+            <h1 class="text-base font-semibold text-stone-900 sm:text-lg">@yield('title', 'Dashboard')</h1>
+            <a href="{{ route('home') }}" class="admin-btn admin-btn-ghost text-amber-800" target="_blank" rel="noopener">View store</a>
         </header>
-        <main class="p-6">
-            @if(session('status'))<p class="mb-4 rounded-xl bg-emerald-50 px-4 py-3 text-emerald-800">{{ session('status') }}</p>@endif
-            @if($errors->any())<div class="mb-4 rounded-xl bg-rose-50 px-4 py-3 text-rose-800">@foreach($errors->all() as $error)<p>{{ $error }}</p>@endforeach</div>@endif
+        <main class="p-4 sm:p-6">
+            @if(session('status'))
+                <p class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">{{ session('status') }}</p>
+            @endif
+            @if($errors->any())
+                <div class="mb-4 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
+                    <p class="font-semibold">Please fix the following:</p>
+                    <ul class="mt-1 list-disc pl-5">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>
