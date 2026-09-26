@@ -213,10 +213,11 @@
         </div>
     </section>
 
-    <form method="post" action="{{ route('admin.products.destroy', $product) }}" class="mt-6" onsubmit="return confirm('Delete this ENTIRE product permanently? This cannot be undone.')">
+    <form method="post" action="{{ route('admin.products.destroy', $product) }}" class="mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4" onsubmit="return confirm('Delete this ENTIRE product permanently? This cannot be undone.')">
         @csrf
         @method('DELETE')
-        <button type="submit" class="text-sm text-rose-700 underline-offset-2 hover:underline">Delete entire product</button>
+        <p class="mb-3 text-sm text-rose-800">Remove this product from the catalog permanently.</p>
+        <button type="submit" class="admin-btn admin-btn-danger">Delete entire product</button>
     </form>
 @endisset
 @endsection

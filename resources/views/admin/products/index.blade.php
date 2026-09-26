@@ -65,7 +65,14 @@
                     <td>
                         <span class="rounded-full bg-stone-100 px-2.5 py-1 text-xs text-stone-600">{{ $product->status->label() }}</span>
                     </td>
-                    <td><a class="font-medium text-amber-700 hover:underline" href="{{ route('admin.products.edit', $product) }}">Edit</a></td>
+                    <td class="whitespace-nowrap">
+                        <a class="font-medium text-amber-700 hover:underline" href="{{ route('admin.products.edit', $product) }}">Edit</a>
+                        <form method="post" action="{{ route('admin.products.destroy', $product) }}" class="ml-3 inline" onsubmit="return confirm('Delete this product permanently?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="font-medium text-rose-700 hover:underline">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @empty
                 <tr>

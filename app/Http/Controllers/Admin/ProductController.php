@@ -265,8 +265,8 @@ class ProductController extends Controller
                 ['id' => $row['id'] ?? null],
                 [
                     'sku' => $row['sku'] ?? null,
-                    'price' => $row['price'] ?: null,
-                    'mrp' => $row['mrp'] ?: null,
+                    'price' => filled($row['price'] ?? null) ? $row['price'] : null,
+                    'mrp' => filled($row['mrp'] ?? null) ? $row['mrp'] : null,
                     'stock' => (int) ($row['stock'] ?? 0),
                     'is_active' => true,
                 ]
