@@ -134,6 +134,21 @@ if (! function_exists('adsense_publisher_id')) {
     }
 }
 
+if (! function_exists('ga_measurement_id')) {
+    /**
+     * Google Analytics 4 Measurement ID, e.g. G-ZGN19R100B.
+     */
+    function ga_measurement_id(): ?string
+    {
+        $raw = strtoupper(trim((string) setting('ga_measurement_id', '')));
+        if ($raw === '') {
+            return null;
+        }
+
+        return preg_match('/^G-[A-Z0-9]+$/', $raw) ? $raw : null;
+    }
+}
+
 if (! function_exists('store_name')) {
     function store_name(): string
     {

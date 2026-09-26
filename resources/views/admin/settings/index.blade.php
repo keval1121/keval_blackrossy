@@ -43,6 +43,15 @@
         <label class="block text-sm text-rose-700"><input type="checkbox" name="adsense_enabled" @checked(setting('adsense_enabled', false))> Show ads now (only after Ready)</label>
     </div>
 
+    <div class="rounded-2xl border border-stone-200 p-4 space-y-3">
+        <p class="font-semibold">Google Analytics (GA4)</p>
+        <p class="text-xs text-stone-500">Paste Measurement ID from Analytics → Admin → Data streams → Web. Loads on every public page.</p>
+        <label class="block text-sm">
+            Measurement ID (G-…)
+            <input class="admin-input mt-1" name="ga_measurement_id" value="{{ setting('ga_measurement_id') }}" placeholder="G-ZGN19R100B">
+        </label>
+    </div>
+
     <button class="rounded-xl bg-stone-900 px-5 py-3 text-white">Save settings</button>
 </form>
 @endsection

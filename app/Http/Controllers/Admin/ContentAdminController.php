@@ -99,6 +99,7 @@ class ContentAdminController extends Controller
             'seo_description' => ['nullable', 'string', 'max:320'],
             'adsense_client_id' => ['nullable', 'string', 'max:40'],
             'ads_txt' => ['nullable', 'string', 'max:2000'],
+            'ga_measurement_id' => ['nullable', 'string', 'max:20', 'regex:/^G-[A-Za-z0-9]+$/'],
             'logo' => ['nullable', 'image', 'max:2048'],
             'favicon' => ['nullable', 'image', 'max:1024'],
         ]);
@@ -106,7 +107,7 @@ class ContentAdminController extends Controller
         foreach ([
             'website_name', 'contact_number', 'whatsapp_number', 'contact_email', 'address',
             'facebook', 'instagram', 'youtube', 'default_delivery_charge', 'free_shipping_amount',
-            'seo_title', 'seo_description', 'adsense_client_id', 'ads_txt',
+            'seo_title', 'seo_description', 'adsense_client_id', 'ads_txt', 'ga_measurement_id',
         ] as $key) {
             Setting::put($key, $data[$key] ?? '', 'store');
         }
