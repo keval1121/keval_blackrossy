@@ -84,7 +84,7 @@ class ProductController extends Controller
         }
         $product->delete();
 
-        return back()->with('status', 'Product deleted.');
+        return redirect()->route('admin.products.index')->with('status', 'Product deleted.');
     }
 
     public function destroyImage(Product $product, ProductImage $image, ImageService $images)

@@ -104,4 +104,39 @@ class AdminProductVariantUpdateTest extends TestCase
         $response->assertSee(route('admin.products.destroy', $product), false);
         $response->assertSee('Delete', false);
     }
+
+    public function test_deleting_product_redirects_to_products_index(): void
+    {
+        $admin = Admin::query()->create([
+            'name' => 'Admin',
+            'email' => 'admin3@example.com',
+            'password' => 'password',
+            'is_active' => true,
+        ]);
+
+        $category = Category::query()->create([
+            'name' => 'Bags',
+            'slug' => 'bags-3',
+            'is_active' => true,
+        ]);
+
+        $product = Product::query()->create([
+            'category_id' => $category->id,
+            'name' => 'Compact Wallet',
+            'slug' => 'compact-wallet',
+            'sku' => 'CW-001',
+            'mrp' => 599,
+            'selling_price' => 449,
+            'stock_quantity' => 2,
+            'status' => ProductStatus::Active,
+        ]);
+
+        $response = $this->from(route('admin.products.edit', $product))
+            ->actingAs($admin, 'admin')
+            ->delete(route('admin.products.destroy', $product));
+
+        $response->assertRedirect(route('admin.products.index'));
+        $response->assertSessionHas('status', 'Product deleted.');
+        $this->assertDatabaseMissing('products', ['id' => $product->id]);
+    }
 }
