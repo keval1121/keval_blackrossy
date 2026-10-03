@@ -10,8 +10,12 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Route storage URLs to Laravel public storage
-    RewriteRule ^storage/(.*)$ public/storage/$1 [L,NC]
+    # Hostinger/public_html root: map Vite + storage URLs into Laravel public/
+    RewriteRule ^build/(.*)$ public/build/$1 [L,NC]
+    RewriteRule ^storage/(.*)$ storage/app/public/$1 [L,NC]
+    RewriteRule ^images/(.*)$ public/images/$1 [L,NC]
+    RewriteRule ^favicon\.ico$ public/favicon.ico [L,NC]
+    RewriteRule ^robots\.txt$ public/robots.txt [L,NC]
 
     # Redirect Trailing Slashes If Not A Folder
     RewriteCond %{REQUEST_FILENAME} !-d
