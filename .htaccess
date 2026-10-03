@@ -10,9 +10,10 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Hostinger/public_html root: map Vite + storage URLs into Laravel public/
+    # Hostinger document root = project root (not /public).
+    # Map public asset URLs to the real public/ folder.
     RewriteRule ^build/(.*)$ public/build/$1 [L,NC]
-    RewriteRule ^storage/(.*)$ storage/app/public/$1 [L,NC]
+    RewriteRule ^storage/(.*)$ public/storage/$1 [L,NC]
     RewriteRule ^images/(.*)$ public/images/$1 [L,NC]
     RewriteRule ^favicon\.ico$ public/favicon.ico [L,NC]
     RewriteRule ^robots\.txt$ public/robots.txt [L,NC]
