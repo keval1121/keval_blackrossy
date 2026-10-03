@@ -53,6 +53,73 @@ class ContentController extends Controller
         return view('storefront.pages.show', compact('page'));
     }
 
+    public function about()
+    {
+        return view('storefront.pages.about', [
+            'seoTitle' => 'About Us | Black Rossy',
+            'seoDescription' => 'Black Rossy boutique for Rossy Apparel, Lustre, Stride and Carry with guest checkout and Cash on Delivery across India.',
+        ]);
+    }
+
+    public function policy()
+    {
+        return view('storefront.pages.policy', [
+            'seoTitle' => 'Our Policies | Black Rossy',
+            'seoDescription' => 'Black Rossy policies for privacy, shipping, returns and website terms with Cash on Delivery shopping in India.',
+        ]);
+    }
+
+    public function faq()
+    {
+        $returnPolicyUrl = e(url('/return-policy'));
+        $shippingPolicyUrl = e(url('/shipping-policy'));
+        $freeShipping = e(money(setting('free_shipping_amount', 999)));
+
+        $groups = [
+            [
+                'title' => 'Ordering & Payment',
+                'items' => [
+                    [
+                        'question' => 'How do I pay for my Black Rossy order?',
+                        'answer' => 'Black Rossy uses Cash on Delivery for eligible Indian pin codes. Pay the courier only after your parcel reaches you. No card, UPI or wallet payment is needed at checkout.',
+                    ],
+                    [
+                        'question' => 'Can an order be changed or stopped after placing it?',
+                        'answer' => 'Yes, if packing has not started. Message us from Contact or WhatsApp with your order number right away. After dispatch, the return process applies instead of cancellation.',
+                    ],
+                ],
+            ],
+            [
+                'title' => 'Shipping & Delivery',
+                'items' => [
+                    [
+                        'question' => 'When will my parcel leave and arrive?',
+                        'answer' => 'Orders are usually packed in 1–2 working days. Most deliveries reach in 2–5 days based on your pin code and courier route. Free shipping applies on eligible orders above '.$freeShipping.'.',
+                    ],
+                    [
+                        'question' => 'Which areas do you deliver to?',
+                        'answer' => 'We ship across India wherever our courier partners support COD. If a pin code cannot be served, we will inform you after the order is received. Full details are on our <a href="'.$shippingPolicyUrl.'">Shipping Policy</a> page.',
+                    ],
+                ],
+            ],
+            [
+                'title' => 'Returns & Exchanges',
+                'items' => [
+                    [
+                        'question' => 'How do returns work at Black Rossy?',
+                        'answer' => 'Eligible unused items may be returned within 7 days of delivery when tags and packaging are intact. Jewellery and a few personal items can have extra limits. Read the full rules on our <a href="'.$returnPolicyUrl.'">Return Policy</a> page.',
+                    ],
+                ],
+            ],
+        ];
+
+        return view('storefront.pages.faq', [
+            'groups' => $groups,
+            'seoTitle' => 'FAQ | Black Rossy',
+            'seoDescription' => 'Black Rossy FAQ for Cash on Delivery, delivery timelines, pin-code shipping and 7-day returns.',
+        ]);
+    }
+
     public function contact()
     {
         return view('storefront.pages.contact');
@@ -71,7 +138,8 @@ class ContentController extends Controller
     {
         $categories = Category::query()->active()->get();
         $products = Product::query()->active()->select('slug', 'updated_at')->get();
-        $posts = Blog::query()->published()->select('slug', 'updated_at')->get();
+        // Thin journal posts are kept offline for AdSense review; omit from sitemap.
+        $posts = collect();
         $pages = Page::query()->where('is_active', true)->get();
 
         return response()
@@ -89,6 +157,7 @@ class ContentController extends Controller
             'Disallow: /admin',
             'Disallow: /cart',
             'Disallow: /checkout',
+            'Disallow: /blog',
             'Sitemap: '.$sitemap,
         ];
 

@@ -18,10 +18,11 @@
         <meta property="og:image" content="{{ $ogImage }}">
     @endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('head')
     @isset($schema)
         <script type="application/ld+json">{!! $schema !!}</script>
     @endisset
-    @if ($adsenseClient = adsense_client_id())
+    @if (setting('adsense_enabled', false) && ($adsenseClient = adsense_client_id()))
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ $adsenseClient }}" crossorigin="anonymous"></script>
     @endif
     @if ($gaId = ga_measurement_id())

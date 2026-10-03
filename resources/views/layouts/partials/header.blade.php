@@ -2,10 +2,11 @@
     <div class="container-store flex items-center gap-4 py-3">
         <a href="{{ route('home') }}" class="font-serif text-3xl tracking-tight text-ink">{{ store_name() }}</a>
         <form action="{{ route('search') }}" method="get" class="relative hidden flex-1 md:block">
-            <input id="live-search" name="q" value="{{ request('q') }}" placeholder="Search kurtis, jewellery, bags..." class="pl-4 pr-12" autocomplete="off">
+            <input id="live-search" name="q" value="{{ request('q') }}" placeholder="Search apparel, lustre, stride, carry..." class="pl-4 pr-12" autocomplete="off">
             <div id="search-suggest" class="absolute z-50 mt-2 hidden w-full overflow-hidden rounded-2xl border border-line bg-white shadow-xl"></div>
         </form>
         <nav class="ml-auto hidden items-center gap-5 text-sm font-medium lg:flex">
+            <a href="{{ route('home') }}" class="hover:text-gold">Home</a>
             <div class="group relative">
                 <a href="{{ route('categories') }}" class="hover:text-gold">Categories</a>
                 <div class="invisible absolute left-0 top-full z-50 grid w-[520px] grid-cols-2 gap-4 rounded-2xl border border-line bg-white p-5 opacity-0 shadow-xl transition group-hover:visible group-hover:opacity-100">
@@ -21,8 +22,10 @@
                     @endforeach
                 </div>
             </div>
-            <a href="{{ route('track') }}" class="hover:text-gold">Track Order</a>
-            <a href="{{ route('blog.index') }}" class="hover:text-gold">Journal</a>
+            <a href="{{ route('faq') }}" class="hover:text-gold">FAQ</a>
+            <a href="{{ route('about') }}" class="hover:text-gold">About</a>
+            <a href="{{ route('contact') }}" class="hover:text-gold">Contact</a>
+            <a href="{{ route('policy') }}" class="hover:text-gold">Policy</a>
         </nav>
         <div class="ml-auto flex items-center gap-3 md:ml-0">
             <button class="md:hidden" data-toggle="search-modal" aria-label="Search">

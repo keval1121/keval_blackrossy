@@ -41,6 +41,9 @@ Route::post('/track-order', [OrderController::class, 'track'])->middleware('thro
 
 Route::get('/blog', [ContentController::class, 'blog'])->name('blog.index');
 Route::get('/blog/{blog:slug}', [ContentController::class, 'blogShow'])->name('blog.show');
+Route::get('/about', [ContentController::class, 'about'])->name('about');
+Route::get('/faq', [ContentController::class, 'faq'])->name('faq');
+Route::get('/policy', [ContentController::class, 'policy'])->name('policy');
 Route::get('/contact', [ContentController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContentController::class, 'contactStore'])->middleware('throttle:contact')->name('contact.store');
 Route::get('/sitemap.xml', [ContentController::class, 'sitemap'])->name('sitemap');
@@ -48,7 +51,7 @@ Route::get('/robots.txt', [ContentController::class, 'robots'])->name('robots');
 Route::get('/ads.txt', [ContentController::class, 'adsTxt'])->name('ads.txt');
 
 Route::get('/{page:slug}', [ContentController::class, 'page'])
-    ->where('page', 'about|privacy-policy|terms|shipping-policy|return-policy|refund-policy|cancellation-policy|cookie-policy')
+    ->where('page', 'privacy-policy|terms|shipping-policy|return-policy|refund-policy|cancellation-policy|cookie-policy')
     ->name('page.show');
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -99,6 +102,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('/{category:slug}/{subcategory?}', [ShopController::class, 'category'])
-    ->where('category', '^(?!admin$|shop$|search$|cart$|checkout$|blog$|contact$|product$|track-order$|order$|categories$|sitemap\.xml$|robots\.txt$)[^/]+$')
+    ->where('category', '^(?!admin$|shop$|search$|cart$|checkout$|blog$|about$|faq$|policy$|contact$|product$|track-order$|order$|categories$|sitemap\.xml$|robots\.txt$)[^/]+$')
     ->where('subcategory', '[^/]+')
     ->name('category.show');
