@@ -94,6 +94,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('reviews/{review}', [ContentAdminController::class, 'reviewDelete'])->name('reviews.delete');
         Route::get('brands', [ContentAdminController::class, 'brands'])->name('brands.index');
         Route::post('brands', [ContentAdminController::class, 'brandSave'])->name('brands.save');
+        Route::delete('brands/{brand}', [ContentAdminController::class, 'brandDelete'])->name('brands.delete');
         Route::get('messages', [ContentAdminController::class, 'contacts'])->name('messages.index');
         Route::get('blocklist', [ContentAdminController::class, 'blocklist'])->name('blocklist.index');
         Route::post('blocklist', [ContentAdminController::class, 'blockSave'])->name('blocklist.save');

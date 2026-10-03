@@ -178,19 +178,56 @@ class ContentAdminController extends Controller
         return back()->with('status', 'Review removed.');
     }
 
-    public function brands()
+    public function brands(Request $request)
     {
-        return view('admin.products.brands', ['brands' => Brand::query()->orderBy('name')->get()]);
+        $editingBrand = null;
+        if ($request->filled('edit')) {
+            $editingBrand = Brand::query()->find($request->integer('edit'));
+        }
+
+        return view('admin.products.brands', [
+            'brands' => Brand::query()->orderBy('name')->get(),
+            'editingBrand' => $editingBrand,
+        ]);
     }
 
     public function brandSave(Request $request)
     {
-        Brand::query()->updateOrCreate(
-            ['id' => $request->integer('id') ?: null],
-            ['name' => $request->string('name'), 'slug' => Str::slug($request->string('name')), 'is_active' => true]
-        );
+        $data = $request->validate([
+            'id' => ['nullable', 'integer', 'exists:brands,id'],
+            'name' => ['required', 'string', 'max:120'],
+        ]);
 
-        return back()->with('status', 'Brand saved.');
+        $name = trim($data['name']);
+        $slug = Str::slug($name) ?: 'brand-'.Str::lower(Str::random(6));
+        $payload = [
+            'name' => $name,
+            'slug' => $slug,
+            'is_active' => true,
+        ];
+
+        if (! empty($data['id'])) {
+            Brand::query()->whereKey($data['id'])->update($payload);
+
+            return redirect()
+                ->route('admin.brands.index')
+                ->with('status', 'Brand updated.');
+        }
+
+        Brand::query()->create($payload);
+
+        return redirect()
+            ->route('admin.brands.index')
+            ->with('status', 'Brand saved.');
+    }
+
+    public function brandDelete(Brand $brand)
+    {
+        $brand->delete();
+
+        return redirect()
+            ->route('admin.brands.index')
+            ->with('status', 'Brand deleted.');
     }
 
     public function contacts()
