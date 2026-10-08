@@ -1,8 +1,6 @@
 @extends('layouts.storefront')
 
 @php
-    $seoTitle = setting('seo_title', store_name().' | Fashion, Jewellery & Lifestyle');
-    $seoDescription = setting('seo_description');
     $schema = json_encode([
         '@context' => 'https://schema.org',
         '@type' => 'Organization',
@@ -12,78 +10,88 @@
 @endphp
 
 @section('content')
-<section class="hero-slider" data-hero-slider aria-roledescription="carousel" aria-label="Store offers">
-    <div class="hero-track" data-hero-track>
-        @forelse($banners as $index => $banner)
-            <article class="hero-slide relative" data-hero-slide @if($index === 0) aria-hidden="false" @else aria-hidden="true" @endif>
-                <picture>
-                    <source media="(max-width: 768px)" srcset="{{ $banner->mobileUrl() }}">
-                    <img src="{{ $banner->desktopUrl() }}" alt="{{ $banner->title }}" class="hero-slide-image" @if($index === 0) fetchpriority="high" @else loading="lazy" @endif>
-                </picture>
-                <div class="hero-slide-shade"></div>
-                <div class="container-store hero-slide-copy text-white">
-                    <p class="font-serif text-4xl md:text-6xl">{{ $banner->title }}</p>
-                    <p class="mt-2 max-w-xl text-sm md:text-base text-white/90">{{ $banner->subtitle }}</p>
-                    @if($banner->button_url)
-                        <a href="{{ str_starts_with($banner->button_url, 'http') ? $banner->button_url : url($banner->button_url) }}" class="btn btn-gold mt-5">{{ $banner->button_text ?: 'Shop now' }}</a>
-                    @endif
-                </div>
-            </article>
-        @empty
-            <div class="hero-slide flex h-[380px] items-end bg-stone-900 p-8 text-white">
-                <div class="container-store">
-                    <p class="font-serif text-5xl">Dress the everyday in gold.</p>
-                    <a href="{{ route('shop') }}" class="btn btn-gold mt-6">Shop collections</a>
-                </div>
+@php
+    $heroCta = filled($heroBanner?->button_text) ? $heroBanner->button_text : 'Shop the collection';
+    $heroUrl = $heroBanner?->button_url
+        ? (str_starts_with($heroBanner->button_url, 'http') ? $heroBanner->button_url : url($heroBanner->button_url))
+        : route('shop');
+@endphp
+{{-- Store-owned product photos only — no stock banners / sliders. --}}
+<section class="house-hero" aria-label="{{ store_name() }}">
+    <div class="house-hero-stage">
+        <div class="house-hero-panel">
+            <p class="house-hero-brand">{{ store_name() }}</p>
+            <h1 class="house-hero-title">What we stock is what you see.</h1>
+            <p class="house-hero-sub house-hero-sub--full">{{ ucfirst(storefront_product_types()) }} from our shelves. Guest checkout · Cash on Delivery.</p>
+            <p class="house-hero-sub house-hero-sub--short">From our shelves · COD available</p>
+            <div class="house-hero-actions">
+                <a href="{{ $heroUrl }}" class="btn btn-primary">{{ $heroCta }}</a>
+                <a href="{{ route('categories') }}" class="house-hero-link">Browse categories</a>
             </div>
-        @endforelse
-    </div>
-
-    @if($banners->count() > 1)
-        <button type="button" class="hero-nav hero-nav-prev" data-hero-prev aria-label="Previous offer">‹</button>
-        <button type="button" class="hero-nav hero-nav-next" data-hero-next aria-label="Next offer">›</button>
-        <div class="hero-dots" data-hero-dots>
-            @foreach($banners as $index => $banner)
-                <button type="button" class="hero-dot @if($index === 0) is-active @endif" data-hero-dot="{{ $index }}" aria-label="Go to slide {{ $index + 1 }}"></button>
-            @endforeach
         </div>
-    @endif
-</section>
 
-<section class="container-store mt-10">
-    <div class="flex gap-3 overflow-x-auto pb-2">
-        @foreach($navCategories as $cat)
-            <a href="{{ $cat->url() }}" class="whitespace-nowrap rounded-full border border-line bg-white px-4 py-2 text-sm">{{ $cat->name }}</a>
-        @endforeach
+        @if($heroProducts->isNotEmpty())
+            <div class="house-hero-mosaic house-hero-mosaic--{{ min(4, $heroProducts->count()) }}" aria-label="From our catalog">
+                @foreach($heroProducts as $index => $product)
+                    @php $heroImg = $product->displayImage(); @endphp
+                    <a href="{{ $product->url() }}" class="house-hero-tile @if($index === 0) is-lead @endif" style="--tile-i: {{ $index }}">
+                        <img
+                            src="{{ $heroImg ? $heroImg->url('medium') : $product->thumbUrl() }}"
+                            alt="{{ $product->name }}"
+                            loading="{{ $index === 0 ? 'eager' : 'lazy' }}"
+                            @if($index === 0) fetchpriority="high" @endif
+                        >
+                        <span class="house-hero-tile-name">{{ $product->name }}</span>
+                    </a>
+                @endforeach
+            </div>
+        @endif
     </div>
 </section>
 
 @if($sections->get('featured_categories')?->is_enabled !== false)
-<section class="container-store mt-12">
-    <x-section-heading :title="$sections->get('featured_categories')->title ?? 'Shop by category'" subtitle="Find something for every occasion" />
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-        @foreach($featuredCategories as $category)
-            <a href="{{ $category->url() }}" class="overflow-hidden rounded-3xl bg-white">
-                <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="h-36 w-full object-cover md:h-44" loading="lazy">
-                <p class="p-3 font-medium">{{ $category->name }}</p>
-            </a>
-        @endforeach
+@php
+    $homeSubs = $featuredSubcategories->isNotEmpty() ? $featuredSubcategories : $navSubcategories;
+@endphp
+<section class="lookbook mt-10 md:mt-16" aria-labelledby="lookbook-title">
+    <div class="container-store">
+        <div class="lookbook-head">
+            <div>
+                <p class="lookbook-kicker">Collections</p>
+                <h2 id="lookbook-title" class="lookbook-title">{{ $sections->get('featured_categories')->title ?? 'Shop by category' }}</h2>
+            </div>
+            <a href="{{ route('categories') }}" class="lookbook-link">See every line →</a>
+        </div>
+
+        <div class="lookbook-mosaic">
+            @foreach($homeSubs as $index => $category)
+                <a href="{{ $category->url() }}" class="lookbook-tile @if($index === 0) lookbook-tile-wide @endif" style="--tile-i: {{ $index }}">
+                    <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" loading="lazy">
+                    <span class="lookbook-tile-shade"></span>
+                    <span class="lookbook-tile-label">
+                        <span class="lookbook-tile-name">{{ $category->name }}</span>
+                        <span class="lookbook-tile-cta">Shop</span>
+                    </span>
+                </a>
+            @endforeach
+        </div>
     </div>
 </section>
 @endif
 
 @if($sections->get('featured_products')?->is_enabled !== false)
-<section class="container-store mt-14">
+<section id="featured" class="container-store mt-14">
     <x-section-heading :title="$sections->get('featured_products')->title ?? 'Featured'" />
     <div class="grid grid-cols-2 gap-5 md:grid-cols-4">
         @foreach($featuredProducts as $product)
             <x-product-card :product="$product" />
         @endforeach
     </div>
+    @if($featuredProducts->hasPages())
+        <div class="mt-8 flex justify-center">{{ $featuredProducts->links() }}</div>
+    @endif
 </section>
 @endif
-
-<div class="container-store"><x-ad position="home_top" /></div>
 
 @if($sections->get('trending')?->is_enabled !== false)
 <section class="container-store mt-8">
@@ -120,10 +128,24 @@
 </section>
 @endif
 
-<section class="container-store mt-16 grid gap-4 rounded-[2rem] bg-stone-900 p-8 text-white md:grid-cols-3">
-    <div><p class="font-serif text-2xl">Free shipping</p><p class="mt-2 text-sm text-stone-300">On orders above {{ money(setting('free_shipping_amount', 999)) }}</p></div>
-    <div><p class="font-serif text-2xl">Cash on Delivery</p><p class="mt-2 text-sm text-stone-300">Pay when your order arrives. No account needed.</p></div>
-    <div><p class="font-serif text-2xl">Easy returns</p><p class="mt-2 text-sm text-stone-300">7-day easy returns on eligible products.</p></div>
+<section class="container-store mt-16 border-y border-line py-10">
+    <div class="grid gap-8 md:grid-cols-3 md:gap-10">
+        <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gold">Shipping</p>
+            <p class="mt-2 font-serif text-2xl text-ink">Free shipping</p>
+            <p class="mt-2 text-sm text-muted">On every order across India — no minimum cart value.</p>
+        </div>
+        <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gold">Payment</p>
+            <p class="mt-2 font-serif text-2xl text-ink">Cash on Delivery</p>
+            <p class="mt-2 text-sm text-muted">Pay when your order arrives — no account needed.</p>
+        </div>
+        <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-gold">Returns</p>
+            <p class="mt-2 font-serif text-2xl text-ink">7-day easy returns</p>
+            <p class="mt-2 text-sm text-muted">On eligible products, as listed in our policy.</p>
+        </div>
+    </div>
 </section>
 
 <div class="container-store"><x-ad position="home_bottom" /></div>

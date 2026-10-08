@@ -23,19 +23,25 @@ class StorefrontComposer
             });
 
             $navCategories = Category::query()
-                ->with(['children' => fn ($query) => $query->active()->orderBy('display_order')])
+                ->with(['children' => fn ($query) => $query->active()->with('parent')->orderBy('display_order')])
                 ->whereIn('id', $categories)
                 ->orderBy('display_order')
                 ->get();
 
+            $navSubcategories = $navCategories
+                ->flatMap(fn (Category $category) => $category->children)
+                ->values();
+
             $cartCount = app(CartService::class)->count();
         } catch (Throwable) {
             $navCategories = collect();
+            $navSubcategories = collect();
             $cartCount = 0;
         }
 
         $view->with([
             'navCategories' => $navCategories,
+            'navSubcategories' => $navSubcategories,
             'cartCount' => $cartCount,
             'whatsappNumber' => preg_replace('/\D+/', '', (string) setting('whatsapp_number', '')),
         ]);

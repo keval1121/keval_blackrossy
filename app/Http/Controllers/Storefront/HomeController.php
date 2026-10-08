@@ -8,6 +8,8 @@ use App\Models\Blog;
 use App\Models\Category;
 use App\Models\HomepageSection;
 use App\Models\Product;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class HomeController extends Controller
 {
@@ -19,35 +21,158 @@ class HomeController extends Controller
         $featuredProductIds = $sections->get('featured_products')?->config['product_ids'] ?? [];
         $trendingIds = $sections->get('trending')?->config['product_ids'] ?? [];
 
-        $featuredCategories = Category::query()
+        $featuredParents = Category::query()
             ->active()
+            ->parents()
+            ->with(['children' => fn ($query) => $query->active()->with('parent')->orderBy('display_order')])
             ->when($featuredCategoryIds, fn ($query) => $query->whereIn('id', $featuredCategoryIds),
                 fn ($query) => $query->where('show_on_homepage', true))
             ->orderBy('display_order')
             ->limit(8)
             ->get();
 
-        $productWith = ['primaryImage', 'brand'];
+        $featuredSubcategories = $featuredParents
+            ->flatMap(fn (Category $category) => $category->children)
+            ->values();
+
+        $productWith = ['primaryImage', 'images', 'brand'];
+
+        $featuredProducts = $this->featuredCatalog($featuredProductIds, $productWith);
+        $newArrivals = Product::query()->active()->with($productWith)->where('is_new_arrival', true)->latest()->limit(8)->get();
+        $bestSellers = Product::query()->active()->with($productWith)->where('is_best_seller', true)->latest('sold_count')->limit(8)->get();
 
         return view('storefront.home.index', [
-            'banners' => Banner::query()->live()->get(),
+            'heroBanner' => Banner::query()->live()->first(),
+            'heroProducts' => $this->heroProducts($sections, $productWith, $newArrivals, $bestSellers),
             'sections' => $sections,
-            'featuredCategories' => $featuredCategories,
-            'featuredProducts' => $this->products($featuredProductIds, $productWith, 'is_featured'),
+            'featuredSubcategories' => $featuredSubcategories,
+            'featuredProducts' => $featuredProducts,
             'trendingProducts' => $this->products($trendingIds, $productWith, 'sold_count'),
-            'bestSellers' => Product::query()->active()->with($productWith)->where('is_best_seller', true)->latest('sold_count')->limit(8)->get(),
-            'newArrivals' => Product::query()->active()->with($productWith)->where('is_new_arrival', true)->latest()->limit(8)->get(),
+            'bestSellers' => $bestSellers,
+            'newArrivals' => $newArrivals,
             'blogs' => Blog::query()->published()->latest('published_at')->limit(3)->get(),
         ]);
+    }
+
+    /**
+     * @param  list<int>  $priorityIds
+     * @param  list<string>  $with
+     */
+    private function featuredCatalog(array $priorityIds, array $with): LengthAwarePaginator
+    {
+        $priorityIds = array_values(array_unique(array_filter(array_map('intval', $priorityIds))));
+
+        $prioritySql = $priorityIds === []
+            ? 'CASE WHEN is_featured = 1 THEN 0 ELSE 1 END'
+            : 'CASE WHEN id IN ('.implode(',', $priorityIds).') THEN 0 WHEN is_featured = 1 THEN 1 ELSE 2 END';
+
+        return Product::query()
+            ->active()
+            ->with($with)
+            ->orderByRaw($prioritySql)
+            ->latest()
+            ->paginate(12)
+            ->withQueryString()
+            ->fragment('featured');
+    }
+
+    /**
+     * @param  list<string>  $with
+     * @return Collection<int, Product>
+     */
+    private function heroProducts(
+        Collection $sections,
+        array $with,
+        Collection $newArrivals,
+        Collection $bestSellers,
+    ): Collection {
+        $heroProductIds = array_slice(
+            array_values(array_filter(array_map('intval', $sections->get('hero_products')?->config['product_ids'] ?? []))),
+            0,
+            4
+        );
+
+        $hasCatalogPhoto = fn (Product $product) => $product->primaryImage !== null || $product->images->isNotEmpty();
+
+        if ($heroProductIds !== [] && ($sections->get('hero_products')?->is_enabled !== false)) {
+            $heroOrder = array_flip($heroProductIds);
+
+            return Product::query()
+                ->active()
+                ->with($with)
+                ->whereIn('id', $heroProductIds)
+                ->get()
+                ->sortBy(fn (Product $product) => $heroOrder[$product->id] ?? PHP_INT_MAX)
+                ->filter($hasCatalogPhoto)
+                ->values();
+        }
+
+        $featuredPool = Product::query()
+            ->active()
+            ->with($with)
+            ->where('is_featured', true)
+            ->latest()
+            ->limit(8)
+            ->get();
+
+        $heroPool = $featuredPool
+            ->concat($newArrivals)
+            ->concat($bestSellers)
+            ->unique('id')
+            ->filter($hasCatalogPhoto)
+            ->values();
+
+        if ($heroPool->count() < 4) {
+            $extra = Product::query()
+                ->active()
+                ->with($with)
+                ->where(fn ($query) => $query->whereHas('primaryImage')->orWhereHas('images'))
+                ->latest()
+                ->limit(16)
+                ->get();
+            $heroPool = $heroPool->concat($extra)->unique('id')->filter($hasCatalogPhoto)->values();
+        }
+
+        $heroProducts = collect();
+        $usedCategories = [];
+        foreach ($heroPool as $product) {
+            $categoryKey = $product->category_id ?: 'none';
+            if (isset($usedCategories[$categoryKey])) {
+                continue;
+            }
+            $usedCategories[$categoryKey] = true;
+            $heroProducts->push($product);
+            if ($heroProducts->count() === 4) {
+                break;
+            }
+        }
+
+        if ($heroProducts->count() < 4) {
+            foreach ($heroPool as $product) {
+                if ($heroProducts->contains('id', $product->id)) {
+                    continue;
+                }
+                $heroProducts->push($product);
+                if ($heroProducts->count() === 4) {
+                    break;
+                }
+            }
+        }
+
+        return $heroProducts->values();
     }
 
     private function products(array $ids, array $with, string $fallback)
     {
         $query = Product::query()->active()->with($with);
         if ($ids) {
-            return $query->whereIn('id', $ids)
-                ->orderByRaw('FIELD(id,'.implode(',', array_map('intval', $ids)).')')
-                ->get();
+            $orderedIds = array_map('intval', $ids);
+            $order = array_flip($orderedIds);
+
+            return $query->whereIn('id', $orderedIds)
+                ->get()
+                ->sortBy(fn (Product $product) => $order[$product->id] ?? PHP_INT_MAX)
+                ->values();
         }
 
         if ($fallback === 'sold_count') {

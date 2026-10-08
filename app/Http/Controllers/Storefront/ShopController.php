@@ -58,13 +58,19 @@ class ShopController extends Controller
 
     public function categories()
     {
-        $categories = Category::query()
+        $subcategories = Category::query()
             ->active()
-            ->parents()
-            ->with(['children' => fn ($query) => $query->active()->orderBy('display_order')])
+            ->whereNotNull('parent_id')
+            ->whereHas('parent', fn ($parent) => $parent->active())
+            ->with('parent')
             ->orderBy('display_order')
+            ->orderBy('name')
             ->get();
 
-        return view('storefront.shop.categories', compact('categories'));
+        return view('storefront.shop.categories', [
+            'subcategories' => $subcategories,
+            'seoTitle' => 'Shop by Category | '.store_name(),
+            'seoDescription' => 'Browse every '.storefront_collection_names().' line at '.store_name().', with '.storefront_product_types().' delivered across India on Cash on Delivery.',
+        ]);
     }
 }

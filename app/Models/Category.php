@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 #[Fillable([
     'parent_id', 'name', 'slug', 'image', 'description', 'seo_content',
@@ -26,8 +27,13 @@ class Category extends Model
 
     protected static function booted(): void
     {
-        static::saved(fn () => Cache::forget('shop.nav.category_ids'));
-        static::deleted(fn () => Cache::forget('shop.nav.category_ids'));
+        $forgetStorefrontCaches = function (): void {
+            Cache::forget('shop.nav.category_ids');
+            Cache::forget('shop.collections');
+        };
+
+        static::saved($forgetStorefrontCaches);
+        static::deleted($forgetStorefrontCaches);
     }
 
     public function parent(): BelongsTo
@@ -76,10 +82,38 @@ class Category extends Model
 
     public function imageUrl(): string
     {
-        if ($this->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($this->image)) {
+        if ($this->image && Storage::disk('public')->exists($this->image)) {
             return asset('storage/'.$this->image);
         }
 
         return asset('images/category-placeholder.svg');
+    }
+
+    /**
+     * Shared visual for sibling lines (e.g. Mens + Womens Apparel use one house image).
+     */
+    public function mosaicImageUrl(): string
+    {
+        $parent = $this->parent;
+        if ($parent) {
+            if ($parent->image && Storage::disk('public')->exists($parent->image)) {
+                return asset('storage/'.$parent->image);
+            }
+
+            $siblings = $parent->relationLoaded('children')
+                ? $parent->children
+                : $parent->children()->get();
+
+            $shared = $siblings->first(function (self $sibling) {
+                return $sibling->image
+                    && Storage::disk('public')->exists($sibling->image);
+            });
+
+            if ($shared) {
+                return asset('storage/'.$shared->image);
+            }
+        }
+
+        return $this->imageUrl();
     }
 }

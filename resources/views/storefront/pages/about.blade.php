@@ -100,13 +100,13 @@
     <div class="br-about-wrap">
         <h1 class="br-about-title">About Us</h1>
         <p class="br-about-lead">
-            Black Rossy is an India-based online boutique across Rossy Apparel, Rossy Lustre, Rossy Stride and Rossy Carry — with guest checkout and Cash on Delivery.
+            {{ store_name() }} is an India-based online boutique for {{ storefront_collection_names() }} — with guest checkout and Cash on Delivery.
         </p>
 
         <section class="br-about-block">
             <h2 class="br-about-heading">Our Story</h2>
             <p class="br-about-text">
-                Black Rossy started with a simple idea: make everyday and festive shopping easier for customers who want clear photos, honest product details and a checkout that does not force an account. We focus on Rossy Apparel, Lustre, Stride and Carry pieces that feel useful for real Indian occasions — office days, family gatherings and festivals.
+                Black Rossy started with a simple idea: make everyday and festive shopping easier for customers who want clear photos, honest product details and a checkout that does not force an account. We focus on {{ storefront_collection_names() }} pieces that feel useful for real Indian occasions — office days, family gatherings and festivals.
             </p>
         </section>
 
@@ -138,7 +138,7 @@
         <section class="br-about-block">
             <h2 class="br-about-heading">How shopping works</h2>
             <p class="br-about-text">
-                Choose from Rossy Apparel, Rossy Lustre, Rossy Stride or Rossy Carry, add items to your cart, and checkout with your name, mobile number and delivery address. Most orders are packed in 1–2 working days and delivered in about 2–5 days depending on your pin code.
+                Choose from {{ storefront_collection_names(' or ') }}, add items to your cart, and checkout with your name, mobile number and delivery address. Most orders are packed in 1–2 working days and delivered in about 2–5 days depending on your pin code.
             </p>
         </section>
 

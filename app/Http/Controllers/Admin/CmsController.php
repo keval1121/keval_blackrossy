@@ -61,6 +61,13 @@ class CmsController extends Controller
 
     public function homepageSave(Request $request, HomepageSection $section)
     {
+        $productIds = array_values(array_unique(array_filter(array_map('intval', (array) $request->input('product_ids', [])))));
+        $categoryIds = array_values(array_unique(array_filter(array_map('intval', (array) $request->input('category_ids', [])))));
+
+        if ($section->key === 'hero_products') {
+            $productIds = array_slice($productIds, 0, 4);
+        }
+
         $section->update([
             'title' => $request->string('title'),
             'subtitle' => $request->string('subtitle'),
@@ -69,8 +76,8 @@ class CmsController extends Controller
             'is_enabled' => $request->boolean('is_enabled'),
             'display_order' => $request->integer('display_order'),
             'config' => array_filter([
-                'product_ids' => array_filter(array_map('intval', (array) $request->input('product_ids', []))),
-                'category_ids' => array_filter(array_map('intval', (array) $request->input('category_ids', []))),
+                'product_ids' => $productIds,
+                'category_ids' => $categoryIds,
             ]),
         ]);
 

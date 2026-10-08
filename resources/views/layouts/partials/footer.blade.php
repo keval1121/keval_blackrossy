@@ -2,12 +2,12 @@
     <div class="container-store grid gap-10 md:grid-cols-4">
         <div>
             <p class="font-serif text-3xl">{{ store_name() }}</p>
-            <p class="mt-3 text-sm leading-6 text-muted">A curated boutique for Rossy Apparel, Lustre, Stride and Carry. Guest checkout. Cash on Delivery.</p>
+            <p class="mt-3 text-sm leading-6 text-muted">A curated boutique for {{ storefront_collection_names() }}. Guest checkout. Cash on Delivery.</p>
         </div>
         <div>
             <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted">Shop</p>
             <div class="space-y-2 text-sm">
-                @foreach($navCategories->take(6) as $cat)
+                @foreach($navSubcategories->take(8) as $cat)
                     <a class="block" href="{{ $cat->url() }}">{{ $cat->name }}</a>
                 @endforeach
             </div>

@@ -11,8 +11,6 @@
     <input class="admin-input" name="facebook" value="{{ setting('facebook') }}" placeholder="Facebook URL">
     <input class="admin-input" name="instagram" value="{{ setting('instagram') }}" placeholder="Instagram URL">
     <input class="admin-input" name="youtube" value="{{ setting('youtube') }}" placeholder="YouTube URL">
-    <input class="admin-input" name="default_delivery_charge" value="{{ setting('default_delivery_charge', 49) }}" placeholder="Default delivery charge">
-    <input class="admin-input" name="free_shipping_amount" value="{{ setting('free_shipping_amount', 999) }}" placeholder="Free shipping above">
     <input class="admin-input" name="seo_title" value="{{ setting('seo_title') }}" placeholder="Default SEO title">
     <textarea class="admin-input" name="seo_description" placeholder="Default SEO description">{{ setting('seo_description') }}</textarea>
     <p class="text-sm">Logo</p><input type="file" name="logo" class="admin-input">

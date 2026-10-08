@@ -42,7 +42,10 @@ class CartService
 
     public function add(int $productId, int $quantity = 1, ?int $variantId = null): CartItem
     {
-        $product = Product::query()->active()->findOrFail($productId);
+        $product = Product::query()->active()->find($productId);
+        if (! $product) {
+            throw new \RuntimeException('This product is no longer available.');
+        }
         $variant = $this->resolveVariant($product, $variantId);
         $quantity = $this->clampQuantity($product, $quantity, $variant);
         $stock = $variant?->stock ?? $product->stock_quantity;
@@ -174,18 +177,15 @@ class CartService
             }
         }
 
-        $shipping = app(ShippingService::class)->charge($subtotal - $discount);
-
         return [
             'cart' => $cart,
             'items' => $lines,
             'count' => $items->sum('quantity'),
             'subtotal' => $subtotal,
             'discount' => $discount,
-            'delivery' => $shipping,
-            'total' => max(0, round($subtotal - $discount + $shipping, 2)),
+            'delivery' => 0.0,
+            'total' => max(0, round($subtotal - $discount, 2)),
             'coupon' => $coupon,
-            'free_shipping_from' => (float) setting('free_shipping_amount', 999),
         ];
     }
 
@@ -199,11 +199,12 @@ class CartService
     public function validateStock(Cart $cart): Collection
     {
         $errors = collect();
-        $cart->load(['items.product', 'items.variant']);
+        $cart->load(['items.product.category', 'items.product.subCategory', 'items.variant']);
 
         foreach ($cart->items as $item) {
-            if (! $item->product || $item->product->status->value !== 'active') {
-                $errors->push('A product in your cart is no longer available.');
+            if (! $item->product?->isVisible()) {
+                $errors->push(($item->product?->name ?? 'A product').' in your cart is no longer available. Please remove it to continue.');
+
                 continue;
             }
             $stock = $item->availableStock();

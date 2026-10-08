@@ -1,4 +1,5 @@
 @extends('layouts.storefront')
+@php($hideAds = true)
 @section('content')
 <div class="container-store py-24 text-center">
     <p class="font-serif text-7xl">404</p>

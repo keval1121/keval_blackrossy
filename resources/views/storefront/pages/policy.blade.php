@@ -117,7 +117,7 @@
             </p>
             <h3 class="br-policy-sub">3. Your choices</h3>
             <p class="br-policy-text">
-                For privacy questions or correction requests, write to us from the <a href="{{ route('contact') }}">Contact</a> page with your order number and registered mobile number. The full privacy text is also available on our <a href="{{ url('/privacy-policy') }}">Privacy Policy</a> page.
+                For privacy questions or correction requests, email us using the details on our <a href="{{ route('contact') }}">Contact</a> page, with your order number and registered mobile number. The full privacy text is also available on our <a href="{{ url('/privacy-policy') }}">Privacy Policy</a> page.
             </p>
         </section>
 
@@ -132,7 +132,7 @@
             </p>
             <h3 class="br-policy-sub">2. Delivery area and COD</h3>
             <p class="br-policy-text">
-                We ship to serviceable Indian pin codes. If COD is not available for your area, our team will contact you after the order is received. Free shipping applies on eligible orders above {{ money(setting('free_shipping_amount', 999)) }}. Track your parcel anytime from <a href="{{ route('track') }}">Track Order</a>.
+                We ship to serviceable Indian pin codes. If COD is not available for your area, our team will contact you after the order is received. Shipping is free on every order, with no minimum order value. Track your parcel anytime from <a href="{{ route('track') }}">Track Order</a>.
             </p>
         </section>
 
@@ -147,7 +147,7 @@
             </p>
             <h3 class="br-policy-sub">2. How to start a return</h3>
             <p class="br-policy-text">
-                Message us from <a href="{{ route('contact') }}">Contact</a> or WhatsApp with your order number, product name and reason for return. After approval, we share pickup or drop instructions. Approved COD returns follow the process explained in our <a href="{{ url('/refund-policy') }}">Refund Policy</a>.
+                Email or WhatsApp us (details on our <a href="{{ route('contact') }}">Contact</a> page) with your order number, product name and reason for return. After approval, we share pickup or drop instructions. Approved COD returns follow the process explained in our <a href="{{ url('/refund-policy') }}">Refund Policy</a>.
             </p>
         </section>
 

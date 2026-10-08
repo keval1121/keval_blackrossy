@@ -11,15 +11,19 @@
         'datePublished' => $blog->published_at?->toIso8601String(),
         'image' => $blog->imageUrl(),
     ]);
+    $paragraphs = preg_split('/\R{2,}/', trim((string) $blog->content)) ?: [];
+    $splitAt = count($paragraphs) >= 4 ? intdiv(count($paragraphs), 2) : count($paragraphs);
 @endphp
 @section('content')
 <article class="container-store max-w-3xl py-10">
-    <x-ad position="blog_top" />
     <p class="text-xs uppercase tracking-widest text-muted">{{ $blog->category?->name }} · {{ $blog->published_at?->format('d M Y') }}</p>
     <h1 class="mt-3 font-serif text-5xl">{{ $blog->title }}</h1>
     <img src="{{ $blog->imageUrl() }}" alt="{{ $blog->title }}" class="my-8 w-full rounded-[2rem] object-cover">
-    <div class="prose max-w-none leading-8">{!! nl2br(e($blog->content)) !!}</div>
-    <x-ad position="blog_middle" />
+    <div class="prose max-w-none leading-8">{!! nl2br(e(implode("\n\n", array_slice($paragraphs, 0, $splitAt)))) !!}</div>
+    @if($splitAt < count($paragraphs))
+        <x-ad position="blog_middle" />
+        <div class="prose max-w-none leading-8">{!! nl2br(e(implode("\n\n", array_slice($paragraphs, $splitAt)))) !!}</div>
+    @endif
     <x-ad position="blog_bottom" />
     @if($related->isNotEmpty())
         <h2 class="mt-12 font-serif text-3xl">More from the journal</h2>

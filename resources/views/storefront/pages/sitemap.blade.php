@@ -2,7 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url><loc>{{ url('/') }}</loc></url>
     <url><loc>{{ url('/shop') }}</loc></url>
-    <url><loc>{{ url('/blog') }}</loc></url>
+    @if($hasPublishedPosts)
+        <url><loc>{{ url('/blog') }}</loc></url>
+    @endif
     @foreach($pages as $page)
         <url><loc>{{ url('/'.$page->slug) }}</loc></url>
     @endforeach

@@ -7,7 +7,6 @@ use App\Models\BlockedMobile;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Brand;
-use App\Models\ContactMessage;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\Page;
@@ -93,8 +92,6 @@ class ContentAdminController extends Controller
             'facebook' => ['nullable', 'url'],
             'instagram' => ['nullable', 'url'],
             'youtube' => ['nullable', 'url'],
-            'default_delivery_charge' => ['nullable', 'numeric', 'min:0'],
-            'free_shipping_amount' => ['nullable', 'numeric', 'min:0'],
             'seo_title' => ['nullable', 'string', 'max:180'],
             'seo_description' => ['nullable', 'string', 'max:320'],
             'adsense_client_id' => ['nullable', 'string', 'max:40'],
@@ -106,8 +103,7 @@ class ContentAdminController extends Controller
 
         foreach ([
             'website_name', 'contact_number', 'whatsapp_number', 'contact_email', 'address',
-            'facebook', 'instagram', 'youtube', 'default_delivery_charge', 'free_shipping_amount',
-            'seo_title', 'seo_description', 'adsense_client_id', 'ads_txt', 'ga_measurement_id',
+            'facebook', 'instagram', 'youtube', 'seo_title', 'seo_description', 'adsense_client_id', 'ads_txt', 'ga_measurement_id',
         ] as $key) {
             Setting::put($key, $data[$key] ?? '', 'store');
         }
@@ -159,7 +155,9 @@ class ContentAdminController extends Controller
 
     public function reviews()
     {
-        return view('admin.reviews.index', ['reviews' => Review::query()->with('product')->latest()->paginate(20)]);
+        return view('admin.reviews.index', [
+            'reviews' => Review::query()->with('product')->orderBy('is_approved')->latest()->paginate(20),
+        ]);
     }
 
     public function reviewApprove(Review $review)
@@ -228,11 +226,6 @@ class ContentAdminController extends Controller
         return redirect()
             ->route('admin.brands.index')
             ->with('status', 'Brand deleted.');
-    }
-
-    public function contacts()
-    {
-        return view('admin.customers.contacts', ['messages' => ContactMessage::query()->latest()->paginate(20)]);
     }
 
     public function blocklist()

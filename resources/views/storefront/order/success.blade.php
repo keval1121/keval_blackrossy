@@ -1,4 +1,11 @@
 @extends('layouts.storefront')
+@php
+    $seoTitle = 'Order Placed | '.store_name();
+    $hideAds = true;
+@endphp
+@push('head')
+    <meta name="robots" content="noindex, nofollow">
+@endpush
 @section('content')
 <div class="container-store py-16 text-center">
     <p class="text-5xl">🎉</p>

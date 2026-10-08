@@ -1,8 +1,11 @@
 @extends('layouts.storefront')
 
 @php
-    $seoTitle = ($subcategory->seo_title ?? $category->seo_title ?? $heading).' | '.store_name();
-    $seoDescription = $subcategory->seo_description ?? $category->seo_description ?? 'Shop '.$heading.' with Cash on Delivery.';
+    $listingCategory = $subcategory ?? $category;
+    $seoTitle = $listingCategory?->seo_title ?: $heading.' | '.store_name();
+    $seoDescription = $listingCategory?->seo_description ?: ($listingCategory
+        ? $heading.' at '.store_name().' — free shipping on every order and Cash on Delivery across India.'
+        : 'Browse all '.storefront_product_types().' at '.store_name().' — free shipping on every order and Cash on Delivery across India.');
     $activeFilterCount = collect([
         request('min_price'),
         request('max_price'),
@@ -22,7 +25,6 @@
     <div class="mb-4 flex items-end justify-between gap-3">
         <div>
             <h1 class="font-serif text-3xl md:text-4xl">{{ $heading }}</h1>
-            <p id="result-count" class="mt-1 text-sm text-muted">{{ $products->total() }} items</p>
         </div>
     </div>
 
@@ -149,16 +151,14 @@
         </aside>
 
         <div>
-            <div class="hidden md:mb-2 md:block">
-                <x-ad position="category_top" />
-            </div>
+            @if($products->isNotEmpty())
+                <div class="hidden md:mb-2 md:block">
+                    <x-ad position="category_top" />
+                </div>
+            @endif
             <div id="product-grid">
                 @include('storefront.shop.partials.grid')
             </div>
-            @if($category?->seo_content || $subcategory?->seo_content)
-                <article class="prose mt-10 max-w-none text-sm leading-7 text-muted">{!! nl2br(e($subcategory->seo_content ?? $category->seo_content)) !!}</article>
-            @endif
-            <x-ad position="listing_bottom" />
         </div>
     </div>
 </div>

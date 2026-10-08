@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Storefront\ContactRequest;
 use App\Models\Blog;
 use App\Models\Category;
-use App\Models\ContactMessage;
 use App\Models\Page;
 use App\Models\Product;
 use App\Services\CatalogService;
@@ -57,7 +55,7 @@ class ContentController extends Controller
     {
         return view('storefront.pages.about', [
             'seoTitle' => 'About Us | Black Rossy',
-            'seoDescription' => 'Black Rossy boutique for Rossy Apparel, Lustre, Stride and Carry with guest checkout and Cash on Delivery across India.',
+            'seoDescription' => store_name().' boutique for '.storefront_collection_names().' with guest checkout and Cash on Delivery across India.',
         ]);
     }
 
@@ -73,7 +71,6 @@ class ContentController extends Controller
     {
         $returnPolicyUrl = e(url('/return-policy'));
         $shippingPolicyUrl = e(url('/shipping-policy'));
-        $freeShipping = e(money(setting('free_shipping_amount', 999)));
 
         $groups = [
             [
@@ -94,7 +91,7 @@ class ContentController extends Controller
                 'items' => [
                     [
                         'question' => 'When will my parcel leave and arrive?',
-                        'answer' => 'Orders are usually packed in 1–2 working days. Most deliveries reach in 2–5 days based on your pin code and courier route. Free shipping applies on eligible orders above '.$freeShipping.'.',
+                        'answer' => 'Orders are usually packed in 1–2 working days. Most deliveries reach in 2–5 days based on your pin code and courier route. Shipping is free on every order — no minimum cart value.',
                     ],
                     [
                         'question' => 'Which areas do you deliver to?',
@@ -122,28 +119,26 @@ class ContentController extends Controller
 
     public function contact()
     {
-        return view('storefront.pages.contact');
-    }
-
-    public function contactStore(ContactRequest $request)
-    {
-        ContactMessage::query()->create($request->validated() + [
-            'ip_address' => $request->ip(),
+        return view('storefront.pages.contact', [
+            'seoTitle' => 'Contact Us | '.store_name(),
+            'seoDescription' => 'Contact '.store_name().' for order help, delivery questions, returns and Cash on Delivery support across India.',
         ]);
-
-        return back()->with('status', 'Message sent. We will get back to you soon.');
     }
 
     public function sitemap()
     {
-        $categories = Category::query()->active()->get();
+        $categories = Category::query()
+            ->active()
+            ->where(fn ($visible) => $visible->whereNull('parent_id')->orWhereHas('parent', fn ($parent) => $parent->active()))
+            ->get();
         $products = Product::query()->active()->select('slug', 'updated_at')->get();
         // Thin journal posts are kept offline for AdSense review; omit from sitemap.
         $posts = collect();
+        $hasPublishedPosts = Blog::query()->published()->exists();
         $pages = Page::query()->where('is_active', true)->get();
 
         return response()
-            ->view('storefront.pages.sitemap', compact('categories', 'products', 'posts', 'pages'))
+            ->view('storefront.pages.sitemap', compact('categories', 'products', 'posts', 'hasPublishedPosts', 'pages'))
             ->header('Content-Type', 'application/xml');
     }
 
@@ -155,9 +150,7 @@ class ContentController extends Controller
             'User-agent: *',
             'Allow: /',
             'Disallow: /admin',
-            'Disallow: /cart',
-            'Disallow: /checkout',
-            'Disallow: /blog',
+            '',
             'Sitemap: '.$sitemap,
         ];
 

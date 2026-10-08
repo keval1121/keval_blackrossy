@@ -4,14 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $seoTitle ?? setting('seo_title', store_name().' | Fashion, Jewellery & Lifestyle') }}</title>
-    <meta name="description" content="{{ $seoDescription ?? setting('seo_description', 'Shop clothing, jewellery, footwear, bags and gifts with easy Cash on Delivery.') }}">
+    @php
+        $seoTitle ??= setting('seo_title') ?: store_name().' | '.storefront_collection_names(' & ');
+        $seoDescription ??= setting('seo_description') ?: 'Shop '.storefront_product_types().' at '.store_name().' with guest checkout and Cash on Delivery across India.';
+    @endphp
+    <title>{{ $seoTitle }}</title>
+    <meta name="description" content="{{ $seoDescription }}">
     <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
     @if(setting('favicon'))
         <link rel="icon" href="{{ asset('storage/'.setting('favicon')) }}">
     @endif
-    <meta property="og:title" content="{{ $seoTitle ?? store_name() }}">
-    <meta property="og:description" content="{{ $seoDescription ?? setting('seo_description') }}">
+    <meta property="og:title" content="{{ $seoTitle }}">
+    <meta property="og:description" content="{{ $seoDescription }}">
     <meta property="og:type" content="{{ $ogType ?? 'website' }}">
     <meta property="og:url" content="{{ $canonical ?? url()->current() }}">
     @if(!empty($ogImage))
@@ -22,7 +26,10 @@
     @isset($schema)
         <script type="application/ld+json">{!! $schema !!}</script>
     @endisset
-    @if (setting('adsense_enabled', false) && ($adsenseClient = adsense_client_id()))
+    @if ($adsenseClient = adsense_client_id())
+        <meta name="google-adsense-account" content="{{ $adsenseClient }}">
+    @endif
+    @if ($adsenseClient && setting('adsense_enabled', false) && empty($hideAds))
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ $adsenseClient }}" crossorigin="anonymous"></script>
     @endif
     @if ($gaId = ga_measurement_id())

@@ -96,7 +96,7 @@
     <div class="br-faq-wrap">
         <h1 class="br-faq-title">Frequently Asked Questions</h1>
         <p class="br-faq-lead">
-            Quick answers for shopping Rossy Apparel, Lustre, Stride and Carry at Black Rossy with Cash on Delivery.
+            Quick answers for shopping {{ storefront_collection_names() }} at {{ store_name() }} with Cash on Delivery.
         </p>
 
         <div class="faq-list">

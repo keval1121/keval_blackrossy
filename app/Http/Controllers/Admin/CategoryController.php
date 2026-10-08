@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -57,6 +58,26 @@ class CategoryController extends Controller
         return back()->with('status', 'Category deleted.');
     }
 
+    public function updateActive(Request $request, Category $category)
+    {
+        $request->merge(['value' => $request->boolean('value')]);
+        $data = $request->validate(['value' => ['required', 'boolean']]);
+
+        $category->update(['is_active' => $data['value']]);
+
+        return back()->with('status', $data['value'] ? 'Category activated.' : 'Category deactivated.');
+    }
+
+    public function updateHomepage(Request $request, Category $category)
+    {
+        $request->merge(['value' => $request->boolean('value')]);
+        $data = $request->validate(['value' => ['required', 'boolean']]);
+
+        $category->update(['show_on_homepage' => $data['value']]);
+
+        return back()->with('status', $data['value'] ? 'Category shown on homepage.' : 'Category hidden from homepage.');
+    }
+
     private function data(Request $request, ImageService $images, ?Category $category = null): array
     {
         $data = $request->validate([
@@ -64,20 +85,31 @@ class CategoryController extends Controller
             'slug' => ['nullable', 'string', Rule::unique('categories', 'slug')->ignore($category?->id)],
             'parent_id' => ['nullable', 'exists:categories,id'],
             'description' => ['nullable', 'string'],
-            'seo_content' => ['nullable', 'string'],
             'seo_title' => ['nullable', 'string', 'max:180'],
             'seo_description' => ['nullable', 'string', 'max:320'],
             'seo_keywords' => ['nullable', 'string', 'max:255'],
             'display_order' => ['nullable', 'integer', 'min:0'],
-            'image' => ['nullable', 'image', 'max:4096'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
+            'remove_image' => ['nullable', 'boolean'],
         ]);
-        $data['slug'] = $data['slug'] ?: Str::slug($data['name']);
+        $data['slug'] = ($data['slug'] ?? '') ?: Str::slug($data['name']);
         $data['is_active'] = $request->boolean('is_active', true);
         $data['show_on_homepage'] = $request->boolean('show_on_homepage');
         $data['display_order'] = $data['display_order'] ?? 0;
+
+        if ($request->boolean('remove_image') && $category?->image) {
+            Storage::disk('public')->delete($category->image);
+            $data['image'] = null;
+        }
+
         if ($request->hasFile('image')) {
+            if ($category?->image) {
+                Storage::disk('public')->delete($category->image);
+            }
             $data['image'] = $images->storeSingle($request->file('image'), 'categories', 800);
         }
+
+        unset($data['remove_image']);
 
         return $data;
     }

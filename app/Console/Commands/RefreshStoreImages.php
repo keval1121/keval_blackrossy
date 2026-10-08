@@ -183,7 +183,7 @@ class RefreshStoreImages extends Command
     private array $bannerSlides = [
         [
             'title' => 'Free shipping',
-            'subtitle' => 'On orders above {free_shipping}. Real products, packed with care.',
+            'subtitle' => 'On every order across India. Real products, packed with care.',
             'button_text' => 'Shop collections',
             'button_url' => '/shop',
             'desktop' => ['unsplash', '1483985988355-763728e1935b'],
@@ -339,8 +339,6 @@ class RefreshStoreImages extends Command
             $banner->delete();
         });
 
-        $freeShipping = money(setting('free_shipping_amount', 999));
-
         foreach ($this->bannerSlides as $i => $slide) {
             $desktop = $this->downloadRef($slide['desktop'], 1920, 780);
             $mobile = $this->downloadRef($slide['mobile'], 900, 1200);
@@ -361,7 +359,7 @@ class RefreshStoreImages extends Command
 
             Banner::query()->create([
                 'title' => $slide['title'],
-                'subtitle' => str_replace('{free_shipping}', $freeShipping, $slide['subtitle']),
+                'subtitle' => $slide['subtitle'],
                 'button_text' => $slide['button_text'],
                 'button_url' => $slide['button_url'],
                 'desktop_image' => $desktopPath,
@@ -474,7 +472,7 @@ For parents. Classic pearl or gold-tone sets feel respectful for festivals. Avoi
 
 For partners. A rose-gold ring or layered necklace photographs beautifully and pairs with both western and Indian outfits.
 
-Budget tips. Set a clear budget before browsing. Look at selling price and MRP together, and check free-shipping thresholds at checkout so the total stays predictable with COD.
+Budget tips. Set a clear budget before browsing. Look at selling price and MRP together — shipping is free on every order, so the total stays predictable with COD.
 
 Care card. Include a simple note: wipe after wear, store dry, keep away from perfume. That small habit keeps plated jewellery brighter for longer.
 
@@ -518,7 +516,7 @@ Inspect before paying. Check the outer packet for damage. Open in front of the a
 
 Returns window. Unused products with tags can usually be returned within 7 days. Beauty products once opened are typically non-returnable for hygiene.
 
-Free shipping. Orders above the free-shipping amount shown at checkout save the delivery fee — plan your cart accordingly.
+Free shipping. Every order ships free across India — no minimum cart value and no delivery fee at checkout.
 
 No account is required. Track anytime from Track Order using your order number and mobile.
 TXT
@@ -676,7 +674,7 @@ Contact for privacy and support:
 A. Information you provide
 • Order details: name, mobile number, delivery address, pin code, order notes
 • Optional email when you contact us or request updates
-• Messages and attachments you send via the Contact form or WhatsApp
+• Messages and attachments you send by email or WhatsApp
 • Review or feedback content if you submit reviews (when reviews are enabled)
 
 B. Information collected automatically
@@ -876,7 +874,7 @@ Orders are usually packed within 24–48 hours on business days after verificati
 Typical delivery is 2–5 days after dispatch depending on your pin code, courier capacity and local conditions. Remote or restricted areas may take longer. Timelines are estimates, not guarantees.
 
 3. Shipping charges
-A delivery charge may apply if your order is below the free-shipping threshold shown at checkout (store setting: free shipping amount). The exact charge is shown before you confirm the order.
+Shipping is free on every order. There is no minimum order value and no delivery charge is added at checkout.
 
 4. Serviceable areas
 We ship to pin codes serviceable by our courier partners. If your pin code is not serviceable for COD or delivery, we will inform you and cancel without charge.
@@ -914,7 +912,7 @@ Clothing, bags, unworn footwear, unused jewellery (with packaging) and unused ho
 • Free gifts or samples
 
 4. How to request
-Message us from the Contact page or WhatsApp with: order number, registered mobile, product name, reason, and clear photos. After we approve, follow pickup or self-ship instructions we share.
+Email or WhatsApp us (details on the Contact page) with: order number, registered mobile, product name, reason, and clear photos. After we approve, follow pickup or self-ship instructions we share.
 
 5. Inspection
 Returned items are checked for condition, tags and authenticity. Items that fail inspection may be sent back to you without refund.
@@ -943,7 +941,7 @@ For Cash on Delivery, there is usually no prepaid amount with us. After an appro
 Refunds follow the original payment method where the gateway allows. Bank or UPI timelines may add several business days after we initiate the refund.
 
 4. What is refunded
-Product selling price of approved items. Delivery charges may be non-refundable for change-of-mind returns. Coupon value is adjusted as per coupon rules.
+Product selling price of approved items. Shipping is free, so no delivery charge is deducted. Coupon value is adjusted as per coupon rules.
 
 5. Notification
 We notify you when a refund is initiated. Keep your order number for reference.

@@ -2,12 +2,11 @@
 
 namespace App\Services;
 
-use App\Enums\ProductStatus;
-use App\Models\AttributeValue;
+use App\Models\Attribute;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Models\ProductVariantValue;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -76,27 +75,24 @@ class CatalogService
         ];
     }
 
-    public function related(Product $product, int $limit = 8): Collection
+    /**
+     * @return Collection<int, Product>
+     */
+    public function related(Product $product): Collection
     {
-        $leafId = $product->sub_category_id ?: $product->category_id;
-        $tagIds = $product->tags->pluck('id');
-        $min = max(0, $product->selling_price * 0.6);
-        $max = $product->selling_price * 1.4;
+        $categoryId = (int) $product->category_id;
+        $subCategoryId = (int) ($product->sub_category_id ?: 0);
+
+        $prioritySql = $subCategoryId > 0
+            ? "CASE WHEN sub_category_id = {$subCategoryId} THEN 0 WHEN category_id = {$categoryId} THEN 1 ELSE 2 END"
+            : "CASE WHEN category_id = {$categoryId} THEN 0 ELSE 1 END";
 
         return Product::query()
             ->active()
-            ->with(['primaryImage', 'brand'])
+            ->with(['primaryImage', 'images', 'brand'])
             ->where('id', '!=', $product->id)
-            ->where(function (Builder $query) use ($leafId, $tagIds, $min, $max, $product) {
-                $query->where('sub_category_id', $leafId)
-                    ->orWhere('category_id', $product->category_id)
-                    ->orWhereBetween('selling_price', [$min, $max]);
-                if ($tagIds->isNotEmpty()) {
-                    $query->orWhereHas('tags', fn (Builder $tagQuery) => $tagQuery->whereIn('tags.id', $tagIds));
-                }
-            })
-            ->orderByDesc('sold_count')
-            ->limit($limit)
+            ->orderByRaw($prioritySql)
+            ->latest()
             ->get();
     }
 
@@ -127,13 +123,13 @@ class CatalogService
         }
 
         $brandIds = (clone $scope)->whereNotNull('brand_id')->distinct()->pluck('brand_id');
-        $valueIds = \App\Models\ProductVariantValue::query()
+        $valueIds = ProductVariantValue::query()
             ->whereIn('product_variant_id', function ($sub) use ($scope) {
                 $sub->select('id')->from('product_variants')->whereIn('product_id', (clone $scope)->select('id'));
             })
             ->pluck('attribute_value_id');
 
-        $attributes = \App\Models\Attribute::query()
+        $attributes = Attribute::query()
             ->where('is_filterable', true)
             ->with(['values' => fn ($query) => $query->whereIn('id', $valueIds)->orderBy('display_order')])
             ->orderBy('display_order')

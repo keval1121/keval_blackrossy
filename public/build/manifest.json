@@ -60,7 +60,7 @@
     "src": "_outfit-700-normal-D4itBLBr.woff"
   },
   "resources/css/admin.css": {
-    "file": "assets/admin-BpzoRhNe.css",
+    "file": "assets/admin-BWEABW_A.css",
     "name": "admin",
     "names": [
       "admin.css"
@@ -69,7 +69,7 @@
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app-BZUWEfxB.css",
+    "file": "assets/app-DeK-i4x4.css",
     "name": "app",
     "names": [
       "app.css"
@@ -78,7 +78,7 @@
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-DvK94nRt.js",
+    "file": "assets/app-C8uWZ361.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

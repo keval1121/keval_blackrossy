@@ -9,9 +9,6 @@
     </div>
     <div class="pt-3">
         <p class="line-clamp-2 text-sm font-medium">{{ $product->name }}</p>
-        @if($product->avg_rating > 0)
-            <p class="mt-1 text-xs text-muted">★ {{ number_format($product->avg_rating, 1) }} ({{ $product->reviews_count }})</p>
-        @endif
         <p class="mt-1 flex items-baseline gap-2">
             <span class="font-semibold">{{ money($product->selling_price) }}</span>
             @if($product->mrp > $product->selling_price)

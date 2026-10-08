@@ -1,4 +1,11 @@
 @extends('layouts.storefront')
+@php
+    $seoTitle = 'Order Status | '.store_name();
+    $hideAds = true;
+@endphp
+@push('head')
+    <meta name="robots" content="noindex, nofollow">
+@endpush
 @section('content')
 <div class="container-store max-w-2xl py-12">
     <h1 class="font-serif text-4xl">{{ $order->order_number }}</h1>

@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::query()
-            ->with(['category', 'subCategory', 'brand', 'primaryImage'])
+            ->with(['category', 'subCategory', 'brand', 'primaryImage', 'variants.values.attribute', 'variants.values.attributeValue'])
             ->when($request->category_id, function ($q, $id) {
                 $q->where(function ($builder) use ($id) {
                     $builder->where('category_id', $id)->orWhere('sub_category_id', $id);
@@ -75,6 +75,53 @@ class ProductController extends Controller
         $this->syncVariants($request, $product);
 
         return redirect()->route('admin.products.index')->with('status', 'Product updated.');
+    }
+
+    public function updateStock(Request $request, Product $product)
+    {
+        $product->load('variants');
+
+        if ($product->variants->isNotEmpty()) {
+            $data = $request->validate([
+                'variants' => ['required', 'array', 'min:1'],
+                'variants.*.id' => ['required', 'integer', Rule::exists('product_variants', 'id')->where('product_id', $product->id)],
+                'variants.*.stock' => ['required', 'integer', 'min:0'],
+            ]);
+
+            foreach ($data['variants'] as $row) {
+                $product->variants()->whereKey($row['id'])->update(['stock' => (int) $row['stock']]);
+            }
+
+            $product->recalculateStockFromVariants();
+
+            return back()->with('status', 'Variant stock updated. Total stock is '.$product->fresh()->stock_quantity.'.');
+        }
+
+        $data = $request->validate([
+            'stock_quantity' => ['required', 'integer', 'min:0'],
+        ]);
+
+        $product->update(['stock_quantity' => $data['stock_quantity']]);
+
+        return back()->with('status', 'Stock updated.');
+    }
+
+    public function updateStatus(Request $request, Product $product)
+    {
+        // Checkbox posts "1" when on; hidden "0" when off — normalize before boolean validation.
+        $request->merge([
+            'active' => $request->boolean('active'),
+        ]);
+
+        $data = $request->validate([
+            'active' => ['required', 'boolean'],
+        ]);
+
+        $product->update([
+            'status' => $data['active'] ? ProductStatus::Active : ProductStatus::Inactive,
+        ]);
+
+        return back()->with('status', $data['active'] ? 'Product activated.' : 'Product deactivated.');
     }
 
     public function destroy(Product $product, ImageService $images)
@@ -254,23 +301,35 @@ class ProductController extends Controller
 
     private function syncVariants(Request $request, Product $product): void
     {
-        $rows = array_values(array_filter($request->input('variants', []), fn ($row) => filled($row['label'] ?? null) || filled($row['sku'] ?? null)));
-        if (! $rows) {
+        if (! $request->has('variants')) {
             return;
         }
 
+        $rows = collect($request->input('variants', []))
+            ->filter(fn ($row) => is_array($row) && (filled($row['label'] ?? null) || filled($row['sku'] ?? null)))
+            ->values();
+
         $keep = [];
         foreach ($rows as $row) {
-            $variant = $product->variants()->updateOrCreate(
-                ['id' => $row['id'] ?? null],
-                [
-                    'sku' => $row['sku'] ?? null,
-                    'price' => filled($row['price'] ?? null) ? $row['price'] : null,
-                    'mrp' => filled($row['mrp'] ?? null) ? $row['mrp'] : null,
-                    'stock' => (int) ($row['stock'] ?? 0),
-                    'is_active' => true,
-                ]
-            );
+            $attributes = [
+                'sku' => $row['sku'] ?? null,
+                'price' => filled($row['price'] ?? null) ? $row['price'] : null,
+                'mrp' => filled($row['mrp'] ?? null) ? $row['mrp'] : null,
+                'stock' => (int) ($row['stock'] ?? 0),
+                'is_active' => true,
+            ];
+
+            $existingId = filled($row['id'] ?? null) ? (int) $row['id'] : null;
+            $variant = $existingId
+                ? $product->variants()->whereKey($existingId)->first()
+                : null;
+
+            if ($variant) {
+                $variant->update($attributes);
+            } else {
+                $variant = $product->variants()->create($attributes);
+            }
+
             $keep[] = $variant->id;
             $variant->values()->delete();
             foreach (explode(',', (string) ($row['label'] ?? '')) as $pair) {
@@ -297,6 +356,10 @@ class ProductController extends Controller
         }
 
         $product->variants()->whereNotIn('id', $keep)->delete();
+
+        if ($keep !== []) {
+            $product->recalculateStockFromVariants();
+        }
     }
 
     private function formData(): array

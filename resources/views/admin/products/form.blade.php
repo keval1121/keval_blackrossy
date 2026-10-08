@@ -56,23 +56,60 @@
                 </div>
             </section>
 
-            <section class="admin-card">
-                <h2 class="admin-card-title">Variants</h2>
-                <p class="admin-card-help">Optional. Example: <code class="rounded bg-stone-100 px-1">Size:M, Color:Black</code></p>
-                <div class="mt-4 space-y-2">
-                    @foreach(($product->variants ?? collect()) as $i => $variant)
-                        <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
-                            <input type="hidden" name="variants[{{ $i }}][id]" value="{{ $variant->id }}">
-                            <input class="admin-input col-span-2" name="variants[{{ $i }}][label]" value="{{ $variant->values->map(fn ($v) => $v->attribute->name.': '.$v->attributeValue->value)->implode(', ') }}">
-                            <input class="admin-input" name="variants[{{ $i }}][sku]" value="{{ $variant->sku }}" placeholder="SKU">
-                            <input class="admin-input" name="variants[{{ $i }}][stock]" value="{{ $variant->stock }}" placeholder="Stock">
-                        </div>
-                    @endforeach
-                    <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
-                        <input class="admin-input col-span-2" name="variants[new][label]" placeholder="Size:M, Color:Black">
-                        <input class="admin-input" name="variants[new][sku]" placeholder="SKU">
-                        <input class="admin-input" name="variants[new][stock]" placeholder="Stock">
+            @php
+                $variantRows = old('variants');
+                if ($variantRows === null) {
+                    $variantRows = ($product->variants ?? collect())->values()->map(fn ($variant) => [
+                        'id' => $variant->id,
+                        'label' => $variant->values->map(fn ($v) => $v->attribute->name.': '.$v->attributeValue->value)->implode(', '),
+                        'sku' => $variant->sku,
+                        'stock' => $variant->stock,
+                    ])->all();
+                    if ($variantRows === []) {
+                        $variantRows = [['label' => '', 'sku' => '', 'stock' => '']];
+                    }
+                }
+            @endphp
+            <section id="variants" class="admin-card scroll-mt-6">
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                        <h2 class="admin-card-title">Variants</h2>
+                        <p class="admin-card-help">One row per size/color. Example label: <code class="rounded bg-stone-100 px-1">Size:M</code> or <code class="rounded bg-stone-100 px-1">Size:M, Color:Black</code></p>
                     </div>
+                    <button type="button" id="add-variant-row" class="admin-btn admin-btn-ghost shrink-0 text-sm">+ Add variant</button>
+                </div>
+                <div class="mt-4 overflow-x-auto">
+                    <table class="variant-editor">
+                        <thead>
+                            <tr>
+                                <th class="variant-col-label">Variant</th>
+                                <th class="variant-col-sku">SKU</th>
+                                <th class="variant-col-stock">Stock</th>
+                                <th class="variant-col-action"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="variant-rows">
+                            @foreach($variantRows as $i => $row)
+                                <tr class="variant-row">
+                                    <td class="variant-col-label">
+                                        @if(! empty($row['id']))
+                                            <input type="hidden" name="variants[{{ $i }}][id]" value="{{ $row['id'] }}">
+                                        @endif
+                                        <input class="admin-input" name="variants[{{ $i }}][label]" value="{{ $row['label'] ?? '' }}" placeholder="Size:M, Color:Black">
+                                    </td>
+                                    <td class="variant-col-sku">
+                                        <input class="admin-input" name="variants[{{ $i }}][sku]" value="{{ $row['sku'] ?? '' }}" placeholder="SKU">
+                                    </td>
+                                    <td class="variant-col-stock">
+                                        <input class="admin-input" name="variants[{{ $i }}][stock]" value="{{ $row['stock'] ?? '' }}" placeholder="0" inputmode="numeric">
+                                    </td>
+                                    <td class="variant-col-action">
+                                        <button type="button" class="admin-btn admin-btn-ghost remove-variant-row" title="Remove variant" aria-label="Remove variant">&times;</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </section>
         </div>
@@ -133,8 +170,9 @@
                         <input class="admin-input" name="selling_price" type="number" step="0.01" value="{{ old('selling_price', $product->selling_price ?? '') }}" required>
                     </div>
                     <div>
-                        <label class="admin-label">Stock quantity</label>
-                        <input class="admin-input" name="stock_quantity" type="number" value="{{ old('stock_quantity', $product->stock_quantity ?? 0) }}">
+                        <label class="admin-label">Stock quantity <span id="stock-auto-hint" class="hidden font-normal text-stone-400">(auto = sum of variants)</span></label>
+                        <input id="stock_quantity" class="admin-input" name="stock_quantity" type="number" min="0" value="{{ old('stock_quantity', $product->stock_quantity ?? 0) }}" required>
+                        <p id="stock-help" class="mt-1 text-xs text-stone-500">No variants: enter stock here. With variants: total is the sum of variant stocks.</p>
                     </div>
                 </div>
             </section>
@@ -220,4 +258,88 @@
         <button type="submit" class="admin-btn admin-btn-danger">Delete entire product</button>
     </form>
 @endisset
+
+<template id="variant-row-template">
+    <tr class="variant-row">
+        <td class="variant-col-label">
+            <input class="admin-input" data-name="label" placeholder="Size:M, Color:Black">
+        </td>
+        <td class="variant-col-sku">
+            <input class="admin-input" data-name="sku" placeholder="SKU">
+        </td>
+        <td class="variant-col-stock">
+            <input class="admin-input" data-name="stock" placeholder="0" inputmode="numeric">
+        </td>
+        <td class="variant-col-action">
+            <button type="button" class="admin-btn admin-btn-ghost remove-variant-row" title="Remove variant" aria-label="Remove variant">&times;</button>
+        </td>
+    </tr>
+</template>
+
+<script>
+(() => {
+    const list = document.getElementById('variant-rows');
+    const template = document.getElementById('variant-row-template');
+    const addBtn = document.getElementById('add-variant-row');
+    const stockInput = document.getElementById('stock_quantity');
+    const stockHint = document.getElementById('stock-auto-hint');
+    if (!list || !template || !addBtn || !stockInput) return;
+
+    const rowHasVariant = (row) => {
+        const label = row.querySelector('input[name*="[label]"]')?.value?.trim() || '';
+        const sku = row.querySelector('input[name*="[sku]"]')?.value?.trim() || '';
+        return label !== '' || sku !== '';
+    };
+
+    const syncTotalStock = () => {
+        const rows = [...list.querySelectorAll('.variant-row')].filter(rowHasVariant);
+        const usingVariants = rows.length > 0;
+        stockHint?.classList.toggle('hidden', !usingVariants);
+        stockInput.readOnly = usingVariants;
+        stockInput.classList.toggle('bg-stone-100', usingVariants);
+        if (!usingVariants) return;
+        const total = rows.reduce((sum, row) => {
+            const value = parseInt(row.querySelector('input[name*="[stock]"]')?.value || '0', 10);
+            return sum + (Number.isFinite(value) ? value : 0);
+        }, 0);
+        stockInput.value = String(total);
+    };
+
+    const reindex = () => {
+        [...list.querySelectorAll('.variant-row')].forEach((row, index) => {
+            row.querySelectorAll('input[name], input[data-name]').forEach((input) => {
+                const field = input.dataset.name || (input.name.match(/\[([^\]]+)\]$/) || [])[1];
+                if (!field) return;
+                input.name = `variants[${index}][${field}]`;
+                input.removeAttribute('data-name');
+            });
+        });
+        syncTotalStock();
+    };
+
+    const ensureOneEmpty = () => {
+        if (list.querySelectorAll('.variant-row').length === 0) {
+            addBtn.click();
+        }
+    };
+
+    addBtn.addEventListener('click', () => {
+        const node = template.content.firstElementChild.cloneNode(true);
+        list.appendChild(node);
+        reindex();
+        node.querySelector('input')?.focus();
+    });
+
+    list.addEventListener('click', (event) => {
+        const btn = event.target.closest('.remove-variant-row');
+        if (!btn) return;
+        btn.closest('.variant-row')?.remove();
+        reindex();
+        ensureOneEmpty();
+    });
+
+    list.addEventListener('input', syncTotalStock);
+    syncTotalStock();
+})();
+</script>
 @endsection

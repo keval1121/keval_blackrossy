@@ -81,9 +81,23 @@ class Product extends Model
         return $this->hasMany(Review::class)->where('is_approved', true)->latest();
     }
 
+    /**
+     * Products are only visible on the storefront while their category (and sub-category, if any) is active.
+     */
     public function scopeActive(Builder $query): Builder
     {
-        return $query->where('status', ProductStatus::Active);
+        return $query->where('status', ProductStatus::Active)
+            ->whereHas('category', fn (Builder $category) => $category->active())
+            ->where(fn (Builder $visible) => $visible
+                ->whereNull('sub_category_id')
+                ->orWhereHas('subCategory', fn (Builder $subCategory) => $subCategory->active()));
+    }
+
+    public function isVisible(): bool
+    {
+        return $this->status === ProductStatus::Active
+            && $this->category?->is_active
+            && (! $this->sub_category_id || $this->subCategory?->is_active);
     }
 
     public function getRouteKeyName(): string
@@ -121,6 +135,20 @@ class Product extends Model
         }
 
         return (int) $this->stock_quantity;
+    }
+
+    /**
+     * When variants exist, product stock_quantity mirrors their combined stock.
+     */
+    public function recalculateStockFromVariants(): void
+    {
+        if (! $this->variants()->exists()) {
+            return;
+        }
+
+        $this->forceFill([
+            'stock_quantity' => (int) $this->variants()->sum('stock'),
+        ])->save();
     }
 
     public function displayImage(): ?ProductImage

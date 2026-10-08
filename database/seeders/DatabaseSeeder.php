@@ -50,8 +50,6 @@ class DatabaseSeeder extends Seeder
             'ads_txt' => '',
             'maintenance_mode' => '0',
             'restore_stock_on_cancel' => '1',
-            'default_delivery_charge' => '49',
-            'free_shipping_amount' => '999',
             'seo_title' => 'Black Rossy | Online Fashion Store India',
             'seo_description' => 'Buy fashion clothing online in India at Black Rossy. Kurtis, ethnic wear and more with Cash on Delivery.',
             'currency_symbol' => '₹',
@@ -148,7 +146,7 @@ class DatabaseSeeder extends Seeder
                 'slug' => Str::slug($name),
                 'sku' => 'VL'.str_pad((string) ($index + 1), 4, '0', STR_PAD_LEFT),
                 'short_description' => 'A Black Rossy exclusive: '.$name.' designed for everyday wear and easy COD checkout.',
-                'description' => $name.' is crafted for comfort and polish. Pair it with jewellery from our collection. Free shipping above ₹999. 7-day easy returns.',
+                'description' => $name.' is crafted for comfort and polish. Pair it with jewellery from our collection. Free shipping on every order. 7-day easy returns.',
                 'specifications' => [
                     ['label' => 'Brand', 'value' => 'Black Rossy'],
                     ['label' => 'Care', 'value' => 'Keep away from moisture and perfume'],
@@ -233,6 +231,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         foreach ([
+            ['hero_products', 'Hero products', 0],
             ['featured_categories', 'Shop by category', 1],
             ['featured_products', 'Featured', 2],
             ['trending', 'Trending now', 3],
@@ -286,7 +285,7 @@ class DatabaseSeeder extends Seeder
             'about' => ['About Us', 'Black Rossy is a mobile-first boutique for clothing, jewellery, bags and gifts. We keep checkout simple: no account, Cash on Delivery, and honest product pages.'],
             'privacy-policy' => ['Privacy Policy', 'We collect only the information needed to deliver your order: name, mobile number and address. We do not sell personal data.'],
             'terms' => ['Terms & Conditions', 'By placing an order you agree to pay the Cash on Delivery amount to the delivery partner and to our return windows.'],
-            'shipping-policy' => ['Shipping Policy', 'Orders are usually dispatched within 24-48 hours. Free shipping applies above the amount set in store settings.'],
+            'shipping-policy' => ['Shipping Policy', 'Orders are usually dispatched within 24-48 hours. Shipping is free on every order.'],
             'return-policy' => ['Return Policy', 'Unused products can be returned within 7 days with original tags. Jewellery returns must include all packaging.'],
             'refund-policy' => ['Refund Policy', 'Approved COD returns are refunded after quality check, typically within 5-7 business days of pickup.'],
             'cancellation-policy' => ['Cancellation Policy', 'You may request cancellation before the order is packed. Packed and shipped orders follow the return policy.'],

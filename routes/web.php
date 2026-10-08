@@ -21,7 +21,6 @@ Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/categories', [ShopController::class, 'categories'])->name('categories');
 Route::get('/search', [ContentController::class, 'search'])->middleware('throttle:search')->name('search');
 Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
-Route::post('/product/{product:slug}/review', [ProductController::class, 'review'])->middleware('throttle:contact')->name('product.review');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
@@ -45,7 +44,6 @@ Route::get('/about', [ContentController::class, 'about'])->name('about');
 Route::get('/faq', [ContentController::class, 'faq'])->name('faq');
 Route::get('/policy', [ContentController::class, 'policy'])->name('policy');
 Route::get('/contact', [ContentController::class, 'contact'])->name('contact');
-Route::post('/contact', [ContentController::class, 'contactStore'])->middleware('throttle:contact')->name('contact.store');
 Route::get('/sitemap.xml', [ContentController::class, 'sitemap'])->name('sitemap');
 Route::get('/robots.txt', [ContentController::class, 'robots'])->name('robots');
 Route::get('/ads.txt', [ContentController::class, 'adsTxt'])->name('ads.txt');
@@ -63,10 +61,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::delete('products/{product}/images/{image}', [AdminProductController::class, 'destroyImage'])->name('products.images.destroy');
         Route::post('products/{product}/images/{image}/primary', [AdminProductController::class, 'makePrimaryImage'])->name('products.images.primary');
+        Route::patch('products/{product}/stock', [AdminProductController::class, 'updateStock'])->name('products.stock');
+        Route::patch('products/{product}/status', [AdminProductController::class, 'updateStatus'])->name('products.status');
         Route::resource('products', AdminProductController::class)->except(['show']);
         Route::post('products/bulk-delete', [AdminProductController::class, 'bulkDelete'])->name('products.bulk');
         Route::get('products-export', [AdminProductController::class, 'export'])->name('products.export');
         Route::post('products-import', [AdminProductController::class, 'import'])->name('products.import');
+        Route::patch('categories/{category}/active', [CategoryController::class, 'updateActive'])->name('categories.active');
+        Route::patch('categories/{category}/homepage', [CategoryController::class, 'updateHomepage'])->name('categories.homepage');
         Route::resource('categories', CategoryController::class)->except(['show']);
         Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
         Route::get('orders/export', [AdminOrderController::class, 'export'])->name('orders.export');
@@ -95,7 +97,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('brands', [ContentAdminController::class, 'brands'])->name('brands.index');
         Route::post('brands', [ContentAdminController::class, 'brandSave'])->name('brands.save');
         Route::delete('brands/{brand}', [ContentAdminController::class, 'brandDelete'])->name('brands.delete');
-        Route::get('messages', [ContentAdminController::class, 'contacts'])->name('messages.index');
         Route::get('blocklist', [ContentAdminController::class, 'blocklist'])->name('blocklist.index');
         Route::post('blocklist', [ContentAdminController::class, 'blockSave'])->name('blocklist.save');
         Route::get('reports', [ContentAdminController::class, 'reports'])->name('reports.index');

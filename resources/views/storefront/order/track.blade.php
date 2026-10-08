@@ -1,4 +1,11 @@
 @extends('layouts.storefront')
+@php
+    $seoTitle = 'Track Your Order | '.store_name();
+    $hideAds = true;
+@endphp
+@push('head')
+    <meta name="robots" content="noindex, follow">
+@endpush
 @section('content')
 <div class="container-store max-w-lg py-12">
     <h1 class="font-serif text-4xl">Track order</h1>

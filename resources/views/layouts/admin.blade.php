@@ -30,7 +30,6 @@
                 'admin.coupons.index' => 'Coupons',
                 'admin.reviews.index' => 'Reviews',
                 'admin.reports.index' => 'Reports',
-                'admin.messages.index' => 'Messages',
                 'admin.blocklist.index' => 'Blocklist',
                 'admin.settings.index' => 'Settings',
             ] as $route => $label)

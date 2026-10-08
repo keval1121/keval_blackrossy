@@ -1,8 +1,12 @@
 <?php
 
 use App\Models\Ad;
+use App\Models\Category;
 use App\Models\Setting;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 if (! function_exists('setting')) {
     function setting(string $key, mixed $default = null): mixed
@@ -153,6 +157,73 @@ if (! function_exists('store_name')) {
     function store_name(): string
     {
         return (string) setting('website_name', config('app.name', 'Black Rossy'));
+    }
+}
+
+if (! function_exists('storefront_collections')) {
+    /**
+     * Active top-level categories, so storefront copy only names what shoppers can actually browse.
+     *
+     * @return Collection<int, array{name: string, slug: string}>
+     */
+    function storefront_collections(): Collection
+    {
+        try {
+            return collect(Cache::remember('shop.collections', 600, fn () => Category::query()
+                ->active()
+                ->parents()
+                ->orderBy('display_order')
+                ->get(['name', 'slug'])
+                ->map(fn (Category $category) => ['name' => $category->name, 'slug' => $category->slug])
+                ->all()));
+        } catch (Throwable) {
+            return collect();
+        }
+    }
+}
+
+if (! function_exists('storefront_collection_names')) {
+    /**
+     * e.g. "Rossy Apparel, Lustre and Carry" — the shared first word is only kept on the first name.
+     */
+    function storefront_collection_names(string $finalGlue = ' and '): string
+    {
+        $names = storefront_collections()->pluck('name')->values();
+        if ($names->isEmpty()) {
+            return store_name();
+        }
+
+        $sharedPrefix = Str::before($names->first(), ' ').' ';
+        if ($names->count() > 1 && $names->every(fn (string $name) => str_starts_with($name, $sharedPrefix))) {
+            $names = $names->map(fn (string $name, int $index) => $index > 0 ? Str::after($name, $sharedPrefix) : $name);
+        }
+
+        return Arr::join($names->all(), ', ', $finalGlue);
+    }
+}
+
+if (! function_exists('storefront_product_types')) {
+    /**
+     * e.g. "clothing, jewellery and bags" — plain words for descriptions and search hints.
+     */
+    function storefront_product_types(string $finalGlue = ' and '): string
+    {
+        $words = [
+            'fashion' => 'clothing',
+            'jewellery' => 'jewellery',
+            'footwear' => 'footwear',
+            'bags' => 'bags',
+            'beauty-products' => 'beauty products',
+            'home-products' => 'home products',
+            'gift-items' => 'gifts',
+        ];
+
+        $types = storefront_collections()
+            ->map(fn (array $collection) => $words[$collection['slug']] ?? Str::lower(str_replace('-', ' ', $collection['slug'])))
+            ->unique()
+            ->values();
+
+        return $types->isEmpty() ? 'our collection' : Arr::join($types->all(), ', ', $finalGlue);
     }
 }
 

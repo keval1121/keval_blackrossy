@@ -153,8 +153,6 @@ if (filterForm && productGrid) {
             const data = await jsonFetch(url, { method: 'GET' });
             productGrid.innerHTML = data.html;
             history.pushState({}, '', url);
-            const count = document.getElementById('result-count');
-            if (count && data.count !== undefined) count.textContent = `${data.count} items`;
         } catch (error) {
             toast(error.message, 'error');
         } finally {
@@ -183,94 +181,5 @@ if (filterForm && productGrid) {
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeFilters();
 });
-
-const heroSlider = document.querySelector('[data-hero-slider]');
-if (heroSlider) {
-    const track = heroSlider.querySelector('[data-hero-track]');
-    const slides = [...heroSlider.querySelectorAll('[data-hero-slide]')];
-    const dots = [...heroSlider.querySelectorAll('[data-hero-dot]')];
-    const prev = heroSlider.querySelector('[data-hero-prev]');
-    const next = heroSlider.querySelector('[data-hero-next]');
-    let index = 0;
-    let timer = null;
-
-    const goTo = (nextIndex) => {
-        if (!slides.length || !track) {
-            return;
-        }
-
-        // Keep page scroll stable: focused links inside a moving slide can force the browser to jump up.
-        const scrollY = window.scrollY;
-        const scrollX = window.scrollX;
-        const focused = document.activeElement;
-        if (focused instanceof HTMLElement && heroSlider.contains(focused)) {
-            focused.blur();
-        }
-
-        index = (nextIndex + slides.length) % slides.length;
-        track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
-
-        slides.forEach((slide, i) => {
-            const isActive = i === index;
-            slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-            if ('inert' in slide) {
-                slide.inert = !isActive;
-            }
-            slide.querySelectorAll('a, button').forEach((el) => {
-                if (isActive) {
-                    el.removeAttribute('tabindex');
-                } else {
-                    el.setAttribute('tabindex', '-1');
-                }
-            });
-        });
-
-        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
-
-        window.scrollTo(scrollX, scrollY);
-        requestAnimationFrame(() => window.scrollTo(scrollX, scrollY));
-    };
-
-    const start = () => {
-        stop();
-        if (slides.length < 2) {
-            return;
-        }
-        timer = setInterval(() => {
-            if (document.hidden) {
-                return;
-            }
-            goTo(index + 1);
-        }, 5200);
-    };
-
-    const stop = () => {
-        if (timer) {
-            clearInterval(timer);
-        }
-        timer = null;
-    };
-
-    prev?.addEventListener('click', () => {
-        goTo(index - 1);
-        start();
-    });
-    next?.addEventListener('click', () => {
-        goTo(index + 1);
-        start();
-    });
-    dots.forEach((dot) => {
-        dot.addEventListener('click', () => {
-            goTo(Number(dot.dataset.heroDot || 0));
-            start();
-        });
-    });
-
-    // Initialize inactive slides without scrolling the page.
-    goTo(0);
-    heroSlider.addEventListener('mouseenter', stop);
-    heroSlider.addEventListener('mouseleave', start);
-    start();
-}
 
 window.BlackRossy = { toast, jsonFetch, setCartCount, csrf };

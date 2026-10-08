@@ -10,7 +10,6 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class OrderService
 {
@@ -105,6 +104,7 @@ class OrderService
 
                 if ($item->variant) {
                     ProductVariant::query()->where('id', $item->variant->id)->decrement('stock', $item->quantity);
+                    Product::query()->whereKey($item->product_id)->first()?->recalculateStockFromVariants();
                 } else {
                     Product::query()->where('id', $item->product_id)->decrement('stock_quantity', $item->quantity);
                 }
@@ -175,6 +175,7 @@ class OrderService
         foreach ($order->items as $item) {
             if ($item->product_variant_id) {
                 ProductVariant::query()->where('id', $item->product_variant_id)->increment('stock', $item->quantity);
+                Product::query()->whereKey($item->product_id)->first()?->recalculateStockFromVariants();
             } elseif ($item->product_id) {
                 Product::query()->where('id', $item->product_id)->increment('stock_quantity', $item->quantity);
             }

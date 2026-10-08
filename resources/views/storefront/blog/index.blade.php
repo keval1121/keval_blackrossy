@@ -1,4 +1,9 @@
 @extends('layouts.storefront')
+@if($posts->isEmpty())
+    @push('head')
+        <meta name="robots" content="noindex, follow">
+    @endpush
+@endif
 @section('content')
 <div class="container-store py-10">
     <h1 class="font-serif text-4xl">Journal</h1>
