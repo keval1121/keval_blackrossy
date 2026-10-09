@@ -10,25 +10,7 @@ class EmptyBlogVisibilityTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_empty_blog_is_left_out_of_sitemap_and_marked_noindex(): void
-    {
-        Blog::query()->create([
-            'title' => 'Draft Kurti Size Guide',
-            'slug' => 'draft-kurti-size-guide',
-            'content' => 'Draft content.',
-            'is_published' => false,
-        ]);
-
-        $this->get('/sitemap.xml')
-            ->assertOk()
-            ->assertDontSee(url('/blog').'</loc>', false);
-
-        $this->get(route('blog.index'))
-            ->assertOk()
-            ->assertSee('<meta name="robots" content="noindex, follow">', false);
-    }
-
-    public function test_blog_returns_to_sitemap_once_a_post_is_published(): void
+    public function test_blog_urls_are_gone_and_left_out_of_indexing(): void
     {
         Blog::query()->create([
             'title' => 'Festival Outfit Checklist',
@@ -38,12 +20,21 @@ class EmptyBlogVisibilityTest extends TestCase
             'published_at' => now()->subDay(),
         ]);
 
-        $this->get('/sitemap.xml')
-            ->assertOk()
-            ->assertSee(url('/blog').'</loc>', false);
+        $index = $this->get('/blog');
+        $index->assertGone();
+        $index->assertHeader('X-Robots-Tag', 'noindex, nofollow');
+        $index->assertSee('<meta name="robots" content="noindex, nofollow">', false);
+        $index->assertDontSee('Festival Outfit Checklist');
 
-        $this->get(route('blog.index'))
+        $this->get('/blog/festival-outfit-checklist')->assertGone();
+
+        $sitemap = $this->get('/sitemap.xml');
+        $sitemap->assertOk();
+        $this->assertDoesNotMatchRegularExpression('#<loc>[^<]*/blog(/[^<]*)?</loc>#', $sitemap->getContent());
+
+        $this->get(route('home'))
             ->assertOk()
-            ->assertDontSee('noindex', false);
+            ->assertDontSee('From the journal')
+            ->assertDontSee('Festival Outfit Checklist');
     }
 }

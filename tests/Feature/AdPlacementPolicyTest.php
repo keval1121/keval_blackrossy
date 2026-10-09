@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Enums\ProductStatus;
 use App\Models\Ad;
-use App\Models\Blog;
 use App\Models\Category;
 use App\Models\HomepageSection;
 use App\Models\Product;
@@ -80,13 +79,13 @@ class AdPlacementPolicyTest extends TestCase
 
             $response->assertOk();
 
-            foreach (['home_top', 'search_middle', 'category_middle', 'category_bottom', 'listing_bottom', 'blog_top'] as $position) {
+            foreach (['home_top', 'search_middle', 'category_middle', 'category_bottom', 'listing_bottom', 'blog_top', 'blog_middle', 'blog_bottom'] as $position) {
                 $response->assertDontSee('data-ad-slot="'.$position.'"', false);
             }
         }
 
         $this->assertSame(
-            ['home_middle', 'home_bottom', 'category_top', 'listing_middle', 'product_bottom', 'blog_middle', 'blog_bottom'],
+            ['home_middle', 'home_bottom', 'category_top', 'listing_middle', 'product_bottom'],
             array_keys(config('shop.ad_positions'))
         );
     }
@@ -142,33 +141,5 @@ class AdPlacementPolicyTest extends TestCase
         $this->get($this->category->url())
             ->assertOk()
             ->assertDontSee('col-span-2 lg:col-span-3', false);
-    }
-
-    public function test_blog_ads_are_never_stacked(): void
-    {
-        $short = Blog::query()->create([
-            'title' => 'Short Note',
-            'slug' => 'short-note',
-            'content' => "First thought.\n\nSecond thought.",
-            'is_published' => true,
-            'published_at' => now()->subDay(),
-        ]);
-
-        $shortPage = $this->get(route('blog.show', $short));
-        $shortPage->assertOk();
-        $shortPage->assertDontSee('data-ad-slot="blog_middle"', false);
-        $shortPage->assertSeeInOrder(['Second thought.', 'data-ad-slot="blog_bottom"'], false);
-
-        $long = Blog::query()->create([
-            'title' => 'Long Guide',
-            'slug' => 'long-guide',
-            'content' => "Part one.\n\nPart two.\n\nPart three.\n\nPart four.",
-            'is_published' => true,
-            'published_at' => now()->subDay(),
-        ]);
-
-        $this->get(route('blog.show', $long))
-            ->assertOk()
-            ->assertSeeInOrder(['Part two.', 'data-ad-slot="blog_middle"', 'Part three.', 'Part four.', 'data-ad-slot="blog_bottom"'], false);
     }
 }

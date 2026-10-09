@@ -38,12 +38,12 @@ Route::get('/order/success/{order:order_number}', [OrderController::class, 'succ
 Route::get('/track-order', [OrderController::class, 'trackForm'])->name('track');
 Route::post('/track-order', [OrderController::class, 'track'])->middleware('throttle:track')->name('track.submit');
 
-Route::get('/blog', [ContentController::class, 'blog'])->name('blog.index');
-Route::get('/blog/{blog:slug}', [ContentController::class, 'blogShow'])->name('blog.show');
+Route::get('/blog/{any?}', [ContentController::class, 'gone'])->where('any', '.*')->name('blog.gone');
 Route::get('/about', [ContentController::class, 'about'])->name('about');
 Route::get('/faq', [ContentController::class, 'faq'])->name('faq');
 Route::get('/policy', [ContentController::class, 'policy'])->name('policy');
 Route::get('/contact', [ContentController::class, 'contact'])->name('contact');
+Route::post('/contact', [ContentController::class, 'contactStore'])->middleware('throttle:contact')->name('contact.store');
 Route::get('/sitemap.xml', [ContentController::class, 'sitemap'])->name('sitemap');
 Route::get('/robots.txt', [ContentController::class, 'robots'])->name('robots');
 Route::get('/ads.txt', [ContentController::class, 'adsTxt'])->name('ads.txt');
@@ -82,9 +82,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('homepage/{section}', [CmsController::class, 'homepageSave'])->name('homepage.save');
         Route::get('ads', [CmsController::class, 'ads'])->name('ads.index');
         Route::post('ads/{ad}', [CmsController::class, 'adSave'])->name('ads.save');
-        Route::get('blog', [ContentAdminController::class, 'blogs'])->name('blog.index');
-        Route::post('blog/{blog?}', [ContentAdminController::class, 'blogSave'])->name('blog.save');
-        Route::delete('blog/{blog}', [ContentAdminController::class, 'blogDelete'])->name('blog.delete');
         Route::get('pages', [ContentAdminController::class, 'pages'])->name('pages.index');
         Route::post('pages/{page}', [ContentAdminController::class, 'pageSave'])->name('pages.save');
         Route::get('settings', [ContentAdminController::class, 'settings'])->name('settings.index');
@@ -92,6 +89,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('coupons', [ContentAdminController::class, 'coupons'])->name('coupons.index');
         Route::post('coupons/{coupon?}', [ContentAdminController::class, 'couponSave'])->name('coupons.save');
         Route::get('reviews', [ContentAdminController::class, 'reviews'])->name('reviews.index');
+        Route::get('messages', [ContentAdminController::class, 'contacts'])->name('messages.index');
+        Route::post('messages/{contactMessage}/read', [ContentAdminController::class, 'contactRead'])->name('messages.read');
+        Route::delete('messages/{contactMessage}', [ContentAdminController::class, 'contactDelete'])->name('messages.delete');
         Route::post('reviews/{review}/approve', [ContentAdminController::class, 'reviewApprove'])->name('reviews.approve');
         Route::delete('reviews/{review}', [ContentAdminController::class, 'reviewDelete'])->name('reviews.delete');
         Route::get('brands', [ContentAdminController::class, 'brands'])->name('brands.index');

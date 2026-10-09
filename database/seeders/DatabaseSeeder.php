@@ -7,8 +7,6 @@ use App\Models\Ad;
 use App\Models\Admin;
 use App\Models\Attribute;
 use App\Models\Banner;
-use App\Models\Blog;
-use App\Models\BlogCategory;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Coupon;
@@ -39,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'contact_number' => '8128161775',
             'whatsapp_number' => '918128161775',
             'contact_email' => 'Support@blackrossy.com',
-            'address' => 'Gujarat, India 500068',
+            'address' => '123 Rangeela Park, Opp. Om Nagar Society, Millenium Park, Dindoli, Surat, Gujarat - 394210, India',
             'cod_enabled' => '1',
             'otp_enabled' => '0',
             'coupons_enabled' => '1',
@@ -237,7 +235,6 @@ class DatabaseSeeder extends Seeder
             ['trending', 'Trending now', 3],
             ['bestsellers', 'Best sellers', 4],
             ['new_arrivals', 'New arrivals', 5],
-            ['blog', 'From the journal', 6],
         ] as [$key, $title, $display]) {
             HomepageSection::query()->create([
                 'key' => $key,
@@ -254,31 +251,6 @@ class DatabaseSeeder extends Seeder
                 'code' => '',
                 'is_active' => false,
             ]);
-        }
-
-        $blogCat = BlogCategory::query()->create(['name' => 'Style Guides', 'slug' => 'style-guides', 'is_active' => true]);
-        $posts = [
-            ['How to Choose the Right Jewellery', 'A practical guide to metals, stones and everyday wear.'],
-            ['How to Choose Kurti Size', 'Measure once, order with confidence. Includes a simple size chart.'],
-            ['Best Jewellery Gifts', 'Thoughtful pieces for festivals, weddings and birthdays.'],
-            ['Jewellery Care Guide', 'Keep gold-plated jewellery bright for longer.'],
-        ];
-        foreach ($posts as $i => [$title, $excerpt]) {
-            $path = 'blog/'.Str::slug($title).'.webp';
-            Storage::disk('public')->put($path, $images->bannerWebp($title, '#3f3a34', 1200, 700));
-            $post = Blog::query()->create([
-                'blog_category_id' => $blogCat->id,
-                'title' => $title,
-                'slug' => Str::slug($title),
-                'excerpt' => $excerpt,
-                'content' => $excerpt."\n\nBlack Rossy pieces are designed to be worn often. Choose a size that sits comfortably, keep jewellery away from perfume, and pair kurtis with gold-toned accessories from our jewellery collection.\n\nExplore Women's Clothing and Jewellery on Black Rossy with Cash on Delivery.",
-                'featured_image' => $path,
-                'seo_title' => $title.' | Black Rossy Journal',
-                'seo_description' => $excerpt,
-                'is_published' => true,
-                'published_at' => now()->subDays($i + 1),
-            ]);
-            $post->syncTagsFromString('fashion, jewellery');
         }
 
         $legal = [

@@ -54,7 +54,7 @@ class CmsController extends Controller
     public function homepage()
     {
         return view('admin.homepage.index', [
-            'sections' => HomepageSection::query()->orderBy('display_order')->get(),
+            'sections' => HomepageSection::query()->where('key', '!=', 'blog')->orderBy('display_order')->get(),
             'products' => Product::query()->orderBy('name')->get(['id', 'name']),
         ]);
     }

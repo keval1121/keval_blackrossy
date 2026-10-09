@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
-use App\Models\Blog;
 use App\Models\Category;
 use App\Models\HomepageSection;
 use App\Models\Product;
@@ -50,7 +49,6 @@ class HomeController extends Controller
             'trendingProducts' => $this->products($trendingIds, $productWith, 'sold_count'),
             'bestSellers' => $bestSellers,
             'newArrivals' => $newArrivals,
-            'blogs' => Blog::query()->published()->latest('published_at')->limit(3)->get(),
         ]);
     }
 

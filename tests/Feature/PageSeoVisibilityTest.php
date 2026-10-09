@@ -47,8 +47,8 @@ class PageSeoVisibilityTest extends TestCase
         $contact->assertOk();
         $contact->assertSee('<title>Contact Us | '.store_name().'</title>', false);
         $contact->assertDontSee($homeTitle, false);
-        $contact->assertDontSee('Send message');
-        $contact->assertDontSee('<form method="post"', false);
+        $contact->assertSee('Send message');
+        $contact->assertSee('<form method="post"', false);
 
         $categories = $this->get(route('categories'));
         $categories->assertOk();
@@ -104,8 +104,8 @@ class PageSeoVisibilityTest extends TestCase
 
         $response->assertOk();
         $response->assertSee('Disallow: /admin');
+        $response->assertDontSee('Disallow: /blog');
         $response->assertDontSee('Disallow: /cart');
         $response->assertDontSee('Disallow: /checkout');
-        $response->assertDontSee('Disallow: /blog');
     }
 }

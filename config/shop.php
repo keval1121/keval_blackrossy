@@ -30,7 +30,5 @@ return [
         'category_top' => 'Category — above the products (desktop only)',
         'listing_middle' => 'Category & search — after the 6th product',
         'product_bottom' => 'Product — after the description',
-        'blog_middle' => 'Blog — middle of the article',
-        'blog_bottom' => 'Blog — end of the article',
     ],
 ];

@@ -3,8 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\Banner;
-use App\Models\Blog;
-use App\Models\BlogCategory;
 use App\Models\Category;
 use App\Models\Page;
 use App\Models\Product;
@@ -18,10 +16,10 @@ use Illuminate\Support\Str;
 class RefreshStoreImages extends Command
 {
     protected $signature = 'shop:refresh-images
-        {--only= : products|categories|banners|blog|pages}
+        {--only= : products|categories|banners|pages}
         {--force : Replace existing images}';
 
-    protected $description = 'Store real product-matched photos locally as WebP and refresh AdSense-ready pages/journal.';
+    protected $description = 'Store real product-matched photos locally as WebP and refresh AdSense-ready pages.';
 
     /**
      * Visually verified photo IDs only (Pexels numeric / Unsplash photo-…).
@@ -209,7 +207,7 @@ class RefreshStoreImages extends Command
 
     public function handle(ImageService $images): int
     {
-        foreach (['products', 'categories', 'banners', 'blog'] as $dir) {
+        foreach (['products', 'categories', 'banners'] as $dir) {
             Storage::disk('public')->makeDirectory($dir);
         }
 
@@ -227,9 +225,8 @@ class RefreshStoreImages extends Command
             $this->info('Refreshing slider banners…');
             $this->refreshBanners($images);
         }
-        if (! $only || $only === 'blog') {
-            $this->info('Seeding original journal posts + images…');
-            $this->seedJournalPosts($images);
+        if ($only === 'blog') {
+            $this->warn('The public journal has been retired; skipping.');
         }
         if (! $only || $only === 'pages') {
             $this->info('Expanding policy pages for AdSense…');
@@ -371,259 +368,6 @@ class RefreshStoreImages extends Command
         }
     }
 
-    private function seedJournalPosts(ImageService $images): void
-    {
-        $category = BlogCategory::query()->firstOrCreate(
-            ['slug' => 'style-guides'],
-            ['name' => 'Style Guides', 'is_active' => true]
-        );
-
-        $posts = $this->journalPosts();
-
-        foreach ($posts as $i => $post) {
-            $blog = Blog::query()->updateOrCreate(
-                ['slug' => $post['slug']],
-                [
-                    'blog_category_id' => $category->id,
-                    'title' => $post['title'],
-                    'excerpt' => $post['excerpt'],
-                    'content' => $post['content'],
-                    'seo_title' => $post['title'].' | Black Rossy Journal',
-                    'seo_description' => Str::limit($post['excerpt'], 155),
-                    'is_published' => true,
-                    'published_at' => now()->subDays($i + 1),
-                ]
-            );
-            $blog->syncTagsFromString($post['tags']);
-
-            if ($blog->featured_image) {
-                $images->delete($blog->featured_image);
-            }
-
-            $temp = $this->downloadRef($post['photo'], 1400, 800);
-            if ($temp) {
-                $path = $images->storeSingleFromPath($temp, 'blog', 1400);
-                @unlink($temp);
-                $blog->update(['featured_image' => $path]);
-            }
-
-            $this->line('  ✓ '.$blog->title);
-        }
-    }
-
-    /**
-     * @return list<array{slug: string, title: string, excerpt: string, tags: string, photo: array{0: string, 1: string}, content: string}>
-     */
-    private function journalPosts(): array
-    {
-        return [
-            [
-                'slug' => 'how-to-choose-the-right-jewellery',
-                'title' => 'How to Choose the Right Jewellery',
-                'excerpt' => 'A practical guide to metals, stones and everyday wear so your pieces last longer and look intentional.',
-                'tags' => 'jewellery, guide, gifts',
-                'photo' => ['unsplash', '1515562141207-7a88fb7ce338'],
-                'content' => <<<'TXT'
-Buying jewellery online is easier when you know what you actually wear. Start with three questions: daily or occasion, gold-tone or silver-tone, and how sensitive your skin is to plating.
-
-Metals and plating. Fashion jewellery is often gold-plated or silver-toned over a base metal. Plating looks bright when new; keep pieces away from perfume, swimming pools and long water exposure so the finish lasts. If you react to cheap metals, choose pieces labelled hypoallergenic or sterling where available.
-
-Everyday vs festive. For work and college, pick light studs, thin chains and slim bangles that sit flat under sleeves. For weddings and festivals, layered necklaces and statement earrings photograph well and pair with kurtis or dresses from our Fashion edit.
-
-Stone and colour. Clear stones catch light in photos and evening light. Coloured stones should match your wardrobe’s dominant tone — maroon and ivory clothing love warm gold; navy and black love silver or rose gold.
-
-Fit checks before COD. Measure your finger for rings (or compare with a ring you already own). For necklaces, check the listed length; chokers sit high, while layered pieces need a little breathing room.
-
-At Black Rossy we photograph jewellery close-up so you can see clasp style, stone size and chain thickness before ordering. Unused pieces with packaging can be returned within 7 days as per our Return Policy.
-TXT
-            ],
-            [
-                'slug' => 'how-to-choose-kurti-size',
-                'title' => 'How to Choose Kurti Size',
-                'excerpt' => 'Measure once, order with confidence. A simple size chart approach for straight and A-line kurtis.',
-                'tags' => 'fashion, kurti, sizing',
-                'photo' => ['pexels', '28512779'],
-                'content' => <<<'TXT'
-Wrong size is the top reason clothing returns happen. Spend two minutes with a soft tape before you tap Cash on Delivery.
-
-What to measure. Bust: around the fullest part, tape parallel to the floor. Waist: natural waist. Hip: fullest part. Kurti length: from shoulder point to where you want the hem.
-
-Straight vs A-line. Straight kurtis follow your body more closely — if you are between sizes, size up for comfort. A-line and flared cuts forgive a little extra room at the hip.
-
-Fabric behaviour. Cotton and linen may shrink slightly on first wash; follow the care note on the product page. Georgette and embroidered pieces drape differently — check the model notes and size chart on each listing.
-
-Try-on tip after delivery. Wear the kurti with the bottoms you plan to pair. Sit, raise your arms, and check sleeve ease. If something feels off and tags are intact, start a return within 7 days.
-
-Browse Women’s Clothing on Black Rossy for embroidered and everyday kurtis with clear photos and COD checkout.
-TXT
-            ],
-            [
-                'slug' => 'best-jewellery-gifts',
-                'title' => 'Best Jewellery Gifts',
-                'excerpt' => 'Thoughtful pieces for festivals, weddings, birthdays and “just because” moments.',
-                'tags' => 'gifts, jewellery, festivals',
-                'photo' => ['pexels', '264787'],
-                'content' => <<<'TXT'
-Jewellery gifts work when they feel personal, not random. Match the piece to how the person actually dresses.
-
-For sisters and friends. Stud earrings and delicate bracelets are safe, wearable and easy to style with jeans or ethnic wear. Add a Festive Gift Box presentation if you want the unboxing moment.
-
-For parents. Classic pearl or gold-tone sets feel respectful for festivals. Avoid overly trendy shapes unless you know their taste.
-
-For partners. A rose-gold ring or layered necklace photographs beautifully and pairs with both western and Indian outfits.
-
-Budget tips. Set a clear budget before browsing. Look at selling price and MRP together — shipping is free on every order, so the total stays predictable with COD.
-
-Care card. Include a simple note: wipe after wear, store dry, keep away from perfume. That small habit keeps plated jewellery brighter for longer.
-
-Explore Jewellery and Gift Items on Black Rossy — guest checkout, no account required.
-TXT
-            ],
-            [
-                'slug' => 'jewellery-care-guide',
-                'title' => 'Jewellery Care Guide',
-                'excerpt' => 'Keep gold-plated and fashion jewellery bright with simple daily habits.',
-                'tags' => 'jewellery, care, tips',
-                'photo' => ['pexels', '1232931'],
-                'content' => <<<'TXT'
-Fashion jewellery looks premium when it is cared for like something you value — not soaked, sprayed or stored wet.
-
-After every wear. Wipe with a soft, dry cloth. Oils and perfume speed up dulling on plating.
-
-Storage. Keep pieces in a dry pouch or box, separately so chains do not tangle and stones do not scratch each other. Do not leave jewellery in a bathroom steamy cabinet.
-
-What to avoid. Swimming pools, sea water, dishwashing, gym sweat for long hours, and spraying perfume directly on metal or stones.
-
-When plating fades. Light fading is normal over months of daily wear. Rotate pieces and reserve favourites for occasions if you want them to stay brighter longer.
-
-Black Rossy listings mention care notes on product pages. If a piece arrives damaged, contact us with photos — eligible unused items follow our Return Policy.
-TXT
-            ],
-            [
-                'slug' => 'cod-shopping-tips-india',
-                'title' => 'COD Shopping Tips for First-Time Buyers',
-                'excerpt' => 'How Cash on Delivery works at Black Rossy — from placing the order to opening the parcel safely.',
-                'tags' => 'cod, shopping, india',
-                'photo' => ['unsplash', '1483985988355-763728e1935b'],
-                'content' => <<<'TXT'
-Cash on Delivery is popular in India because you pay when the parcel reaches you. Here is how to use it smoothly on Black Rossy.
-
-Place the order. Add items to cart, apply a coupon if you have one, and enter a reachable mobile number and complete address with landmark. Wrong pin codes delay couriers.
-
-Stay reachable. Delivery partners call or message on the delivery day. Keep your phone on; missed calls can mean a failed attempt.
-
-Inspect before paying. Check the outer packet for damage. Open in front of the agent when possible if the seal looks broken, and refuse visibly damaged parcels.
-
-Returns window. Unused products with tags can usually be returned within 7 days. Beauty products once opened are typically non-returnable for hygiene.
-
-Free shipping. Every order ships free across India — no minimum cart value and no delivery fee at checkout.
-
-No account is required. Track anytime from Track Order using your order number and mobile.
-TXT
-            ],
-            [
-                'slug' => 'how-to-style-sneakers-with-ethnic-wear',
-                'title' => 'How to Style Sneakers with Ethnic Wear',
-                'excerpt' => 'Comfortable, modern combinations of kurtis, sneakers and light jewellery for everyday outings.',
-                'tags' => 'fashion, sneakers, styling',
-                'photo' => ['pexels', '2529148'],
-                'content' => <<<'TXT'
-Sneakers with kurtis are no longer a fashion risk — they are a weekday uniform for many shoppers who want comfort without looking underdressed.
-
-Keep the kurti clean. Solid colours or light embroidery work best. Very heavy bridal embroidery fights with sporty shoes.
-
-Balance volumes. If the kurti is flared, choose a simpler sneaker. If the kurti is straight and fitted, a chunkier sneaker can look intentional.
-
-Add one jewellery accent. Small studs or a thin bracelet are enough. Skip large jhumkas unless you are dressing up the rest of the look.
-
-Bags. A structured handbag or compact backpack keeps the outfit practical for travel and college.
-
-Shop Fashion and Footwear on Black Rossy for pieces photographed as they ship, with COD checkout.
-TXT
-            ],
-            [
-                'slug' => 'bag-buying-guide-handbag-vs-backpack',
-                'title' => 'Handbag vs Backpack: What to Buy',
-                'excerpt' => 'Choose the right everyday bag for office, college, travel and festive outings.',
-                'tags' => 'bags, guide, travel',
-                'photo' => ['unsplash', '1584917865442-de89df76afd3'],
-                'content' => <<<'TXT'
-The wrong bag becomes a daily annoyance. Match the bag to how you move through the day.
-
-Choose a handbag when. You need a polished look for office or dinners, carry fewer items, and prefer a top-handle or shoulder strap. Structured shapes hold their form in photos and on tables.
-
-Choose a backpack when. You commute, travel, or carry a bottle, charger and light jacket. Look for padded straps, a secure zip, and a pocket you can reach without unpacking everything.
-
-Material care. Wipe leather-look surfaces with a dry cloth. Keep canvas away from heavy rain when possible. Empty crumbs and receipts weekly so the lining lasts.
-
-Size check. Place your phone, wallet and keys mentally into the product photos. If the bag looks tiny next to a model’s hand, it may be evening-sized only.
-
-Browse Bags on Black Rossy — handbags, backpacks and wallets with studio-true photos and easy COD.
-TXT
-            ],
-            [
-                'slug' => 'home-scents-and-soft-furnishings',
-                'title' => 'Home Scents and Soft Furnishings',
-                'excerpt' => 'Simple ways to refresh a room with candles, cushions and calm neutrals without overbuying.',
-                'tags' => 'home, candles, decor',
-                'photo' => ['unsplash', '1616486338812-3dadae4b4ace'],
-                'content' => <<<'TXT'
-A room feels new when scent and soft textures change — not only when you buy more furniture.
-
-Candles. Place jars on a heat-safe surface, trim the wick, and never leave a flame unattended. One candle near the seating area is enough for a small flat.
-
-Cushions and throws. Stick to two or three neutrals so the sofa looks intentional. Mix one textured piece with one plain piece.
-
-Gifting. A scented candle set or soft furnishing edit makes a practical housewarming gift. Pair with a note about burn safety.
-
-At Black Rossy, Home Products are photographed in real living contexts so colour and scale are easier to judge before COD checkout.
-TXT
-            ],
-            [
-                'slug' => 'festival-outfit-checklist',
-                'title' => 'Festival Outfit Checklist',
-                'excerpt' => 'A calm pre-festival list for kurtis, jewellery, footwear and last-minute COD orders.',
-                'tags' => 'festivals, fashion, checklist',
-                'photo' => ['pexels', '19556879'],
-                'content' => <<<'TXT'
-Festivals get stressful when outfits are decided the night before. Use this checklist a week early.
-
-Clothing. One primary ethnic outfit and one backup. Confirm size with our kurti guide. Check embroidery photos closely for density and colour.
-
-Jewellery. Pick earrings first — they frame the face in photos — then add a necklace or bangle, not both heavy pieces unless the neckline is plain.
-
-Footwear. Break in new loafers or sneakers indoors before the festival day if you will walk a lot.
-
-Kids. Choose soft, washable sets; festive mess happens. Keep tags on until you are sure of fit.
-
-Order timing. Place COD orders early enough for 2–5 day delivery windows. Use Track Order to follow the parcel.
-
-Black Rossy packs festival favourites across Fashion, Jewellery and Gifts with clear photos and easy returns on eligible unused items.
-TXT
-            ],
-            [
-                'slug' => 'return-policy-explained',
-                'title' => 'Returns Explained in Plain Language',
-                'excerpt' => 'What you can return, what you cannot, and how to raise a request without confusion.',
-                'tags' => 'returns, policy, help',
-                'photo' => ['pexels', '904350'],
-                'content' => <<<'TXT'
-Clear returns build trust. Here is how Black Rossy’s return window works in everyday language.
-
-Usually eligible. Unused clothing, bags, unworn footwear, unused jewellery and home items with original tags and packaging, requested within 7 days of delivery.
-
-Usually not eligible. Opened beauty or personal care, used innerwear, free gifts, and items damaged by misuse after delivery.
-
-How to request. Message us from Contact or WhatsApp with your order number and clear photos. After pickup and quality check we process refund or replacement as applicable.
-
-COD refunds. Approved COD returns are typically refunded after quality check within 5–7 business days of pickup. Bank timelines may add a few days.
-
-Read the full Return Policy and Refund Policy pages for legal detail. Shopping should feel safe — that is why we publish these rules openly.
-TXT
-            ],
-        ];
-    }
-
     private function refreshPages(): void
     {
         $pages = [
@@ -648,7 +392,7 @@ How shopping works
 Browse categories, add items to your cart, apply an eligible coupon if available, and place a COD order with your name, mobile number and delivery address. We may verify the mobile number before confirming an order. Most orders are packed within 24–48 business hours and delivered in about 2–5 days depending on your pin code.
 
 Content and advertising
-Product pages, category guides and our Journal are written to help you choose with confidence. When Google AdSense or similar advertising is enabled, ads may appear on informational pages (never on cart, checkout or order confirmation). Advertising is disclosed in our Privacy Policy and Cookie Policy.
+Product pages and category guides are written to help you choose with confidence. When Google AdSense or similar advertising is enabled, ads may appear on informational pages (never on cart, checkout or order confirmation). Advertising is disclosed in our Privacy Policy and Cookie Policy.
 
 Questions
 Visit Contact, or message us on WhatsApp from the footer. For legal rules see Terms & Conditions, Privacy Policy, Shipping Policy, Return Policy, Refund Policy and Cancellation Policy.
@@ -753,7 +497,7 @@ We use reasonable technical and organisational measures (HTTPS, access controls,
 Our primary audience is India. Some service providers (for example cloud hosting or Google) may process data on servers outside India. Where that happens, we take steps consistent with applicable law and provider terms.
 
 12. Links to other sites
-Our Journal or pages may link to third-party sites. Their privacy practices are their own. Review their policies before sharing information.
+Our pages may link to third-party sites. Their privacy practices are their own. Review their policies before sharing information.
 
 13. Changes
 We may update this Privacy Policy. The “Last updated” date will change when we do. Continued use after changes means you accept the updated policy. Material changes may also be highlighted on the website.

@@ -35,5 +35,30 @@
             </p>
         </div>
     </div>
+
+    <form method="post" action="{{ route('contact.store') }}" class="mt-8 space-y-4 rounded-3xl bg-white p-6">
+        @csrf
+        <div>
+            <label for="name" class="field-label">Name <span class="field-required">*</span></label>
+            <input name="name" id="name" placeholder="Your name" required value="{{ old('name') }}" autocomplete="name">
+        </div>
+        <div>
+            <label for="email" class="field-label">Email</label>
+            <input name="email" id="email" type="email" placeholder="you@email.com" value="{{ old('email') }}" autocomplete="email">
+        </div>
+        <div>
+            <label for="mobile" class="field-label">Mobile</label>
+            <input name="mobile" id="mobile" placeholder="10-digit mobile" value="{{ old('mobile') }}" inputmode="numeric" maxlength="10" autocomplete="tel-national">
+        </div>
+        <div>
+            <label for="subject" class="field-label">Subject</label>
+            <input name="subject" id="subject" placeholder="Order help, return, privacy…" value="{{ old('subject') }}">
+        </div>
+        <div>
+            <label for="message" class="field-label">Message <span class="field-required">*</span></label>
+            <textarea name="message" id="message" rows="5" placeholder="How can we help?" required>{{ old('message') }}</textarea>
+        </div>
+        <button class="btn btn-primary w-full">Send message</button>
+    </form>
 </div>
 @endsection

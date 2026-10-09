@@ -149,23 +149,4 @@
 </section>
 
 <div class="container-store"><x-ad position="home_bottom" /></div>
-
-@if($blogs->isNotEmpty() && $sections->get('blog')?->is_enabled !== false)
-<section class="container-store mt-14">
-    <x-section-heading title="From the journal">
-        <a href="{{ route('blog.index') }}" class="text-sm text-gold">View all</a>
-    </x-section-heading>
-    <div class="grid gap-6 md:grid-cols-3">
-        @foreach($blogs as $post)
-            <a href="{{ route('blog.show', $post) }}" class="overflow-hidden rounded-3xl bg-white">
-                <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="h-44 w-full object-cover" loading="lazy">
-                <div class="p-5">
-                    <p class="font-serif text-2xl">{{ $post->title }}</p>
-                    <p class="mt-2 line-clamp-2 text-sm text-muted">{{ $post->excerpt }}</p>
-                </div>
-            </a>
-        @endforeach
-    </div>
-</section>
-@endif
 @endsection

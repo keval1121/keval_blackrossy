@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
+use App\Http\Requests\Storefront\ContactRequest;
 use App\Models\Category;
+use App\Models\ContactMessage;
 use App\Models\Page;
 use App\Models\Product;
 use App\Services\CatalogService;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ContentController extends Controller
 {
@@ -28,20 +30,11 @@ class ContentController extends Controller
         ]);
     }
 
-    public function blog()
+    public function gone(): Response
     {
-        $posts = Blog::query()->published()->with('category')->latest('published_at')->paginate(9);
-
-        return view('storefront.blog.index', compact('posts'));
-    }
-
-    public function blogShow(Blog $blog)
-    {
-        abort_unless($blog->is_published && $blog->published_at?->lte(now()), 404);
-        $blog->load(['category', 'tags']);
-        $related = Blog::query()->published()->where('id', '!=', $blog->id)->latest('published_at')->limit(3)->get();
-
-        return view('storefront.blog.show', compact('blog', 'related'));
+        return response()
+            ->view('errors.410', [], 410)
+            ->header('X-Robots-Tag', 'noindex, nofollow');
     }
 
     public function page(Page $page)
@@ -125,6 +118,21 @@ class ContentController extends Controller
         ]);
     }
 
+    public function contactStore(ContactRequest $request)
+    {
+        ContactMessage::query()->create($request->safe()->only([
+            'name',
+            'email',
+            'mobile',
+            'subject',
+            'message',
+        ]) + [
+            'ip_address' => $request->ip(),
+        ]);
+
+        return back()->with('status', 'Message sent. We will get back to you soon.');
+    }
+
     public function sitemap()
     {
         $categories = Category::query()
@@ -132,13 +140,10 @@ class ContentController extends Controller
             ->where(fn ($visible) => $visible->whereNull('parent_id')->orWhereHas('parent', fn ($parent) => $parent->active()))
             ->get();
         $products = Product::query()->active()->select('slug', 'updated_at')->get();
-        // Thin journal posts are kept offline for AdSense review; omit from sitemap.
-        $posts = collect();
-        $hasPublishedPosts = Blog::query()->published()->exists();
         $pages = Page::query()->where('is_active', true)->get();
 
         return response()
-            ->view('storefront.pages.sitemap', compact('categories', 'products', 'posts', 'hasPublishedPosts', 'pages'))
+            ->view('storefront.pages.sitemap', compact('categories', 'products', 'pages'))
             ->header('Content-Type', 'application/xml');
     }
 

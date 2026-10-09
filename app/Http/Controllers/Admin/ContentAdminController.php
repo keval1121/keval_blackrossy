@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlockedMobile;
-use App\Models\Blog;
-use App\Models\BlogCategory;
 use App\Models\Brand;
+use App\Models\ContactMessage;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\Page;
@@ -19,46 +18,6 @@ use Illuminate\Support\Str;
 
 class ContentAdminController extends Controller
 {
-    public function blogs()
-    {
-        return view('admin.blog.index', [
-            'posts' => Blog::query()->with('category')->latest()->paginate(20),
-            'categories' => BlogCategory::query()->orderBy('name')->get(),
-        ]);
-    }
-
-    public function blogSave(Request $request, ImageService $images, ?Blog $blog = null)
-    {
-        $blog ??= new Blog;
-        $data = $request->validate([
-            'title' => ['required', 'string', 'max:180'],
-            'slug' => ['nullable', 'string', 'max:180'],
-            'blog_category_id' => ['nullable', 'exists:blog_categories,id'],
-            'excerpt' => ['nullable', 'string', 'max:500'],
-            'content' => ['required', 'string'],
-            'seo_title' => ['nullable', 'string', 'max:180'],
-            'seo_description' => ['nullable', 'string', 'max:320'],
-            'featured_image' => ['nullable', 'image', 'max:4096'],
-        ]);
-        $data['slug'] = $data['slug'] ?: Str::slug($data['title']);
-        $data['is_published'] = $request->boolean('is_published');
-        $data['published_at'] = $data['is_published'] ? ($blog->published_at ?: now()) : $blog->published_at;
-        if ($request->hasFile('featured_image')) {
-            $data['featured_image'] = $images->storeSingle($request->file('featured_image'), 'blog', 1400);
-        }
-        $blog->fill($data)->save();
-        $blog->syncTagsFromString($request->string('tags'));
-
-        return redirect()->route('admin.blog.index')->with('status', 'Article saved.');
-    }
-
-    public function blogDelete(Blog $blog)
-    {
-        $blog->delete();
-
-        return back()->with('status', 'Article deleted.');
-    }
-
     public function pages()
     {
         return view('admin.pages.index', ['pages' => Page::query()->orderBy('title')->get()]);
@@ -158,6 +117,27 @@ class ContentAdminController extends Controller
         return view('admin.reviews.index', [
             'reviews' => Review::query()->with('product')->orderBy('is_approved')->latest()->paginate(20),
         ]);
+    }
+
+    public function contacts()
+    {
+        return view('admin.customers.contacts', [
+            'messages' => ContactMessage::query()->orderBy('is_read')->latest()->paginate(20),
+        ]);
+    }
+
+    public function contactRead(ContactMessage $contactMessage)
+    {
+        $contactMessage->update(['is_read' => true]);
+
+        return back()->with('status', 'Query marked as read.');
+    }
+
+    public function contactDelete(ContactMessage $contactMessage)
+    {
+        $contactMessage->delete();
+
+        return back()->with('status', 'Query deleted.');
     }
 
     public function reviewApprove(Review $review)
